@@ -59,6 +59,11 @@
 ---
 
     Code
+      body <- .prepare_body(list(task = test_result[[1]]$gid))
+
+---
+
+    Code
       .call_api(endpoint = list("sections/{section_gid}/addTask", section_gid = "1204184694869406"),
       body = body)
     Output
@@ -123,12 +128,14 @@
 # POSTing and DELETEing files works.
 
     Code
-      test_result <- .call_api(endpoint = "attachments", body = body)
-      test_result
+      body <- .prepare_body(list(parent = "1204206388054744", file = test_path(
+        "img-test.png")), type = "multipart", mime_type = "image/png")
+
+---
+
+    Code
+      test_result[names(test_result) != "gid"]
     Output
-      $gid
-      [1] "1204207835049324"
-      
       $resource_type
       [1] "attachment"
       

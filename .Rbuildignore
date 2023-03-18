@@ -1,11 +1,12 @@
 ^asanar\.Rproj$
 ^\.Rproj\.user$
-^LICENSE\.md$
-^cran-comments\.md$
+^README\.Rmd$
+^CODE_OF_CONDUCT\.md$
 ^\.github$
+^LICENSE\.md$
 ^codecov\.yml$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-^r-raw$
+^cran-comments\.md$
 ^data-raw$

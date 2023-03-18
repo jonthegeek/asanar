@@ -2,7 +2,7 @@ target_file <- here::here("data-raw", "api_spec.rds")
 
 if (file.exists(target_file)) {
   api_spec <- readRDS(target_file)
-} else{
+} else {
   # Read YAML file
   api_spec_url <- file.path(
     "https://raw.githubusercontent.com/Asana",

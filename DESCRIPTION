@@ -12,6 +12,7 @@ BugReports: https://github.com/jonthegeek/asanar/issues
 Depends: 
     R (>= 2.10)
 Imports: 
+    curl,
     glue,
     httr2,
     rlang

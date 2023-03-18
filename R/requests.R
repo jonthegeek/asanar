@@ -81,9 +81,7 @@
   return(
     httr2::req_body_json(
       request,
-      data = list(
-        data = unclass(body)
-      )
+      data = unclass(body)
     )
   )
 }
@@ -103,4 +101,29 @@
   # TODO: Make sure that parsed properly.
 
   return(response$data)
+}
+
+.prepare_body <- function(body, type = c("json", "multipart"), mime_type) {
+  type <- rlang::arg_match(type)
+
+  switch(type,
+    json = {
+      body <- list(data = body)
+      class(body) <- c("json", "list")
+      return(body)
+    },
+    # There's only one valid multipart case for Asana, so I'm hard-coding
+    # things. If this gets generalized, this will need to be rethought.
+    multipart = {
+      if ("file" %in% names(body)) {
+        # TODO: determine type? Have them send it in? Or does curl infer?
+        body$file <- curl::form_file(body$file, type = mime_type)
+      }
+      for (body_part in names(body)[names(body) != "file"]) {
+        body[[body_part]] <- curl::form_data(body[[body_part]])
+      }
+      class(body) <- c("multipart", "list")
+      return(body)
+    }
+  )
 }

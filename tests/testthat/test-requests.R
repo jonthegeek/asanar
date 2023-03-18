@@ -32,8 +32,9 @@ with_mock_dir("../api", {
       test_result
     })
 
-    body <- list(task = test_result[[1]]$gid)
-    class(body) <- c("json", "list")
+    expect_snapshot({
+      body <- .prepare_body(list(task = test_result[[1]]$gid))
+    })
 
     # Move Task 1 to Icebox.
     expect_snapshot({
@@ -91,23 +92,28 @@ with_mock_dir("../api", {
 
   test_that("POSTing and DELETEing files works.", {
     # This body will attach this image to Task 1.
-    body <- list(
-      parent = curl::form_data("1204206388054744"),
-      file = curl::form_file(
-        test_path("img-test.png"),
-        type = "image/png"
-      )
-    )
-    class(body) <- c("multipart", "list")
-
-    # Attach it.
     expect_snapshot({
+      body <- .prepare_body(
+        list(
+          parent = "1204206388054744",
+          file = test_path("img-test.png")
+        ),
+        type = "multipart",
+        mime_type = "image/png"
+      )
+    })
+
+    expect_no_error({
       test_result <- .call_api(
         endpoint = "attachments",
         body = body
       )
-      test_result
     })
+
+    expect_snapshot({
+      test_result[names(test_result) != "gid"]
+    })
+
 
     # Delete it.
     expect_snapshot({
