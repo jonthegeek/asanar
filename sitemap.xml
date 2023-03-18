@@ -28,6 +28,21 @@
     <loc>https://jonthegeek.github.io/asanar/reference/asanar-package.html</loc>
   </url>
   <url>
+    <loc>https://jonthegeek.github.io/asanar/reference/asn_browse_token.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/asanar/reference/dot-add_body.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/asanar/reference/dot-call_api.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/asanar/reference/dot-parse_response.html</loc>
+  </url>
+  <url>
+    <loc>https://jonthegeek.github.io/asanar/reference/dot-prepare_request.html</loc>
+  </url>
+  <url>
     <loc>https://jonthegeek.github.io/asanar/reference/index.html</loc>
   </url>
 </urlset>
