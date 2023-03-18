@@ -9,8 +9,16 @@ License: MIT + file LICENSE
 URL: https://github.com/jonthegeek/asanar,
     https://jonthegeek.github.io/asanar/
 BugReports: https://github.com/jonthegeek/asanar/issues
+Depends: 
+    R (>= 2.10)
+Imports: 
+    curl,
+    glue,
+    httr2,
+    rlang
 Suggests: 
     covr,
+    httptest2,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
