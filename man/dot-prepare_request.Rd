@@ -24,7 +24,7 @@ Case is ignored.}
 variable.}
 }
 \value{
-A requrest ready to perform.
+A request ready to perform.
 }
 \description{
 Combine request pieces

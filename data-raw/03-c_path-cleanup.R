@@ -1,0 +1,9 @@
+rm(
+  .data,
+  ..build_call,
+  ..build_calls,
+  ..concat_formals,
+  ..document_parameters,
+  ..name_endpoint_file,
+  ..name_function
+)
