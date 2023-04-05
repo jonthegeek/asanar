@@ -15,7 +15,7 @@ asn_get_custom_field_settings_for_portfolio <- function(portfolio_gid, limit, of
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/custom_field_settings", portfolio_gid = portfolio_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -39,7 +39,7 @@ asn_get_portfolio_memberships_for_portfolio <- function(portfolio_gid, limit, of
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/portfolio_memberships", portfolio_gid = portfolio_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields, user = user),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), user = rlang::maybe_missing(user)),
     method = "get"
   )
 }
@@ -63,7 +63,7 @@ asn_get_portfolios <- function(workspace, limit, offset, opt_fields, owner) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields, owner = owner, workspace = workspace),
+    query = list(workspace = workspace, limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), owner = rlang::maybe_missing(owner)),
     method = "get"
   )
 }
@@ -83,7 +83,7 @@ asn_create_portfolio <- function(opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios"),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -105,7 +105,7 @@ asn_get_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -126,7 +126,7 @@ asn_update_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -148,7 +148,7 @@ asn_delete_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }
@@ -171,7 +171,7 @@ asn_get_items_for_portfolio <- function(portfolio_gid, limit, offset, opt_fields
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/items", portfolio_gid = portfolio_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -192,7 +192,7 @@ asn_add_item_for_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/addItem", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -214,7 +214,7 @@ asn_remove_item_for_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/removeItem", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -278,7 +278,7 @@ asn_add_members_for_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/addMembers", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -300,7 +300,7 @@ asn_remove_members_for_portfolio <- function(portfolio_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/removeMembers", portfolio_gid = portfolio_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )

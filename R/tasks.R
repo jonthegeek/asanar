@@ -15,7 +15,7 @@ asn_get_projects_for_task <- function(task_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/projects", task_gid = task_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -38,7 +38,7 @@ asn_get_stories_for_task <- function(task_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/stories", task_gid = task_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -59,7 +59,7 @@ asn_create_story_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/stories", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -83,7 +83,7 @@ asn_get_tags_for_task <- function(task_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/tags", task_gid = task_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -111,7 +111,7 @@ asn_get_tasks <- function(assignee, completed_since, limit, modified_since, offs
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks"),
-    query = list(assignee = assignee, completed_since = completed_since, limit = limit, modified_since = modified_since, offset = offset, opt_fields = opt_fields, project = project, section = section, workspace = workspace),
+    query = list(assignee = rlang::maybe_missing(assignee), completed_since = rlang::maybe_missing(completed_since), limit = rlang::maybe_missing(limit), modified_since = rlang::maybe_missing(modified_since), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), project = rlang::maybe_missing(project), section = rlang::maybe_missing(section), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
 }
@@ -131,7 +131,7 @@ asn_create_task <- function(opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks"),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -153,7 +153,7 @@ asn_get_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -174,7 +174,7 @@ asn_update_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -196,7 +196,7 @@ asn_delete_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }
@@ -217,7 +217,7 @@ asn_duplicate_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/duplicate", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -241,7 +241,7 @@ asn_get_subtasks_for_task <- function(task_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/subtasks", task_gid = task_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -262,7 +262,7 @@ asn_create_subtask_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/subtasks", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -284,7 +284,7 @@ asn_set_parent_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/setParent", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -308,7 +308,7 @@ asn_get_dependencies_for_task <- function(task_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/dependencies", task_gid = task_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -329,7 +329,7 @@ asn_add_dependencies_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/addDependencies", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -351,7 +351,7 @@ asn_remove_dependencies_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeDependencies", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -375,7 +375,7 @@ asn_get_dependents_for_task <- function(task_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/dependents", task_gid = task_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -396,7 +396,7 @@ asn_add_dependents_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/addDependents", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -418,7 +418,7 @@ asn_remove_dependents_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeDependents", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -440,7 +440,7 @@ asn_add_project_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/addProject", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -462,7 +462,7 @@ asn_remove_project_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeProject", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -484,7 +484,7 @@ asn_add_tag_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/addTag", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -506,7 +506,7 @@ asn_remove_tag_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeTag", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -528,7 +528,7 @@ asn_add_followers_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/addFollowers", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -550,7 +550,7 @@ asn_remove_follower_for_task <- function(task_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeFollowers", task_gid = task_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )

@@ -17,77 +17,28 @@ asn_get_audit_log_events(
 )
 }
 \arguments{
-\item{workspace_gid}{(character scalar) Globally unique identifier for the
-workspace or organization.}
+\item{workspace_gid}{(character scalar) Globally unique identifier for the workspace or organization.}
 
-\item{actor_gid}{(optional) (character scalar) Filter to events triggered by
-the actor with this ID.}
+\item{actor_gid}{(optional) (character scalar) Filter to events triggered by the actor with this ID.}
 
-\item{actor_type}{(optional) (character scalar) Filter to events with an
-actor of this type. This only needs to be included if querying for actor
-types without an ID. If \code{actor_gid} is included, this should be excluded.
-Possible values: user, asana, asana_support, anonymous,
-external_administrator.}
+\item{actor_type}{(optional) (character scalar) Filter to events with an actor of this type. This only needs to be included if querying for actor types without an ID. If \code{actor_gid} is included, this should be excluded. Possible values: user, asana, asana_support, anonymous, external_administrator.}
 
-\item{end_at}{(optional) (datetime scalar) Filter to events created before
-this time (exclusive).}
+\item{end_at}{(optional) (datetime scalar) Filter to events created before this time (exclusive).}
 
-\item{event_type}{(optional) (character scalar) Filter to events of this
-type. Refer to the \href{/docs/audit-log-events#supported-audit-log-events}{supported audit log events} for a full list
-of values.}
+\item{event_type}{(optional) (character scalar) Filter to events of this type. Refer to the \href{/docs/audit-log-events#supported-audit-log-events}{supported audit log events} for a full list of values.}
 
-\item{limit}{(optional) (integer scalar) Results per page. The number of
-objects to return per page. The value must be between 1 and 100.}
+\item{limit}{(optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.}
 
-\item{offset}{(optional) (character scalar) Offset token. An offset to the
-next page returned by the API. A pagination request will return an offset
-token, which can be used as an input parameter to the next request. If an
-offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a
-previously paginated request.'}
+\item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{resource_gid}{(optional) (character scalar) Filter to events with this
-resource ID.}
+\item{resource_gid}{(optional) (character scalar) Filter to events with this resource ID.}
 
-\item{start_at}{(optional) (datetime scalar) Filter to events created after
-this time (inclusive).}
+\item{start_at}{(optional) (datetime scalar) Filter to events created after this time (inclusive).}
 }
 \value{
-An object representing a single event within an Asana domain.  Every
-audit log event is comprised of an \code{event_type}, \code{actor}, \code{resource}, and
-\code{context}. Some events will include additional metadata about the event
-under \code{details}. See our \href{/docs/audit-log-events#supported-audit-log-events}{currently supported list of events} for more
-details.
+An object representing a single event within an Asana domain.  Every audit log event is comprised of an \code{event_type}, \code{actor}, \code{resource}, and \code{context}. Some events will include additional metadata about the event under \code{details}. See our \href{/docs/audit-log-events#supported-audit-log-events}{currently supported list of events} for more details.
 }
 \description{
-Retrieve the audit log events that have been captured in your domain. This
-endpoint will return a list of \href{/reference/audit-log-api}{AuditLogEvent}
-objects, sorted by creation time in ascending order. Note that the Audit Log
-API captures events from October 8th, 2021 and later. Queries for events
-before this date will not return results. There are a number of query
-parameters (below) that can be used to filter the set of
-\href{/reference/audit-log-api}{AuditLogEvent} objects that are returned in the
-response. Any combination of query parameters is valid. When no filters are
-provided, all of the events that have been captured in your domain will
-match. The list of events will always be \href{/docs/pagination}{paginated}. The
-default limit is 1000 events. The next set of events can be retrieved using
-the \code{offset} from the previous response. If there are no events that match
-the provided filters in your domain, the endpoint will return \code{null} for the
-\code{next_page} field. Querying again with the same filters may return new events
-if they were captured after the last request. Once a response includes a
-\code{next_page} with an \code{offset}, subsequent requests can be made with the latest
-\code{offset} to poll for new events that match the provided filters. \emph{Note: If
-the filters you provided match events in your domain and \code{next_page} is
-present in the response, we will continue to send \code{next_page} on subsequent
-requests even when there are no more events that match the filters. This was
-put in place so that you can implement an audit log stream that will return
-future events that match these filters. If you are not interested in future
-events that match the filters you have defined, you can rely on checking
-empty \code{data} response for the end of current events that match your filters.}
-When no \code{offset} is provided, the response will begin with the oldest events
-that match the provided filters. It is important to note that
-\href{/reference/audit-log-api}{AuditLogEvent} objects will be permanently deleted
-from our systems after 90 days. If you wish to keep a permanent record of
-these events, we recommend using a SIEM tool to ingest and store these logs.
+Retrieve the audit log events that have been captured in your domain.  This endpoint will return a list of \href{/reference/audit-log-api}{AuditLogEvent} objects, sorted by creation time in ascending order. Note that the Audit Log API captures events from October 8th, 2021 and later. Queries for events before this date will not return results.  There are a number of query parameters (below) that can be used to filter the set of \href{/reference/audit-log-api}{AuditLogEvent} objects that are returned in the response. Any combination of query parameters is valid. When no filters are provided, all of the events that have been captured in your domain will match.  The list of events will always be \href{/docs/pagination}{paginated}. The default limit is 1000 events. The next set of events can be retrieved using the \code{offset} from the previous response. If there are no events that match the provided filters in your domain, the endpoint will return \code{null} for the \code{next_page} field. Querying again with the same filters may return new events if they were captured after the last request. Once a response includes a \code{next_page} with an \code{offset}, subsequent requests can be made with the latest \code{offset} to poll for new events that match the provided filters.  \emph{Note: If the filters you provided match events in your domain and \code{next_page} is present in the response, we will continue to send \code{next_page} on subsequent requests even when there are no more events that match the filters. This was put in place so that you can implement an audit log stream that will return future events that match these filters. If you are not interested in future events that match the filters you have defined, you can rely on checking empty \code{data} response for the end of current events that match your filters.}  When no \code{offset} is provided, the response will begin with the oldest events that match the provided filters. It is important to note that \href{/reference/audit-log-api}{AuditLogEvent} objects will be permanently deleted from our systems after 90 days. If you wish to keep a permanent record of these events, we recommend using a SIEM tool to ingest and store these logs.
 }
 \keyword{internal}

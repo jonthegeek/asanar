@@ -7,24 +7,14 @@
 asn_create_project_for_workspace(workspace_gid, opt_fields)
 }
 \arguments{
-\item{workspace_gid}{(character scalar) Globally unique identifier for the
-workspace or organization.}
+\item{workspace_gid}{(character scalar) Globally unique identifier for the workspace or organization.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return.
-Some requests return \emph{compact} representations of objects in order to
-conserve resources and complete the request more efficiently. Other times
-requests return more information than you may need. This option allows you
-to list the exact set of fields that the API should be sure to return for
-the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field
-options.}
+\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
 A generic Asana Resource, containing a globally unique identifier.
 }
 \description{
-Creates a project in the workspace.  If the workspace for your project is an
-organization, you must also supply a team to share the project with.  Returns
-the full record of the newly created project.
+Creates a project in the workspace.  If the workspace for your project is an organization, you must also supply a team to share the project with.  Returns the full record of the newly created project.
 }
 \keyword{internal}

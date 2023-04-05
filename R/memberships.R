@@ -18,7 +18,7 @@ asn_get_memberships <- function(limit, member, offset, opt_fields, parent, resou
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/memberships"),
-    query = list(limit = limit, member = member, offset = offset, opt_fields = opt_fields, parent = parent, resource_subtype = resource_subtype, workspace = workspace),
+    query = list(limit = rlang::maybe_missing(limit), member = rlang::maybe_missing(member), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), parent = rlang::maybe_missing(parent), resource_subtype = rlang::maybe_missing(resource_subtype), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
 }
@@ -38,7 +38,7 @@ asn_create_membership <- function(opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/memberships"),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -60,7 +60,7 @@ asn_delete_membership <- function(membership_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/memberships/{membership_gid}", membership_gid = membership_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }
@@ -81,7 +81,7 @@ asn_update_membership <- function(membership_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/memberships/{membership_gid}", membership_gid = membership_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )

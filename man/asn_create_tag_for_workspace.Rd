@@ -7,26 +7,14 @@
 asn_create_tag_for_workspace(workspace_gid, opt_fields)
 }
 \arguments{
-\item{workspace_gid}{(character scalar) Globally unique identifier for the
-workspace or organization.}
+\item{workspace_gid}{(character scalar) Globally unique identifier for the workspace or organization.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return.
-Some requests return \emph{compact} representations of objects in order to
-conserve resources and complete the request more efficiently. Other times
-requests return more information than you may need. This option allows you
-to list the exact set of fields that the API should be sure to return for
-the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field
-options.}
+\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
 A generic Asana Resource, containing a globally unique identifier.
 }
 \description{
-Creates a new tag in a workspace or organization.  Every tag is required to
-be created in a specific workspace or organization, and this cannot be
-changed once set. Note that you can use the workspace parameter regardless of
-whether or not it is an organization.  Returns the full record of the newly
-created tag.
+Creates a new tag in a workspace or organization.  Every tag is required to be created in a specific workspace or organization, and this cannot be changed once set. Note that you can use the workspace parameter regardless of whether or not it is an organization.  Returns the full record of the newly created tag.
 }
 \keyword{internal}

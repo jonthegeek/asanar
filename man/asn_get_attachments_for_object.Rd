@@ -7,42 +7,18 @@
 asn_get_attachments_for_object(parent, limit, offset, opt_fields)
 }
 \arguments{
-\item{parent}{(character scalar) Globally unique identifier for object to
-fetch statuses from. Must be a GID for a \code{project}, \code{project_brief}, or
-\code{task}.}
+\item{parent}{(character scalar) Globally unique identifier for object to fetch statuses from. Must be a GID for a \code{project}, \code{project_brief}, or \code{task}.}
 
-\item{limit}{(optional) (integer scalar) Results per page. The number of
-objects to return per page. The value must be between 1 and 100.}
+\item{limit}{(optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.}
 
-\item{offset}{(optional) (character scalar) Offset token. An offset to the
-next page returned by the API. A pagination request will return an offset
-token, which can be used as an input parameter to the next request. If an
-offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a
-previously paginated request.'}
+\item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return.
-Some requests return \emph{compact} representations of objects in order to
-conserve resources and complete the request more efficiently. Other times
-requests return more information than you may need. This option allows you
-to list the exact set of fields that the API should be sure to return for
-the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field
-options.}
+\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
 A generic Asana Resource, containing a globally unique identifier.
 }
 \description{
-Returns the compact records for all attachments on the object.  There are
-three possible \code{parent} values for this request: \code{project}, \code{project_brief},
-and \code{task}. For a project, an attachment refers to a file uploaded to the
-"Key resources" section in the project Overview. For a project brief, an
-attachment refers to inline files in the project brief itself. For a task, an
-attachment refers to a file directly associated to that task.  Note that
-within the Asana app, inline images in the task description do not appear in
-the index of image thumbnails nor as stories in the task. However, requests
-made to \code{GET /attachments} for a task will return all of the images in the
-task, including inline images.
+Returns the compact records for all attachments on the object.  There are three possible \code{parent} values for this request: \code{project}, \code{project_brief}, and \code{task}. For a project, an attachment refers to a file uploaded to the "Key resources" section in the project Overview. For a project brief, an attachment refers to inline files in the project brief itself. For a task, an attachment refers to a file directly associated to that task.  Note that within the Asana app, inline images in the task description do not appear in the index of image thumbnails nor as stories in the task. However, requests made to \code{GET /attachments} for a task will return all of the images in the task, including inline images.
 }
 \keyword{internal}

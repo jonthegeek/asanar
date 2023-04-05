@@ -13,7 +13,7 @@ asn_get_status <- function(status_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/status_updates/{status_gid}", status_gid = status_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -34,7 +34,7 @@ asn_delete_status <- function(status_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/status_updates/{status_gid}", status_gid = status_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }
@@ -58,7 +58,7 @@ asn_get_statuses_for_object <- function(parent, created_since, limit, offset, op
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/status_updates"),
-    query = list(created_since = created_since, limit = limit, offset = offset, opt_fields = opt_fields, parent = parent),
+    query = list(parent = parent, created_since = rlang::maybe_missing(created_since), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -80,7 +80,7 @@ asn_create_status_for_object <- function(limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/status_updates"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )

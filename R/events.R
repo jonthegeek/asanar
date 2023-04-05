@@ -14,7 +14,7 @@ asn_get_events <- function(resource, opt_fields, sync) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/events"),
-    query = list(opt_fields = opt_fields, sync = sync, resource = resource),
+    query = list(resource = resource, opt_fields = rlang::maybe_missing(opt_fields), sync = rlang::maybe_missing(sync)),
     method = "get"
   )
 }

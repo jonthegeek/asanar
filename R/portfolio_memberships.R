@@ -17,7 +17,7 @@ asn_get_portfolio_memberships <- function(limit, offset, opt_fields, portfolio, 
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolio_memberships"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields, portfolio = portfolio, user = user, workspace = workspace),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), portfolio = rlang::maybe_missing(portfolio), user = rlang::maybe_missing(user), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
 }
@@ -38,7 +38,7 @@ asn_get_portfolio_membership <- function(portfolio_membership_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/portfolio_memberships/{portfolio_membership_gid}", portfolio_membership_gid = portfolio_membership_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }

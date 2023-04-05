@@ -100,8 +100,20 @@
     ")"
   )
 
-  query_params <- parameters$name[parameters$`in` == "query"]
-  query_params <- glue::glue("{query_params} = {query_params}")
+  query_params_required <- parameters$name[
+    parameters$`in` == "query" & parameters$required
+  ]
+  query_params_required <- glue::glue(
+    "{query_params_required} = {query_params_required}"
+  )
+
+  query_params_optional <- parameters$name[
+    parameters$`in` == "query" & !parameters$required
+  ]
+  query_params_optional <- glue::glue(
+    "{query_params_optional} = rlang::maybe_missing({query_params_optional})"
+  )
+  query_params <- c(query_params_required, query_params_optional)
   query_list <- paste0(
     "list(",
     paste(
@@ -136,13 +148,13 @@
     )
   }
 
-
-
-  glue::glue(
-    ".call_api(",
-    "  {args}",
-    ")",
-    .sep = "\n  ",
-    .trim = FALSE
+  return(
+    glue::glue(
+      ".call_api(",
+      "  {args}",
+      ")",
+      .sep = "\n  ",
+      .trim = FALSE
+    )
   )
 }

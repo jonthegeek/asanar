@@ -13,7 +13,7 @@ asn_get_goal_relationship <- function(goal_relationship_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/goal_relationships/{goal_relationship_gid}", goal_relationship_gid = goal_relationship_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -34,7 +34,7 @@ asn_update_goal_relationship <- function(goal_relationship_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/goal_relationships/{goal_relationship_gid}", goal_relationship_gid = goal_relationship_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -57,7 +57,7 @@ asn_get_goal_relationships <- function(supported_goal, opt_fields, resource_subt
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/goal_relationships"),
-    query = list(opt_fields = opt_fields, resource_subtype = resource_subtype, supported_goal = supported_goal),
+    query = list(supported_goal = supported_goal, opt_fields = rlang::maybe_missing(opt_fields), resource_subtype = rlang::maybe_missing(resource_subtype)),
     method = "get"
   )
 }

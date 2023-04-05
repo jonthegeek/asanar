@@ -13,7 +13,7 @@ asn_get_job <- function(job_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/jobs/{job_gid}", job_gid = job_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
