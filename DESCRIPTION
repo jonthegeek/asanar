@@ -15,6 +15,7 @@ Imports:
     curl,
     glue,
     httr2,
+    purrr,
     rlang
 Suggests: 
     covr,
