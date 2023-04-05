@@ -48,9 +48,8 @@
   if (!missing(body)) {
     body <- .remove_missing(body)
     if (length(body)) {
-      request <- httr2::req_url_query(request, !!!body)
+      request <- .add_body(request, body)
     }
-    request <- .add_body(request, body)
   }
   if (!missing(method)) {
     request <- httr2::req_method(request, method)
@@ -73,7 +72,13 @@
     arg_list,
     rlang::is_missing
   )
-  return(arg_list[arg_present])
+  return(
+    structure(
+      arg_list[arg_present],
+      # Preserve special classes!
+      class = class(arg_list)
+    )
+  )
 }
 
 #' Add the body to the request
