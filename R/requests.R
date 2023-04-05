@@ -32,7 +32,7 @@
 #'
 #' @inheritParams .call_api
 #'
-#' @return A requrest ready to perform.
+#' @return A request ready to perform.
 #' @keywords internal
 .prepare_request <- function(endpoint, query, body, method, token) {
   request <- httr2::request(base_url)
@@ -116,7 +116,7 @@
     # things. If this gets generalized, this will need to be rethought.
     multipart = {
       if ("file" %in% names(body)) {
-        # TODO: determine type? Have them send it in? Or does curl infer?
+        # TODO: auto-guess type?
         body$file <- curl::form_file(body$file, type = mime_type)
       }
       for (body_part in names(body)[names(body) != "file"]) {
