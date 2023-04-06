@@ -7,33 +7,18 @@
 asn_get_custom_fields_for_workspace(workspace_gid, limit, offset, opt_fields)
 }
 \arguments{
-\item{workspace_gid}{(character scalar) Globally unique identifier for the
-workspace or organization.}
+\item{workspace_gid}{(character scalar) Globally unique identifier for the workspace or organization.}
 
-\item{limit}{(optional) (integer scalar) Results per page. The number of
-objects to return per page. The value must be between 1 and 100.}
+\item{limit}{(optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.}
 
-\item{offset}{(optional) (character scalar) Offset token. An offset to the
-next page returned by the API. A pagination request will return an offset
-token, which can be used as an input parameter to the next request. If an
-offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a
-previously paginated request.'}
+\item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return.
-Some requests return \emph{compact} representations of objects in order to
-conserve resources and complete the request more efficiently. Other times
-requests return more information than you may need. This option allows you
-to list the exact set of fields that the API should be sure to return for
-the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field
-options.}
+\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
 A generic Asana Resource, containing a globally unique identifier.
 }
 \description{
-Returns a list of the compact representation of all of the custom fields in a
-workspace.
+Returns a list of the compact representation of all of the custom fields in a workspace.
 }
 \keyword{internal}

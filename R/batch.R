@@ -12,7 +12,7 @@ asn_create_batch_request <- function(opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/batch"),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )

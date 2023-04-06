@@ -13,7 +13,7 @@ asn_get_workspace_membership <- function(workspace_membership_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/workspace_memberships/{workspace_membership_gid}", workspace_membership_gid = workspace_membership_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }

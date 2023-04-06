@@ -13,7 +13,7 @@ asn_get_time_period <- function(time_period_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/time_periods/{time_period_gid}", time_period_gid = time_period_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -38,7 +38,7 @@ asn_get_time_periods <- function(workspace, end_on, limit, offset, opt_fields, s
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/time_periods"),
-    query = list(end_on = end_on, limit = limit, offset = offset, opt_fields = opt_fields, start_on = start_on, workspace = workspace),
+    query = list(workspace = workspace, end_on = rlang::maybe_missing(end_on), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), start_on = rlang::maybe_missing(start_on)),
     method = "get"
   )
 }

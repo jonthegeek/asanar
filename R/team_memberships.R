@@ -13,7 +13,7 @@ asn_get_team_membership <- function(team_membership_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/team_memberships/{team_membership_gid}", team_membership_gid = team_membership_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -38,7 +38,7 @@ asn_get_team_memberships <- function(limit, offset, opt_fields, team, user, work
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/team_memberships"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields, team = team, user = user, workspace = workspace),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), team = rlang::maybe_missing(team), user = rlang::maybe_missing(user), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
 }

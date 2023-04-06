@@ -13,7 +13,7 @@ asn_get_project_template <- function(project_template_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_templates/{project_template_gid}", project_template_gid = project_template_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -37,7 +37,7 @@ asn_get_project_templates <- function(limit, offset, opt_fields, team, workspace
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_templates"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields, team = team, workspace = workspace),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), team = rlang::maybe_missing(team), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
 }
@@ -58,7 +58,7 @@ asn_instantiate_project <- function(project_template_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_templates/{project_template_gid}/instantiateProject", project_template_gid = project_template_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )

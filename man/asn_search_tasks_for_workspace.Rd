@@ -62,31 +62,23 @@ asn_search_tasks_for_workspace(
 )
 }
 \arguments{
-\item{workspace_gid}{(character scalar) Globally unique identifier for the
-workspace or organization.}
+\item{workspace_gid}{(character scalar) Globally unique identifier for the workspace or organization.}
 
-\item{assigned_by.any}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{assigned_by.any}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{assigned_by.not}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{assigned_by.not}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{assignee.any}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{assignee.any}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{assignee.not}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{assignee.not}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{commented_on_by.not}{(optional) (character scalar) Comma-separated list
-of user identifiers}
+\item{commented_on_by.not}{(optional) (character scalar) Comma-separated list of user identifiers}
 
 \item{completed}{(optional) (logical scalar) Filter to completed tasks}
 
-\item{completed_at.after}{(optional) (datetime scalar) ISO 8601 datetime
-string}
+\item{completed_at.after}{(optional) (datetime scalar) ISO 8601 datetime string}
 
-\item{completed_at.before}{(optional) (datetime scalar) ISO 8601 datetime
-string}
+\item{completed_at.before}{(optional) (datetime scalar) ISO 8601 datetime string}
 
 \item{completed_on}{(optional) (date scalar) ISO 8601 date string or \code{null}}
 
@@ -96,14 +88,11 @@ string}
 
 \item{created_at.after}{(optional) (datetime scalar) ISO 8601 datetime string}
 
-\item{created_at.before}{(optional) (datetime scalar) ISO 8601 datetime
-string}
+\item{created_at.before}{(optional) (datetime scalar) ISO 8601 datetime string}
 
-\item{created_by.any}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{created_by.any}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{created_by.not}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{created_by.not}{(optional) (character scalar) Comma-separated list of user identifiers}
 
 \item{created_on}{(optional) (date scalar) ISO 8601 date string or \code{null}}
 
@@ -121,28 +110,21 @@ user identifiers}
 
 \item{due_on.before}{(optional) (date scalar) ISO 8601 date string}
 
-\item{followers.not}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{followers.not}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{has_attachment}{(optional) (logical scalar) Filter to tasks with
-attachments}
+\item{has_attachment}{(optional) (logical scalar) Filter to tasks with attachments}
 
-\item{is_blocked}{(optional) (logical scalar) Filter to tasks with incomplete
-dependencies}
+\item{is_blocked}{(optional) (logical scalar) Filter to tasks with incomplete dependencies}
 
-\item{is_blocking}{(optional) (logical scalar) Filter to incomplete tasks
-with dependents}
+\item{is_blocking}{(optional) (logical scalar) Filter to incomplete tasks with dependents}
 
 \item{is_subtask}{(optional) (logical scalar) Filter to subtasks}
 
-\item{liked_by.not}{(optional) (character scalar) Comma-separated list of
-user identifiers}
+\item{liked_by.not}{(optional) (character scalar) Comma-separated list of user identifiers}
 
-\item{modified_at.after}{(optional) (datetime scalar) ISO 8601 datetime
-string}
+\item{modified_at.after}{(optional) (datetime scalar) ISO 8601 datetime string}
 
-\item{modified_at.before}{(optional) (datetime scalar) ISO 8601 datetime
-string}
+\item{modified_at.before}{(optional) (datetime scalar) ISO 8601 datetime string}
 
 \item{modified_on}{(optional) (date scalar) ISO 8601 date string or \code{null}}
 
@@ -150,47 +132,27 @@ string}
 
 \item{modified_on.before}{(optional) (date scalar) ISO 8601 date string}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return.
-Some requests return \emph{compact} representations of objects in order to
-conserve resources and complete the request more efficiently. Other times
-requests return more information than you may need. This option allows you
-to list the exact set of fields that the API should be sure to return for
-the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field
-options.}
+\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 
-\item{portfolios.any}{(optional) (character scalar) Comma-separated list of
-portfolio IDs}
+\item{portfolios.any}{(optional) (character scalar) Comma-separated list of portfolio IDs}
 
-\item{projects.all}{(optional) (character scalar) Comma-separated list of
-project IDs}
+\item{projects.all}{(optional) (character scalar) Comma-separated list of project IDs}
 
-\item{projects.any}{(optional) (character scalar) Comma-separated list of
-project IDs}
+\item{projects.any}{(optional) (character scalar) Comma-separated list of project IDs}
 
-\item{projects.not}{(optional) (character scalar) Comma-separated list of
-project IDs}
+\item{projects.not}{(optional) (character scalar) Comma-separated list of project IDs}
 
-\item{resource_subtype}{(optional) (character scalar) Filters results by the
-task's resource_subtype Possible values: default_task, milestone. Default:
-milestone}
+\item{resource_subtype}{(optional) (character scalar) Filters results by the task's resource_subtype Possible values: default_task, milestone. Default: milestone}
 
-\item{sections.all}{(optional) (character scalar) Comma-separated list of
-section or column IDs}
+\item{sections.all}{(optional) (character scalar) Comma-separated list of section or column IDs}
 
-\item{sections.any}{(optional) (character scalar) Comma-separated list of
-section or column IDs}
+\item{sections.any}{(optional) (character scalar) Comma-separated list of section or column IDs}
 
-\item{sections.not}{(optional) (character scalar) Comma-separated list of
-section or column IDs}
+\item{sections.not}{(optional) (character scalar) Comma-separated list of section or column IDs}
 
-\item{sort_ascending}{(optional) (logical scalar) Default \code{false} Default:
-FALSE}
+\item{sort_ascending}{(optional) (logical scalar) Default \code{false} Default: FALSE}
 
-\item{sort_by}{(optional) (character scalar) One of \code{due_date}, \code{created_at},
-\code{completed_at}, \code{likes}, or \code{modified_at}, defaults to \code{modified_at}
-Possible values: due_date, created_at, completed_at, likes, modified_at.
-Default: modified_at}
+\item{sort_by}{(optional) (character scalar) One of \code{due_date}, \code{created_at}, \code{completed_at}, \code{likes}, or \code{modified_at}, defaults to \code{modified_at} Possible values: due_date, created_at, completed_at, likes, modified_at. Default: modified_at}
 
 \item{start_on}{(optional) (date scalar) ISO 8601 date string or \code{null}}
 
@@ -204,60 +166,14 @@ Default: modified_at}
 
 \item{tags.not}{(optional) (character scalar) Comma-separated list of tag IDs}
 
-\item{teams.any}{(optional) (character scalar) Comma-separated list of team
-IDs}
+\item{teams.any}{(optional) (character scalar) Comma-separated list of team IDs}
 
-\item{text}{(optional) (character scalar) Performs full-text search on both
-task name and description}
+\item{text}{(optional) (character scalar) Performs full-text search on both task name and description}
 }
 \value{
 A generic Asana Resource, containing a globally unique identifier.
 }
 \description{
-To mirror the functionality of the Asana web app's advanced search feature,
-the Asana API has a task search endpoint that allows you to build complex
-filters to find and retrieve the exact data you need. #### Premium access
-Like the Asana web product's advance search feature, this search endpoint
-will only be available to premium Asana users. A user is premium if any of
-the following is true:  - The workspace in which the search is being
-performed is a premium workspace - The user is a member of a premium team
-inside the workspace  Even if a user is only a member of a premium team
-inside a non-premium workspace, search will allow them to find data anywhere
-in the workspace, not just inside the premium team. Making a search request
-using credentials of a non-premium user will result in a \verb{402 Payment Required} error. #### Pagination Search results are not stable; repeating the
-same query multiple times may return the data in a different order, even if
-the data do not change. Because of this, the traditional
-\href{https://developers.asana.com/docs/#pagination}{pagination} available
-elsewhere in the Asana API is not available here. However, you can paginate
-manually by sorting the search results by their creation time and then
-modifying each subsequent query to exclude data you have already seen. Page
-sizes are limited to a maximum of 100 items, and can be specified by the
-\code{limit} query parameter. #### Eventual consistency Changes in Asana
-(regardless of whether they’re made though the web product or the API) are
-forwarded to our search infrastructure to be indexed. This process can take
-between 10 and 60 seconds to complete under normal operation, and longer
-during some production incidents. Making a change to a task that would alter
-its presence in a particular search query will not be reflected immediately.
-This is also true of the advanced search feature in the web product. ####
-Rate limits You may receive a \verb{429 Too Many Requests} response if you hit any
-of our \href{https://developers.asana.com/docs/#rate-limits}{rate limits}. ####
-Custom field parameters | Parameter name | Custom field type | Accepted type
-| |---|---|---| | custom_fields.{gid}.is_set | All | Boolean | |
-custom_fields.{gid}.value | Text | String | | custom_fields.{gid}.value |
-Number | Number | | custom_fields.{gid}.value | Enum | Enum option ID | |
-custom_fields.{gid}.starts_with | Text only | String | |
-custom_fields.{gid}.ends_with | Text only | String | |
-custom_fields.{gid}.contains | Text only | String | |
-custom_fields.{gid}.less_than | Number only | Number | |
-custom_fields.{gid}.greater_than | Number only | Number |   For example, if
-the gid of the custom field is 12345, these query parameter to find tasks
-where it is set would be \code{custom_fields.12345.is_set=true}. To match an exact
-value for an enum custom field, use the gid of the desired enum option and
-not the name of the enum option: \code{custom_fields.12345.value=67890}.  \strong{Not
-Supported}: searching for multiple exact matches of a custom field,
-searching for multi-enum custom field  \emph{Note: If you specify \code{projects.any}
-and \code{sections.any}, you will receive tasks for the project \strong{and} tasks for
-the section. If you're looking for only tasks in a section, omit the
-\code{projects.any} from the request.}
+To mirror the functionality of the Asana web app's advanced search feature, the Asana API has a task search endpoint that allows you to build complex filters to find and retrieve the exact data you need. #### Premium access Like the Asana web product's advance search feature, this search endpoint will only be available to premium Asana users. A user is premium if any of the following is true:  - The workspace in which the search is being performed is a premium workspace - The user is a member of a premium team inside the workspace  Even if a user is only a member of a premium team inside a non-premium workspace, search will allow them to find data anywhere in the workspace, not just inside the premium team. Making a search request using credentials of a non-premium user will result in a \verb{402 Payment Required} error. #### Pagination Search results are not stable; repeating the same query multiple times may return the data in a different order, even if the data do not change. Because of this, the traditional \href{https://developers.asana.com/docs/#pagination}{pagination} available elsewhere in the Asana API is not available here. However, you can paginate manually by sorting the search results by their creation time and then modifying each subsequent query to exclude data you have already seen. Page sizes are limited to a maximum of 100 items, and can be specified by the \code{limit} query parameter. #### Eventual consistency Changes in Asana (regardless of whether they’re made though the web product or the API) are forwarded to our search infrastructure to be indexed. This process can take between 10 and 60 seconds to complete under normal operation, and longer during some production incidents. Making a change to a task that would alter its presence in a particular search query will not be reflected immediately. This is also true of the advanced search feature in the web product. #### Rate limits You may receive a \verb{429 Too Many Requests} response if you hit any of our \href{https://developers.asana.com/docs/#rate-limits}{rate limits}. #### Custom field parameters | Parameter name | Custom field type | Accepted type | |---|---|---| | custom_fields.{gid}.is_set | All | Boolean | | custom_fields.{gid}.value | Text | String | | custom_fields.{gid}.value | Number | Number | | custom_fields.{gid}.value | Enum | Enum option ID | | custom_fields.{gid}.starts_with | Text only | String | | custom_fields.{gid}.ends_with | Text only | String | | custom_fields.{gid}.contains | Text only | String | | custom_fields.{gid}.less_than | Number only | Number | | custom_fields.{gid}.greater_than | Number only | Number |   For example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be \code{custom_fields.12345.is_set=true}. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: \code{custom_fields.12345.value=67890}.  \strong{Not Supported}: searching for multiple exact matches of a custom field, searching for multi-enum custom field  \emph{Note: If you specify \code{projects.any} and \code{sections.any}, you will receive tasks for the project \strong{and} tasks for the section. If you're looking for only tasks in a section, omit the \code{projects.any} from the request.}
 }
 \keyword{internal}

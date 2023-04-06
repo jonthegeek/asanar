@@ -13,7 +13,7 @@ asn_get_project_status <- function(project_status_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_statuses/{project_status_gid}", project_status_gid = project_status_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -34,7 +34,7 @@ asn_delete_project_status <- function(project_status_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_statuses/{project_status_gid}", project_status_gid = project_status_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }

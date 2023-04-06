@@ -15,7 +15,7 @@ asn_get_project_templates_for_team <- function(team_gid, limit, offset, opt_fiel
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/project_templates", team_gid = team_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -39,7 +39,7 @@ asn_get_projects_for_team <- function(team_gid, archived, limit, offset, opt_fie
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/projects", team_gid = team_gid),
-    query = list(archived = archived, limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(archived = rlang::maybe_missing(archived), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -60,7 +60,7 @@ asn_create_project_for_team <- function(team_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/projects", team_gid = team_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -84,7 +84,7 @@ asn_get_team_memberships_for_team <- function(team_gid, limit, offset, opt_field
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/team_memberships", team_gid = team_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -106,7 +106,7 @@ asn_create_team <- function(limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -129,7 +129,7 @@ asn_update_team <- function(limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -153,7 +153,7 @@ asn_get_team <- function(team_gid, limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}", team_gid = team_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -174,7 +174,7 @@ asn_add_user_for_team <- function(team_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/addUser", team_gid = team_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -196,7 +196,7 @@ asn_remove_user_for_team <- function(team_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/removeUser", team_gid = team_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -219,7 +219,7 @@ asn_get_users_for_team <- function(team_gid, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/teams/{team_gid}/users", team_gid = team_gid),
-    query = list(offset = offset, opt_fields = opt_fields),
+    query = list(offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }

@@ -40,10 +40,16 @@
   request <- httr2::req_url_path_append(request, endpoint)
 
   if (!missing(query)) {
-    request <- httr2::req_url_query(request, !!!query)
+    query <- .remove_missing(query)
+    if (length(query)) {
+      request <- httr2::req_url_query(request, !!!query)
+    }
   }
   if (!missing(body)) {
-    request <- .add_body(request, body)
+    body <- .remove_missing(body)
+    if (length(body)) {
+      request <- .add_body(request, body)
+    }
   }
   if (!missing(method)) {
     request <- httr2::req_method(request, method)
@@ -51,6 +57,27 @@
 
   return(
     httr2::req_auth_bearer_token(request, token)
+  )
+}
+
+#' Remove missing arguments
+#'
+#' @param arg_list A list of arguments, each of which should be wrapped in
+#'   `rlang::maybe_missing()`.
+#'
+#' @return The list without missing parameters.
+#' @keywords internal
+.remove_missing <- function(arg_list) {
+  arg_present <- !purrr::map_lgl(
+    arg_list,
+    rlang::is_missing
+  )
+  return(
+    structure(
+      arg_list[arg_present],
+      # Preserve special classes!
+      class = class(arg_list)
+    )
   )
 }
 

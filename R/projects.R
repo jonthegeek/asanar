@@ -15,7 +15,7 @@ asn_get_custom_field_settings_for_project <- function(project_gid, limit, offset
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/custom_field_settings", project_gid = project_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -36,7 +36,7 @@ asn_create_project_brief <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/project_briefs", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -61,7 +61,7 @@ asn_get_project_memberships_for_project <- function(project_gid, limit, offset, 
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/project_memberships", project_gid = project_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields, user = user),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), user = rlang::maybe_missing(user)),
     method = "get"
   )
 }
@@ -84,7 +84,7 @@ asn_get_project_statuses_for_project <- function(project_gid, limit, offset, opt
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/project_statuses", project_gid = project_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -105,7 +105,7 @@ asn_create_project_status_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/project_statuses", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -131,7 +131,7 @@ asn_get_projects <- function(archived, limit, offset, opt_fields, team, workspac
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects"),
-    query = list(archived = archived, limit = limit, offset = offset, opt_fields = opt_fields, team = team, workspace = workspace),
+    query = list(archived = rlang::maybe_missing(archived), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), team = rlang::maybe_missing(team), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
 }
@@ -151,7 +151,7 @@ asn_create_project <- function(opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects"),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -173,7 +173,7 @@ asn_get_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -194,7 +194,7 @@ asn_update_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -216,7 +216,7 @@ asn_delete_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }
@@ -237,7 +237,7 @@ asn_duplicate_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/duplicate", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -303,7 +303,7 @@ asn_get_task_counts_for_project <- function(project_gid, limit, offset, opt_fiel
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/task_counts", project_gid = project_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -324,7 +324,7 @@ asn_add_members_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/addMembers", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -346,7 +346,7 @@ asn_remove_members_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/removeMembers", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -368,7 +368,7 @@ asn_add_followers_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/addFollowers", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -390,7 +390,7 @@ asn_remove_followers_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/removeFollowers", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -412,7 +412,7 @@ asn_project_save_as_template <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/saveAsTemplate", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -436,7 +436,7 @@ asn_get_sections_for_project <- function(project_gid, limit, offset, opt_fields)
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/sections", project_gid = project_gid),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -457,7 +457,7 @@ asn_create_section_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/sections", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -479,7 +479,7 @@ asn_insert_section_for_project <- function(project_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/sections/insert", project_gid = project_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -504,7 +504,7 @@ asn_get_tasks_for_project <- function(project_gid, completed_since, limit, offse
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/tasks", project_gid = project_gid),
-    query = list(completed_since = completed_since, limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(completed_since = rlang::maybe_missing(completed_since), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }

@@ -14,7 +14,7 @@ asn_create_organization_export <- function(limit, offset, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/organization_exports"),
-    query = list(limit = limit, offset = offset, opt_fields = opt_fields),
+    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -36,7 +36,7 @@ asn_get_organization_export <- function(organization_export_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/organization_exports/{organization_export_gid}", organization_export_gid = organization_export_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }

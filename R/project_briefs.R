@@ -13,7 +13,7 @@ asn_get_project_brief <- function(project_brief_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_briefs/{project_brief_gid}", project_brief_gid = project_brief_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
 }
@@ -34,7 +34,7 @@ asn_update_project_brief <- function(project_brief_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_briefs/{project_brief_gid}", project_brief_gid = project_brief_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
@@ -56,7 +56,7 @@ asn_delete_project_brief <- function(project_brief_gid, opt_fields) {
   # @keywords internal to @export.
   .call_api(
     endpoint = list("/project_briefs/{project_brief_gid}", project_brief_gid = project_brief_gid),
-    query = list(opt_fields = opt_fields),
+    query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
 }
