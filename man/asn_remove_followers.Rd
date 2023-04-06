@@ -9,10 +9,31 @@ asn_remove_followers(goal_gid, opt_fields)
 \arguments{
 \item{goal_gid}{(character scalar) Globally unique identifier for the goal.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A generic Asana Resource, containing a globally unique identifier.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   due_on \tab character scalar \tab The localized day on which this goal is due. This takes a date with format \code{YYYY-MM-DD}. \cr
+   html_notes \tab character scalar \tab The notes of the goal with formatting as HTML. \cr
+   is_workspace_level \tab logical scalar \tab \emph{Conditional}. This property is only present when the \code{workspace} provided is an organization. Whether the goal belongs to the \code{workspace} (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. \cr
+   liked \tab logical scalar \tab True if the goal is liked by the authorized user, false if not. \cr
+   name \tab character scalar \tab The name of the goal. \cr
+   notes \tab character scalar \tab Free-form textual information associated with the goal (i.e. its description). \cr
+   start_on \tab character scalar \tab The day on which work for this goal begins, or null if the goal has no start date. This takes a date with \code{YYYY-MM-DD} format, and cannot be set unless there is an accompanying due date. \cr
+   status \tab character scalar \tab The current status of this goal. When the goal is open, its status can be \code{green}, \code{yellow}, and \code{red} to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be \code{missed}, \code{achieved}, \code{partial}, or \code{dropped}. \emph{Note} you can only write to this property if \code{metric} is set. \cr
+   current_status_update \tab list \tab The latest \code{status_update} posted to this goal. \cr
+   followers \tab list \tab Array of users who are members of this goal. \cr
+   likes \tab list \tab Array of likes for users who have liked this goal. \cr
+   metric \tab list \tab A generic Asana Resource, containing a globally unique identifier. \cr
+   num_likes \tab integer scalar \tab The number of users who have liked this goal. \cr
+   owner \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   team \tab list \tab \emph{Conditional}. This property is only present when the \code{workspace} provided is an organization. \cr
+   time_period \tab list \tab A generic Asana Resource, containing a globally unique identifier. \cr
+   workspace \tab list \tab A \emph{workspace} is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. \cr
+}
 }
 \description{
 Removes followers from a goal. Returns the goal the followers were removed from. Each goal can be associated with zero or more followers in the system. Requests to add/remove followers, if successful, will return the complete updated goal record, described above.

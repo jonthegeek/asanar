@@ -15,12 +15,15 @@
         .data$description
       )
     ) |>
-    dplyr::select("schema", "description", "allOf", "ref" = "$ref") |>
-    # Extract refs from allOf. There are often also properties, but right now we
-    # don't care about those.
+    dplyr::select(
+      "schema", "description", "allOf", "ref" = "$ref", "properties", "required"
+    ) |>
+    # Extract things from allOf.
     tidyr::hoist(
       "allOf",
-      ref2 = list(1, "$ref")
+      ref2 = list(1, "$ref"),
+      allOf_properties = list(2, "properties"),
+      allOf_description = list(2, "description")
     ) |>
     dplyr::mutate(
       ref = dplyr::coalesce(.data$ref, .data$ref2),
@@ -28,178 +31,257 @@
     ) |>
     dplyr::select(-"ref2", -"allOf")
 
-  # Now for the trickiest bit. ref is referencing something else in this tibble,
-  # and it can be recursive. Let's write a function to walk through that.
-  parse_ref <- function(ref) {
-    if (is.na(ref)) {
-      return(NA_character_)
-    }
+  # Descriptions can be in the schema itself, in the allOf data, or in a
+  # referenced schema (and those references can be nested).
 
-    subref <- all_schemas$ref[which(all_schemas$schema == ref)]
-    if (!is.na(subref)) {
-      return(parse_ref(subref))
-    }
-
-    return(all_schemas$description[all_schemas$schema == ref])
-  }
-
+  # First, deal with the two "basic" locations.
   all_schemas <- all_schemas |>
     dplyr::mutate(
       description = dplyr::coalesce(
         .data$description,
-        purrr::map_chr(.data$ref, parse_ref)
+        .data$allOf_description
+      )
+    ) |>
+    dplyr::select(-"allOf_description")
+
+  # We'll use a function to recurse through references to find a description, if
+  # necessary.
+  all_schemas <- all_schemas |>
+    dplyr::mutate(
+      description = dplyr::coalesce(
+        .data$description,
+        purrr::map_chr(
+          .data$ref,
+          ..parse_ref_description,
+          all_schemas = all_schemas
+        )
+      )
+    )
+
+  # Similar to the situation above, first we'll clean up the ~self-contained
+  # properties for each schema, then we'll use the ref to find things that are
+  # missing. In this case we want to inherit all the things, though (not just
+  # take the first non-empty). Don't forget to make sure things are distinct!
+  all_schemas <- all_schemas |>
+    dplyr::mutate(
+      allOf_properties = ..clean_schema_properties_col(
+        .data$allOf_properties,
+        .data
+      ),
+      properties = ..clean_schema_properties_col(
+        .data$properties,
+        .data
+      ),
+      properties = purrr::map2(
+        .data$properties,
+        .data$allOf_properties,
+        \(prop1, prop2) {
+          dplyr::bind_rows(
+            tibble::tibble(
+              property = character(0),
+              description = character(0),
+              type = character(0),
+              example = list(),
+              enum = list()
+            ),
+            prop1, prop2
+          ) |>
+            dplyr::distinct(.data$property, .keep_all = TRUE)
+        }
+      )
+    ) |>
+    dplyr::select(-"allOf_properties")
+
+  # Apply required info.
+  all_schemas <- all_schemas |>
+    dplyr::mutate(
+      properties = purrr::map2(
+        .data$properties, .data$required,
+        \(props, req) {
+          if (is.null(req)) {
+            return(
+              dplyr::mutate(
+                props,
+                required = FALSE
+              ) |>
+                dplyr::arrange(.data$property)
+            )
+          }
+          # There's at least one case where this doesn't hold up. I don't think
+          # I screwed anything up, this is just an issue in the spec.
+
+          # stopifnot(
+          #   all(req %in% props$property)
+          # )
+          return(
+            dplyr::mutate(
+              props,
+              required = .data$property %in% req
+            ) |>
+              dplyr::arrange(dplyr::desc(.data$required), .data$property)
+          )
+        }
+      )
+    ) |>
+    dplyr::select(-"required")
+
+
+  # Recursively update properties using ref. If A references B which references
+  # C, A should end up with properties from A, B, and C.
+  all_schemas <- all_schemas |>
+    dplyr::mutate(
+      properties = purrr::map2(
+        .data$ref, .data$properties,
+        ..combine_ref_properties,
+        all_schemas = .data
       )
     ) |>
     dplyr::select(-"ref")
 
-  # It's easier as a named character vector.
+  return(all_schemas)
+}
+
+..parse_ref_description <- function(ref, all_schemas, depth = 1L) {
+  if (is.na(ref) || depth > 20) {
+    return(NA_character_)
+  }
+
+  # If this ref has its own description, that is a less-generic value than any
+  # subref, so return it.
+  this_desc <- all_schemas$description[all_schemas$schema == ref]
+
+  if (!is.na(this_desc)) {
+    return(this_desc)
+  }
+
   return(
-    rlang::set_names(
-      all_schemas$description,
-      all_schemas$schema
+    ..parse_ref_description(
+      all_schemas$ref[all_schemas$schema == ref],
+      all_schemas,
+      depth = depth + 1L
     )
   )
 }
 
-..clean_schema_properties <- function(properties_col, required_col) {
+..combine_ref_properties <- function(ref, properties, all_schemas, depth = 1L) {
+  if (is.na(ref) || depth > 20) {
+    return(
+      dplyr::bind_rows(properties, NULL)
+    )
+  }
+
+  return(
+    ..combine_ref_properties(
+      ref = all_schemas$ref[all_schemas$schema == ref],
+      properties = dplyr::bind_rows(
+        all_schemas$properties[all_schemas$schema == ref][[1]],
+        properties
+      ) |>
+        dplyr::distinct(.data$property, .keep_all = TRUE),
+      all_schemas = all_schemas,
+      depth = depth + 1L
+    )
+  )
+}
+
+..clean_schema_properties_col <- function(properties_col, all_schemas) {
+  # This rectangles and cleans up a properties column. The properties won't be
+  # fully usable after this, but it's a step.
   params_tbl <- properties_col |>
     tibble::enframe(name = "row_num") |>
-    tidyr::unnest_longer("value", indices_to = "name") |>
-    tidyr::unnest_wider("value")
+    tidyr::unnest_longer("value", indices_to = "property") |>
+    tidyr::unnest_wider("value") |>
+    dplyr::select(
+      "row_num", "property", dplyr::everything()
+    )
 
-  # ..clean_params looks for a schema column, which later gets unnested. It's
-  # already unnested here, mostly.
-
-  # There are two types of cleaning. First, let's deal with the one case that
-  # uses $ref. Doing this manually rather than programmatically to get it done.
-  # TODO: Generalize this.
-  params_tbl[
-    params_tbl$row_num == 24 & params_tbl$name == "user",
-  ]$description <- api_spec$components$schemas$UserCompact$allOf[[2]]$description
-  params_tbl[
-    params_tbl$row_num == 24 & params_tbl$name == "user",
-  ]$type <- "string"
-  params_tbl[
-    params_tbl$row_num == 24 & params_tbl$name == "user",
-  ]$example <- list("12345")
-
-  params_tbl$`$ref` <- NULL
-
-  # There are actually only two sets of params that have things in allOf (and
-  # one overlaps somewhat with the case above). Let's do those manually, too.
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "user",
-  ]$description <- "The user who triggered the event."
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "user",
-  ]$type <- "string"
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "user",
-  ]$example <- list("12345")
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "user",
-  ]$allOf <- list(NULL)
-
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "resource",
-  ]$description <- "The resource which has triggered the event by being modified in some way."
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "resource",
-  ]$type <- "string"
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "resource",
-  ]$example <- list("Bug Task")
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "resource",
-  ]$allOf <- list(NULL)
-
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "parent",
-  ]$description <- "For added/removed events, the parent object that resource was added to or removed from. The parent will be `null` for other event types."
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "parent",
-  ]$type <- "string"
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "parent",
-  ]$example <- list("Bug Task")
-  params_tbl[
-    params_tbl$row_num == 18 & params_tbl$name == "parent",
-  ]$allOf <- list(NULL)
-
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "actor",
-  ]$description <- "The entity that triggered the event. Will typically be a user."
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "actor",
-  ]$type <- "object"
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "actor",
-  ]$properties <- list(api_spec$components$schemas$AuditLogEventActor$properties)
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "actor",
-  ]$allOf <- list(NULL)
-
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "resource",
-  ]$description <- api_spec$components$schemas$AuditLogEventResource$description
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "resource",
-  ]$type <- "object"
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "resource",
-  ]$properties <- list(api_spec$components$schemas$AuditLogEventResource$properties)
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "resource",
-  ]$allOf <- list(NULL)
-
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "details",
-  ]$description <- api_spec$components$schemas$AuditLogEventDetails$description
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "details",
-  ]$type <- "object"
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "details",
-  ]$allOf <- list(NULL)
-
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "context",
-  ]$description <- api_spec$components$schemas$AuditLogEventContext$description
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "context",
-  ]$type <- "object"
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "context",
-  ]$properties <- list(api_spec$components$schemas$AuditLogEventContext$properties)
-  params_tbl[
-    params_tbl$row_num == 6 & params_tbl$name == "context",
-  ]$allOf <- list(NULL)
-
-  # Some columns appear to be useless, and others need slightly cleaning.
+  # We aren't going to deal with some columns yet even if they exist.
   params_tbl$`x-insert-after` <- NULL
-  params_tbl$allOf <- NULL
-
-  # This one looks to have some info but I want to move on for now.
-  params_tbl$items <- NULL
-
-  params_tbl$readOnly <- !is.na(params_tbl$readOnly)
-  params_tbl$nullable <- !is.na(params_tbl$nullable)
-
-  # The "required" info is up a level from where it should be. Let's put them
-  # into the right places.
-
-  # There's only one params_tbl$required that isn't NA, fix it manually.
-  params_tbl$properties[[
-    which(!is.na(params_tbl$required))
-  ]]$should_skip_weekends$required <- TRUE
-
+  params_tbl$readOnly <- NULL
+  params_tbl$nullable <- NULL
   params_tbl$required <- NULL
+  params_tbl$`x-env-variable` <- NULL
 
-  params_tbl |>
-    dplyr::filter(!is.na(required)) |>
-    dplyr::pull(properties)
+  # We aren't going to document the things inside objects, at least not yet.
+  params_tbl$properties <- NULL
+  params_tbl$additionalProperties <- NULL
 
-  return(tidyr::nest(params_tbl, .by = "row_num", .key = "properties"))
+  # When allOf isn't NULL, it's giving details about nested properties.
+  # Importantly, it hides the description and type, which are the main things I
+  # care about.
+  params_tbl <- params_tbl |>
+    tidyr::hoist(
+      "allOf",
+      description_allof = list(2, "description"),
+      type_allof = list(2, "type"),
+      ref_allof = list(1, "$ref"),
+      # Hoist these for tracking purposes.
+      nullable_allof = list(2, "nullable"),
+      nullable_readonly = list(2, "readOnly")
+    ) |>
+    tidyr::hoist(
+      "items",
+      description_items = "description",
+      type_items = "type",
+      ref_items = "$ref"
+    ) |>
+    dplyr::mutate(
+      description = dplyr::coalesce(
+        .data$description, .data$description_allof, .data$description_items
+      ),
+      type = dplyr::coalesce(
+        .data$type, .data$type_allof, .data$type_items
+      ),
+      ref = dplyr::coalesce(
+        .data$`$ref`,
+        .data$ref_allof,
+        .data$ref_items
+      ) |>
+        stringr::str_extract(
+          "[^/]+$"
+        )
+    ) |>
+    dplyr::select(
+      -"description_allof",
+      -"type_allof",
+      -"ref_allof",
+      -"ref_items",
+      -"type_items",
+      -"description_items",
+      -"$ref",
+      -"nullable_allof",
+      -"nullable_readonly",
+      -"allOf",
+      -"items"
+    )
+
+  # Use ref to fill in descriptions.
+  params_tbl <- params_tbl |>
+    dplyr::mutate(
+      description = dplyr::coalesce(
+        .data$description,
+        purrr::map_chr(
+          .data$ref,
+          ..parse_ref_description,
+          all_schemas = all_schemas
+        )
+      )
+    ) |>
+    dplyr::select(-"ref")
+
+  params_tbl <- params_tbl |>
+    dplyr::mutate(
+      type = ..clean_types(.data$type, .data$format)
+    ) |>
+    dplyr::select(-"format")
+
+  params_prepared <- tibble::tibble(row_num = seq_along(properties_col)) |>
+    dplyr::left_join(
+      tidyr::nest(params_tbl, .by = "row_num", .key = "properties"),
+      by = "row_num"
+    )
+
+  return(params_prepared$properties)
 }
 
 ..clean_params <- function(params_col) {
@@ -340,16 +422,7 @@
 
     params_tbl <- params_tbl |>
       dplyr::mutate(
-        type = dplyr::case_when(
-          .data$type == "integer" ~ "integer scalar",
-          .data$type == "boolean" ~ "logical scalar",
-          .data$type == "array" ~ "character vector",
-          .data$type == "string" &
-            .data$format == "date-time" ~ "datetime scalar",
-          .data$type == "string" & .data$format == "date" ~ "date scalar",
-          .data$type == "string" ~ "character scalar",
-          TRUE ~ .data$type
-        )
+        type = ..clean_types(.data$type, .data$format)
       )
   }
 
@@ -364,7 +437,24 @@
   params_tbl
 }
 
-..clean_path_responses <- function(paths_parsed) {
+..clean_types <- function(type_col, format_col) {
+  return(
+    dplyr::case_when(
+      type_col == "integer" ~ "integer scalar",
+      type_col == "boolean" ~ "logical scalar",
+      type_col == "array" ~ "list",
+      type_col == "object" ~ "list",
+      type_col == "string" &
+        format_col == "date-time" ~ "datetime scalar",
+      type_col == "string" & format_col == "date" ~ "date scalar",
+      type_col == "string" ~ "character scalar",
+      is.na(type_col) ~ "list",
+      TRUE ~ type_col
+    )
+  )
+}
+
+..clean_path_responses <- function(paths_parsed, schemas) {
   paths_parsed |>
     tidyr::unnest_wider("responses", names_sep = "_") |>
     # Everything has exactly one of 200, 201, or 204. All we care about out of
@@ -407,18 +497,32 @@
         \(schema, schema2) {
           if (is.na(schema)) {
             return(
-              api_spec$components$schemas[[schema2]]
+              schemas$description[schemas$schema == schema2]
             )
           }
 
           return(
-            api_spec$components$schemas[[schema]]
+            schemas$description[schemas$schema == schema]
           )
+        }
+      ),
+      response_properties = purrr::map2(
+        .data$response_schema,
+        .data$response_schema2,
+        \(schema, schema2) {
+          if (is.na(schema)) {
+            props <- schemas$properties[schemas$schema == schema2][[1]]
+          } else {
+            props <- schemas$properties[schemas$schema == schema][[1]]
+          }
+          props$required <- NULL
+          return(props)
         }
       )
     ) |>
     dplyr::select(
       -"response_schema",
-      -"response_schema2"
+      -"response_schema2",
+      -"x-readme"
     )
 }

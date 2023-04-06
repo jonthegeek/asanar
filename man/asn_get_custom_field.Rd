@@ -9,10 +9,36 @@ asn_get_custom_field(custom_field_gid, opt_fields)
 \arguments{
 \item{custom_field_gid}{(character scalar) Globally unique identifier for the custom field.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the \href{/reference/custom-fields}{custom fields} developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can \href{https://asana.com/guide/help/premium/custom-fields#gl-lock-fields}{lock custom fields}, which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code \verb{403 Forbidden}.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   date_value \tab list \tab \emph{Conditional}. Only relevant for custom fields of type \code{date}. This object reflects the chosen date (and optionally, time) value of a \code{date} custom field. If no date is selected, the value of \code{date_value} will be \code{null}. \cr
+   display_value \tab character scalar \tab A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types. \cr
+   enabled \tab logical scalar \tab \emph{Conditional}. Determines if the custom field is enabled or not. \cr
+   enum_options \tab list \tab \emph{Conditional}. Only relevant for custom fields of type \code{enum}. This array specifies the possible values which an \code{enum} custom field can adopt. To modify the enum options, refer to \href{/reference/createenumoptionforcustomfield}{working with enum options}. \cr
+   enum_value \tab list \tab \emph{Conditional}. Only relevant for custom fields of type \code{enum}. This object is the chosen value of an \code{enum} custom field. \cr
+   multi_enum_values \tab list \tab \emph{Conditional}. Only relevant for custom fields of type \code{multi_enum}. This object is the chosen values of a \code{multi_enum} custom field. \cr
+   name \tab character scalar \tab The name of the custom field. \cr
+   number_value \tab number \tab \emph{Conditional}. This number is the value of a \code{number} custom field. \cr
+   resource_subtype \tab character scalar \tab The type of the custom field. Must be one of the given values. \cr
+   text_value \tab character scalar \tab \emph{Conditional}. This string is the value of a \code{text} custom field. \cr
+   type \tab character scalar \tab \emph{Deprecated: new integrations should prefer the resource_subtype field.} The type of the custom field. Must be one of the given values. \cr
+   asana_created_field \tab character scalar \tab \emph{Conditional}. A unique identifier to associate this field with the template source of truth. \cr
+   currency_code \tab character scalar \tab ISO 4217 currency code to format this custom field. This will be null if the \code{format} is not \code{currency}. \cr
+   custom_label \tab character scalar \tab This is the string that appears next to the custom field value. This will be null if the \code{format} is not \code{custom}. \cr
+   custom_label_position \tab character scalar \tab Only relevant for custom fields with \code{custom} format. This depicts where to place the custom label. This will be null if the \code{format} is not \code{custom}. \cr
+   description \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The description of the custom field. \cr
+   format \tab character scalar \tab The format of this custom field. \cr
+   has_notifications_enabled \tab logical scalar \tab \emph{Conditional}. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field. \cr
+   is_global_to_workspace \tab logical scalar \tab This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true. \cr
+   precision \tab integer scalar \tab Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive. For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25\%. The identifier format will always have a precision of 0. \cr
+   created_by \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   people_value \tab list \tab \emph{Conditional}. Only relevant for custom fields of type \code{people}. This array of \href{/reference/users}{compact user} objects reflects the values of a \code{people} custom field. \cr
+}
 }
 \description{
 Get the complete definition of a custom field’s metadata.  Since custom fields can be defined for one of a number of types, and these types have different data and behaviors, there are fields that are relevant to a particular type. For instance, as noted above, enum_options is only relevant for the enum type and defines the set of choices that the enum could represent. The examples below show some of these type-specific custom field definitions.

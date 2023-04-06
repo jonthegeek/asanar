@@ -9,10 +9,24 @@ asn_get_attachment(attachment_gid, opt_fields)
 \arguments{
 \item{attachment_gid}{(character scalar) Globally unique identifier for the attachment.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+An \emph{attachment} object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the file. \cr
+   resource_subtype \tab character scalar \tab The service hosting the attachment. Valid values are \code{asana}, \code{dropbox}, \code{gdrive}, \code{onedrive}, \code{box}, \code{vimeo}, and \code{external}. \cr
+   connected_to_app \tab logical scalar \tab Whether the attachment is connected to the app making the request for the purposes of showing an app components widget. Only present when the \code{resource_subtype} is \code{external} or \code{gdrive}. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   download_url \tab character scalar \tab The URL containing the content of the attachment. \emph{Note:} May be null if the attachment is hosted by \href{https://www.box.com/}{Box} and will be null if the attachment is a Video Message hosted by \href{https://vimeo.com/}{Vimeo}. If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs. \cr
+   host \tab character scalar \tab The service hosting the attachment. Valid values are \code{asana}, \code{dropbox}, \code{gdrive}, \code{box}, and \code{vimeo}. \cr
+   parent \tab list \tab The task this attachment is attached to. \cr
+   permanent_url \tab character scalar \tab NA \cr
+   size \tab integer scalar \tab The size of the attachment in bytes. Only present when the \code{resource_subtype} is \code{asana}. \cr
+   view_url \tab character scalar \tab The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service. \cr
+}
 }
 \description{
 Get the full record for a single attachment.

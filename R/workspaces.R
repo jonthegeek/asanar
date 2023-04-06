@@ -13,6 +13,16 @@
 #' @param start_at (optional) (datetime scalar) Filter to events created after this time (inclusive).
 #'
 #' @return An object representing a single event within an Asana domain.  Every audit log event is comprised of an `event_type`, `actor`, `resource`, and `context`. Some events will include additional metadata about the event under `details`. See our [currently supported list of events](/docs/audit-log-events#supported-audit-log-events) for more details.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | actor | list | The entity that triggered the event. Will typically be a user. |
+#' | context | list | The context from which this event originated. |
+#' | created_at | datetime scalar | The time the event was created. |
+#' | details | list | Event specific details. The schema will vary depending on the `event_type`. |
+#' | event_category | character scalar | The category that this `event_type` belongs to. |
+#' | event_type | character scalar | The type of the event. |
+#' | gid | character scalar | Globally unique identifier of the `AuditLogEvent`, as a string. |
+#' | resource | list | The primary object that was affected by this event. |
 #'
 #' @keywords internal
 asn_get_audit_log_events <- function(workspace_gid, actor_gid, actor_type, end_at, event_type, limit, offset, resource_gid, start_at) {
@@ -33,9 +43,35 @@ asn_get_audit_log_events <- function(workspace_gid, actor_gid, actor_type, end_a
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | date_value | list | *Conditional*. Only relevant for custom fields of type `date`. This object reflects the chosen date (and optionally, time) value of a `date` custom field. If no date is selected, the value of `date_value` will be `null`. |
+#' | display_value | character scalar | A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types. |
+#' | enabled | logical scalar | *Conditional*. Determines if the custom field is enabled or not. |
+#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/reference/createenumoptionforcustomfield). |
+#' | enum_value | list | *Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an `enum` custom field. |
+#' | multi_enum_values | list | *Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a `multi_enum` custom field. |
+#' | name | character scalar | The name of the custom field. |
+#' | number_value | number | *Conditional*. This number is the value of a `number` custom field. |
+#' | resource_subtype | character scalar | The type of the custom field. Must be one of the given values.  |
+#' | text_value | character scalar | *Conditional*. This string is the value of a `text` custom field. |
+#' | type | character scalar | *Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.  |
+#' | asana_created_field | character scalar | *Conditional*. A unique identifier to associate this field with the template source of truth. |
+#' | currency_code | character scalar | ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`. |
+#' | custom_label | character scalar | This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`. |
+#' | custom_label_position | character scalar | Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`. |
+#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the custom field. |
+#' | format | character scalar | The format of this custom field. |
+#' | has_notifications_enabled | logical scalar | *Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field. |
+#' | is_global_to_workspace | logical scalar | This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true. |
+#' | precision | integer scalar | Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive. For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%. The identifier format will always have a precision of 0. |
+#' | created_by | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](/reference/users) objects reflects the values of a `people` custom field. |
 #'
 #' @keywords internal
 asn_get_custom_fields_for_workspace <- function(workspace_gid, limit, offset, opt_fields) {
@@ -57,9 +93,14 @@ asn_get_custom_fields_for_workspace <- function(workspace_gid, limit, offset, op
 #' @param archived (optional) (logical scalar) Only return projects whose `archived` field takes on the value of this parameter.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. |
 #'
 #' @keywords internal
 asn_get_projects_for_workspace <- function(workspace_gid, archived, limit, offset, opt_fields) {
@@ -78,9 +119,41 @@ asn_get_projects_for_workspace <- function(workspace_gid, archived, limit, offse
 #' Creates a project in the workspace.  If the workspace for your project is an organization, you must also supply a team to share the project with.  Returns the full record of the newly created project.
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. |
+#' | archived | logical scalar | True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries. |
+#' | color | character scalar | Color of the project. |
+#' | created_at | datetime scalar | The time at which this resource was created. |
+#' | current_status | list | *Deprecated: new integrations should prefer the `current_status_update` resource.* |
+#' | current_status_update | list | The latest `status_update` posted to this project. |
+#' | custom_field_settings | list | Array of Custom Field Settings (in compact form). |
+#' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
+#' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
+#' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
+#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | members | list | Array of users who are members of this project. |
+#' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
+#' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
+#' | public | logical scalar | True if the project is public to its team. |
+#' | start_on | date scalar | The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.* |
+#' | workspace | list | *Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time. |
+#' | completed | logical scalar | True if the project is currently marked complete, false if not. |
+#' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
+#' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
+#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | custom_fields | list | Array of Custom Fields. |
+#' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
+#' | icon | character scalar | The icon for a project. |
+#' | owner | list | The current owner of the project, may be null. |
+#' | permalink_url | character scalar | A url that points directly to the object within Asana. |
+#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
 asn_create_project_for_workspace <- function(workspace_gid, opt_fields) {
@@ -102,9 +175,14 @@ asn_create_project_for_workspace <- function(workspace_gid, opt_fields) {
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. |
 #'
 #' @keywords internal
 asn_get_tags_for_workspace <- function(workspace_gid, limit, offset, opt_fields) {
@@ -123,9 +201,20 @@ asn_get_tags_for_workspace <- function(workspace_gid, limit, offset, opt_fields)
 #' Creates a new tag in a workspace or organization.  Every tag is required to be created in a specific workspace or organization, and this cannot be changed once set. Note that you can use the workspace parameter regardless of whether or not it is an organization.  Returns the full record of the newly created tag.
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. |
+#' | color | character scalar | Color of the tag. |
+#' | notes | character scalar | Free-form textual information associated with the tag (i.e. its description). |
+#' | created_at | datetime scalar | The time at which this resource was created. |
+#' | followers | list | Array of users following this tag. |
+#' | permalink_url | character scalar | A url that points directly to the object within Asana. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_create_tag_for_workspace <- function(workspace_gid, opt_fields) {
@@ -179,7 +268,7 @@ asn_create_tag_for_workspace <- function(workspace_gid, opt_fields) {
 #' @param modified_on (optional) (date scalar) ISO 8601 date string or `null`
 #' @param modified_on.after (optional) (date scalar) ISO 8601 date string
 #' @param modified_on.before (optional) (date scalar) ISO 8601 date string
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #' @param portfolios.any (optional) (character scalar) Comma-separated list of portfolio IDs
 #' @param projects.all (optional) (character scalar) Comma-separated list of project IDs
 #' @param projects.any (optional) (character scalar) Comma-separated list of project IDs
@@ -199,7 +288,13 @@ asn_create_tag_for_workspace <- function(workspace_gid, opt_fields) {
 #' @param teams.any (optional) (character scalar) Comma-separated list of team IDs
 #' @param text (optional) (character scalar) Performs full-text search on both task name and description
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return The *task* is the basic object around which many operations in Asana are centered.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the task. |
+#' | resource_subtype | character scalar | The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date. |
 #'
 #' @keywords internal
 asn_search_tasks_for_workspace <- function(workspace_gid, assigned_by.any, assigned_by.not, assignee.any, assignee.not, commented_on_by.not, completed, completed_at.after, completed_at.before, completed_on, completed_on.after, completed_on.before, created_at.after, created_at.before, created_by.any, created_by.not, created_on, created_on.after, created_on.before, due_at.after, due_at.before, due_on, due_on.after, due_on.before, followers.not, has_attachment, is_blocked, is_blocking, is_subtask, liked_by.not, modified_at.after, modified_at.before, modified_on, modified_on.after, modified_on.before, opt_fields, portfolios.any, projects.all, projects.any, projects.not, resource_subtype = "milestone", sections.all, sections.any, sections.not, sort_ascending = "FALSE", sort_by = "modified_at", start_on, start_on.after, start_on.before, tags.all, tags.any, tags.not, teams.any, text) {
@@ -220,9 +315,14 @@ asn_search_tasks_for_workspace <- function(workspace_gid, assigned_by.any, assig
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the team. |
 #'
 #' @keywords internal
 asn_get_teams_for_workspace <- function(workspace_gid, limit, offset, opt_fields) {
@@ -242,12 +342,17 @@ asn_get_teams_for_workspace <- function(workspace_gid, limit, offset, opt_fields
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
 #' @param count (optional) (integer scalar) The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #' @param query (optional) (character scalar) The string that will be used to search for relevant objects. If an empty string is passed in, the API will return results.
 #' @param type (optional) (character scalar) *Deprecated: new integrations should prefer the resource_type field.* Possible values: custom_field, portfolio, project, tag, task, user. Default: user
 #' @param resource_type (character scalar) The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `project_template`, `portfolio`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported. Possible values: custom_field, project, project_template, portfolio, tag, task, user. Default: user
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the object. |
 #'
 #' @keywords internal
 asn_typeahead_for_workspace <- function(resource_type = "user", workspace_gid, count, opt_fields, query, type = "user") {
@@ -267,9 +372,14 @@ asn_typeahead_for_workspace <- function(resource_type = "user", workspace_gid, c
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | *Read-only except when same user as requester*. The user’s name. |
 #'
 #' @keywords internal
 asn_get_users_for_workspace <- function(workspace_gid, offset, opt_fields) {
@@ -290,10 +400,16 @@ asn_get_users_for_workspace <- function(workspace_gid, offset, opt_fields) {
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #' @param user (optional) (character scalar) A string identifying a user. This can either be the string "me", an email, or the gid of a user.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return This object determines if a user is a member of a workspace.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | user | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_get_workspace_memberships_for_workspace <- function(workspace_gid, limit, offset, opt_fields, user) {
@@ -313,9 +429,14 @@ asn_get_workspace_memberships_for_workspace <- function(workspace_gid, limit, of
 #'
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the workspace. |
 #'
 #' @keywords internal
 asn_get_workspaces <- function(limit, offset, opt_fields) {
@@ -334,9 +455,16 @@ asn_get_workspaces <- function(limit, offset, opt_fields) {
 #' Returns the full workspace record for a single workspace.
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the workspace. |
+#' | email_domains | list | The email domains that are associated with this workspace. |
+#' | is_organization | logical scalar | Whether the workspace is an *organization*. |
 #'
 #' @keywords internal
 asn_get_workspace <- function(workspace_gid, opt_fields) {
@@ -355,9 +483,16 @@ asn_get_workspace <- function(workspace_gid, opt_fields) {
 #' A specific, existing workspace can be updated by making a PUT request on the URL for that workspace. Only the fields provided in the data block will be updated; any unspecified fields will remain unchanged. Currently the only field that can be modified for a workspace is its name. Returns the complete, updated workspace record.
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the workspace. |
+#' | email_domains | list | The email domains that are associated with this workspace. |
+#' | is_organization | logical scalar | Whether the workspace is an *organization*. |
 #'
 #' @keywords internal
 asn_update_workspace <- function(workspace_gid, opt_fields) {
@@ -377,9 +512,16 @@ asn_update_workspace <- function(workspace_gid, opt_fields) {
 #' Add a user to a workspace or organization. The user can be referenced by their globally unique user ID or their email address. Returns the full user record for the invited user.
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | *Read-only except when same user as requester*. The user’s name. |
+#' | email | character scalar | The user's email address. |
+#' | photo | list | A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, 128, and 1024. All images are in PNG format, except for 1024 (which is in JPEG format). |
 #'
 #' @keywords internal
 asn_add_user_for_workspace <- function(workspace_gid, opt_fields) {
@@ -399,9 +541,10 @@ asn_add_user_for_workspace <- function(workspace_gid, opt_fields) {
 #' Remove a user from a workspace or organization. The user making this call must be an admin in the workspace. The user can be referenced by their globally unique user ID or their email address. Returns an empty data record.
 #'
 #' @param workspace_gid (character scalar) Globally unique identifier for the workspace or organization.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.
+#'
 #'
 #' @keywords internal
 asn_remove_user_for_workspace <- function(workspace_gid, opt_fields) {
@@ -414,3 +557,5 @@ asn_remove_user_for_workspace <- function(workspace_gid, opt_fields) {
     body = stop("We do not properly build this yet. Edit by hand.")
   )
 }
+
+

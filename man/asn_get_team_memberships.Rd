@@ -11,7 +11,7 @@ asn_get_team_memberships(limit, offset, opt_fields, team, user, workspace)
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 
 \item{team}{(optional) (character scalar) Globally unique identifier for the team.}
 
@@ -20,7 +20,16 @@ asn_get_team_memberships(limit, offset, opt_fields, team, user, workspace)
 \item{workspace}{(optional) (character scalar) Globally unique identifier for the workspace. This parameter must be used with the user parameter.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+This object represents a user's connection to a team.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   is_admin \tab logical scalar \tab Describes if the user is a team admin. \cr
+   is_guest \tab logical scalar \tab Describes if the user is a guest in the team. \cr
+   is_limited_access \tab logical scalar \tab Describes if the user has limited access to the team. \cr
+   team \tab list \tab A \emph{team} is used to group related projects and people together within an organization. Each project in an organization is associated with a team. \cr
+   user \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+}
 }
 \description{
 Returns compact team membership records.

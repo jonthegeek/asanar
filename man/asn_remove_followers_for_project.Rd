@@ -9,10 +9,42 @@ asn_remove_followers_for_project(project_gid, opt_fields)
 \arguments{
 \item{project_gid}{(character scalar) Globally unique identifier for the project.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{project} represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. \cr
+   archived \tab logical scalar \tab True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries. \cr
+   color \tab character scalar \tab Color of the project. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   current_status \tab list \tab \emph{Deprecated: new integrations should prefer the \code{current_status_update} resource.} \cr
+   current_status_update \tab list \tab The latest \code{status_update} posted to this project. \cr
+   custom_field_settings \tab list \tab Array of Custom Field Settings (in compact form). \cr
+   default_view \tab character scalar \tab The default view (list, board, calendar, or timeline) of a project. \cr
+   due_date \tab datetime scalar \tab \emph{Deprecated: new integrations should prefer the \code{due_on} field.} \cr
+   due_on \tab datetime scalar \tab The day on which this project is due. This takes a date with format YYYY-MM-DD. \cr
+   html_notes \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The notes of the project with formatting as HTML. \cr
+   members \tab list \tab Array of users who are members of this project. \cr
+   modified_at \tab datetime scalar \tab The time at which this project was last modified. \emph{Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.} \cr
+   notes \tab character scalar \tab Free-form textual information associated with the project (ie., its description). \cr
+   public \tab logical scalar \tab True if the project is public to its team. \cr
+   start_on \tab date scalar \tab The day on which work for this project begins, or null if the project has no start date. This takes a date with \code{YYYY-MM-DD} format. \emph{Note: \code{due_on} or \code{due_at} must be present in the request when setting or unsetting the \code{start_on} parameter. Additionally, \code{start_on} and \code{due_on} cannot be the same date.} \cr
+   workspace \tab list \tab \emph{Create-only}. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time. \cr
+   completed \tab logical scalar \tab True if the project is currently marked complete, false if not. \cr
+   completed_at \tab datetime scalar \tab The time at which this project was completed, or null if the project is not completed. \cr
+   completed_by \tab list \tab The user that marked this project complete, or null if the project is not completed. \cr
+   created_from_template \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The project template from which this project was created. If the project was not created from a template, this field will be null. \cr
+   custom_fields \tab list \tab Array of Custom Fields. \cr
+   followers \tab list \tab Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. \cr
+   icon \tab character scalar \tab The icon for a project. \cr
+   owner \tab list \tab The current owner of the project, may be null. \cr
+   permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
+   project_brief \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The project brief associated with this project. \cr
+   team \tab list \tab The team that this project is shared with. \cr
+}
 }
 \description{
 Removes the specified list of users from following the project, this will not affect project membership status. Returns the updated project record.

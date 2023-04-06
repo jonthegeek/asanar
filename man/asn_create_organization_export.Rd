@@ -11,10 +11,18 @@ asn_create_organization_export(limit, offset, opt_fields)
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+An \emph{organization_export} object represents a request to export the complete data of an Organization in JSON format.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   download_url \tab character scalar \tab Download this URL to retreive the full export of the organization in JSON format. It will be compressed in a gzip (.gz) container.  \emph{Note: May be null if the export is still in progress or failed.  If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and rather refresh on demand to ensure you do not keep stale URLs.} \cr
+   organization \tab list \tab A \emph{workspace} is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. \cr
+   state \tab character scalar \tab The current state of the export. \cr
+}
 }
 \description{
 This method creates a request to export an Organization. Asana will complete the export at some point after you create the request.

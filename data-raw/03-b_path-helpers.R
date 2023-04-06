@@ -32,6 +32,46 @@
   )
 }
 
+..document_response <- function(response_description, response_properties) {
+  response_description <- stringr::str_replace_all(
+    response_description, "\n", " "
+  )
+  response_description <- glue::glue("#' @return {response_description}")
+
+  response_details <- response_properties |>
+    purrr::map_chr(
+      \(these_properties) {
+        if (nrow(these_properties)) {
+          response_detail <- these_properties |>
+            purrr::pmap(
+              \(property, description, type, ...) {
+                description <- stringr::str_replace_all(
+                  description, "\n", " "
+                )
+                return(
+                  glue::glue("#' | {property} | {type} | {description} |")
+                )
+              }
+            )
+          return(
+            paste(
+              c(
+                "#' | **Property** | **Class** | **Description** |",
+                "#' |:-------------|:----------|:----------------|",
+                response_detail
+              ),
+              collapse = "\n"
+            )
+          )
+        } else {
+          return("#'")
+        }
+      }
+    )
+
+  return(paste(response_description, response_details, sep = "\n"))
+}
+
 ..document_parameters <- function(parameters) {
   purrr::map_chr(
     parameters,

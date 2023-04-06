@@ -9,10 +9,18 @@ asn_get_project_membership(project_membership_gid, opt_fields)
 \arguments{
 \item{project_membership_gid}{(character scalar) NA}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   user \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   member \tab list \tab Member can be a user or a team. \cr
+   project \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The project the user is a member of. \cr
+   write_access \tab character scalar \tab Whether the member has full access, edit access, or comment-only access to the project. \cr
+}
 }
 \description{
 Returns the complete project record for a single project membership.

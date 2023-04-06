@@ -3,9 +3,17 @@
 #' Creates a goal relationship by adding a supporting resource to a given goal.  Returns the newly created goal relationship record.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A generic Asana Resource, containing a globally unique identifier.
+#' @return A *goal relationship* is an object representing the relationship between a goal and another goal, a project, or a portfolio.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | contribution_weight | number | The weight that the supporting resource's progress contributes to the supported goal's progress. This can only be 0 or 1. |
+#' | resource_subtype | character scalar | The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. |
+#' | supporting_resource | list | The supporting resource that supports the goal. This can be either a project, portfolio, or goal. |
+#' | supported_goal | list | The goal that the supporting resource supports. |
 #'
 #' @keywords internal
 asn_add_supporting_relationship <- function(goal_gid, opt_fields) {
@@ -25,9 +33,10 @@ asn_add_supporting_relationship <- function(goal_gid, opt_fields) {
 #' Removes a goal relationship for a given parent goal.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.
+#'
 #'
 #' @keywords internal
 asn_remove_supporting_relationship <- function(goal_gid, opt_fields) {
@@ -47,9 +56,30 @@ asn_remove_supporting_relationship <- function(goal_gid, opt_fields) {
 #' Returns the complete goal record for a single goal.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_get_goal <- function(goal_gid, opt_fields) {
@@ -68,9 +98,30 @@ asn_get_goal <- function(goal_gid, opt_fields) {
 #' An existing goal can be updated by making a PUT request on the URL for that goal. Only the fields provided in the `data` block will be updated; any unspecified fields will remain unchanged.  Returns the complete updated goal record.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_update_goal <- function(goal_gid, opt_fields) {
@@ -90,9 +141,10 @@ asn_update_goal <- function(goal_gid, opt_fields) {
 #' A specific, existing goal can be deleted by making a DELETE request on the URL for that goal.  Returns an empty data record.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.
+#'
 #'
 #' @keywords internal
 asn_delete_goal <- function(goal_gid, opt_fields) {
@@ -113,14 +165,20 @@ asn_delete_goal <- function(goal_gid, opt_fields) {
 #' @param is_workspace_level (optional) (logical scalar) Filter to goals with is_workspace_level set to query value. Must be used with the workspace parameter.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #' @param portfolio (optional) (character scalar) Globally unique identifier for supporting portfolio.
 #' @param project (optional) (character scalar) Globally unique identifier for supporting project.
 #' @param team (optional) (character scalar) Globally unique identifier for the team.
-#' @param time_periods (optional) (character vector) Globally unique identifiers for the time periods.
+#' @param time_periods (optional) (list) Globally unique identifiers for the time periods.
 #' @param workspace (optional) (character scalar) Globally unique identifier for the workspace.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #'
 #' @keywords internal
 asn_get_goals <- function(is_workspace_level, limit, offset, opt_fields, portfolio, project, team, time_periods, workspace) {
@@ -140,9 +198,30 @@ asn_get_goals <- function(is_workspace_level, limit, offset, opt_fields, portfol
 #'
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_create_goal <- function(limit, offset, opt_fields) {
@@ -162,9 +241,30 @@ asn_create_goal <- function(limit, offset, opt_fields) {
 #' Creates and adds a goal metric to a specified goal. Note that this replaces an existing goal metric if one already exists.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_create_goal_metric <- function(goal_gid, opt_fields) {
@@ -184,9 +284,30 @@ asn_create_goal_metric <- function(goal_gid, opt_fields) {
 #' Updates a goal's existing metric's `current_number_value` if one exists, otherwise responds with a 400 status code.  Returns the complete updated goal metric record.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_update_goal_metric <- function(goal_gid, opt_fields) {
@@ -206,9 +327,30 @@ asn_update_goal_metric <- function(goal_gid, opt_fields) {
 #' Adds followers to a goal. Returns the goal the followers were added to. Each goal can be associated with zero or more followers in the system. Requests to add/remove followers, if successful, will return the complete updated goal record, described above.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_add_followers <- function(goal_gid, opt_fields) {
@@ -228,9 +370,30 @@ asn_add_followers <- function(goal_gid, opt_fields) {
 #' Removes followers from a goal. Returns the goal the followers were removed from. Each goal can be associated with zero or more followers in the system. Requests to add/remove followers, if successful, will return the complete updated goal record, described above.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | due_on | character scalar | The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`. |
+#' | html_notes | character scalar | The notes of the goal with formatting as HTML. |
+#' | is_workspace_level | logical scalar | *Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team. |
+#' | liked | logical scalar | True if the goal is liked by the authorized user, false if not. |
+#' | name | character scalar | The name of the goal. |
+#' | notes | character scalar | Free-form textual information associated with the goal (i.e. its description). |
+#' | start_on | character scalar | The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date. |
+#' | status | character scalar | The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`. *Note* you can only write to this property if `metric` is set. |
+#' | current_status_update | list | The latest `status_update` posted to this goal. |
+#' | followers | list | Array of users who are members of this goal. |
+#' | likes | list | Array of likes for users who have liked this goal. |
+#' | metric | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | num_likes | integer scalar | The number of users who have liked this goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
+#' | team | list | *Conditional*. This property is only present when the `workspace` provided is an organization. |
+#' | time_period | list | A generic Asana Resource, containing a globally unique identifier. |
+#' | workspace | list | A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. |
 #'
 #' @keywords internal
 asn_remove_followers <- function(goal_gid, opt_fields) {
@@ -250,9 +413,15 @@ asn_remove_followers <- function(goal_gid, opt_fields) {
 #' Returns a compact representation of all of the parent goals of a goal.
 #'
 #' @param goal_gid (character scalar) Globally unique identifier for the goal.
-#' @param opt_fields (optional) (character vector) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
+#' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
 #' @return A generic Asana Resource, containing a globally unique identifier.
+#' | **Property** | **Class** | **Description** |
+#' |:-------------|:----------|:----------------|
+#' | gid | character scalar | Globally unique identifier of the resource, as a string. |
+#' | resource_type | character scalar | The base type of this resource. |
+#' | name | character scalar | The name of the goal. |
+#' | owner | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #'
 #' @keywords internal
 asn_get_parent_goals_for_goal <- function(goal_gid, opt_fields) {
@@ -264,3 +433,5 @@ asn_get_parent_goals_for_goal <- function(goal_gid, opt_fields) {
     method = "get"
   )
 }
+
+

@@ -11,10 +11,17 @@ asn_get_user_task_list_for_user(user_gid, workspace, opt_fields)
 
 \item{workspace}{(character scalar) The workspace in which to get the user task list.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A user task list represents the tasks assigned to a particular user. It provides API access to a user’s \href{https://asana.com/guide/help/fundamentals/my-tasks}{My Tasks} view in Asana.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the user task list. \cr
+   owner \tab list \tab The owner of the user task list, i.e. the person whose My Tasks is represented by this resource. \cr
+   workspace \tab list \tab The workspace in which the user task list is located. \cr
+}
 }
 \description{
 Returns the full record for a user's task list.

@@ -2,7 +2,10 @@ rm(
   .data,
   `%||%`,
   ..clean_params,
-  ..clean_schema_properties,
   ..clean_schemas,
-  ..clean_path_responses
+  ..clean_schema_properties_col,
+  ..clean_path_responses,
+  ..clean_types,
+  ..combine_ref_properties,
+  ..parse_ref_description
 )

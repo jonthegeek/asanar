@@ -7,10 +7,21 @@
 asn_create_tag(opt_fields)
 }
 \arguments{
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{tag} is a label that can be attached to any task in Asana. It exists in a single workspace or organization.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. \cr
+   color \tab character scalar \tab Color of the tag. \cr
+   notes \tab character scalar \tab Free-form textual information associated with the tag (i.e. its description). \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   followers \tab list \tab Array of users following this tag. \cr
+   permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
+   workspace \tab list \tab A \emph{workspace} is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. \cr
+}
 }
 \description{
 Creates a new tag in a workspace or organization.  Every tag is required to be created in a specific workspace or organization, and this cannot be changed once set. Note that you can use the workspace parameter regardless of whether or not it is an organization.  Returns the full record of the newly created tag.

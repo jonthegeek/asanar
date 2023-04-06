@@ -9,10 +9,65 @@ asn_update_story(story_gid, opt_fields)
 \arguments{
 \item{story_gid}{(character scalar) Globally unique identifier for the story.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A story represents an activity associated with an object in the Asana system.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   html_text \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. HTML formatted text for a comment. This will not include the name of the creator. \cr
+   is_pinned \tab logical scalar \tab \emph{Conditional}. Whether the story should be pinned on the resource. \cr
+   resource_subtype \tab character scalar \tab The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. \cr
+   sticker_name \tab character scalar \tab The name of the sticker in this story. \code{null} if there is no sticker. \cr
+   text \tab character scalar \tab The plain text of the comment to add. Cannot be used with html_text. \cr
+   assignee \tab list \tab \emph{Conditional} \cr
+   created_by \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   custom_field \tab list \tab \emph{Conditional} \cr
+   dependency \tab list \tab \emph{Conditional} \cr
+   duplicate_of \tab list \tab \emph{Conditional} \cr
+   duplicated_from \tab list \tab \emph{Conditional} \cr
+   follower \tab list \tab \emph{Conditional} \cr
+   hearted \tab logical scalar \tab \emph{Deprecated - please use likes instead} \emph{Conditional}. True if the story is hearted by the authorized user, false if not. \cr
+   hearts \tab list \tab \emph{Deprecated - please use likes instead}  \emph{Conditional}. Array of likes for users who have hearted this story. \cr
+   is_editable \tab logical scalar \tab \emph{Conditional}. Whether the text of the story can be edited after creation. \cr
+   is_edited \tab logical scalar \tab \emph{Conditional}. Whether the text of the story has been edited after creation. \cr
+   liked \tab logical scalar \tab \emph{Conditional}. True if the story is liked by the authorized user, false if not. \cr
+   likes \tab list \tab \emph{Conditional}. Array of likes for users who have liked this story. \cr
+   new_approval_status \tab character scalar \tab \emph{Conditional}. The new value of approval status. \cr
+   new_date_value \tab list \tab \emph{Conditional} The new value of a date custom field story. \cr
+   new_dates \tab list \tab \emph{Conditional} \cr
+   new_enum_value \tab list \tab \emph{Conditional} \cr
+   new_multi_enum_values \tab list \tab \emph{Conditional}. The new value of a multi-enum custom field story. \cr
+   new_name \tab character scalar \tab \emph{Conditional} \cr
+   new_number_value \tab integer scalar \tab \emph{Conditional} \cr
+   new_people_value \tab list \tab \emph{Conditional}. The new value of a people custom field story. \cr
+   new_resource_subtype \tab character scalar \tab \emph{Conditional} \cr
+   new_section \tab list \tab \emph{Conditional} \cr
+   new_text_value \tab character scalar \tab \emph{Conditional} \cr
+   num_hearts \tab integer scalar \tab \emph{Deprecated - please use likes instead}  \emph{Conditional}. The number of users who have hearted this story. \cr
+   num_likes \tab integer scalar \tab \emph{Conditional}. The number of users who have liked this story. \cr
+   old_approval_status \tab character scalar \tab \emph{Conditional}. The old value of approval status. \cr
+   old_date_value \tab list \tab \emph{Conditional}. The old value of a date custom field story. \cr
+   old_dates \tab list \tab \emph{Conditional} \cr
+   old_enum_value \tab list \tab \emph{Conditional} \cr
+   old_multi_enum_values \tab list \tab \emph{Conditional}. The old value of a multi-enum custom field story. \cr
+   old_name \tab character scalar \tab \emph{Conditional}' \cr
+   old_number_value \tab integer scalar \tab \emph{Conditional} \cr
+   old_people_value \tab list \tab \emph{Conditional}. The old value of a people custom field story. \cr
+   old_resource_subtype \tab character scalar \tab \emph{Conditional} \cr
+   old_section \tab list \tab \emph{Conditional} \cr
+   old_text_value \tab character scalar \tab \emph{Conditional} \cr
+   previews \tab list \tab \emph{Conditional}. A collection of previews to be displayed in the story.  \emph{Note: This property only exists for comment stories.} \cr
+   project \tab list \tab \emph{Conditional} \cr
+   source \tab character scalar \tab The component of the Asana product the user used to trigger the story. \cr
+   story \tab list \tab \emph{Conditional} \cr
+   tag \tab list \tab \emph{Conditional} \cr
+   target \tab list \tab The object this story is associated with. Currently may only be a task. \cr
+   task \tab list \tab \emph{Conditional} \cr
+   type \tab character scalar \tab NA \cr
+}
 }
 \description{
 Updates the story and returns the full record for the updated story. Only comment stories can have their text updated, and only comment stories and attachment stories can be pinned. Only one of \code{text} and \code{html_text} can be specified.

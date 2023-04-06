@@ -9,10 +9,23 @@ asn_get_project_template(project_template_gid, opt_fields)
 \arguments{
 \item{project_template_gid}{(character scalar) Globally unique identifier for the project template.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{project template} is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab Name of the project template. \cr
+   color \tab character scalar \tab Color of the project template. \cr
+   description \tab character scalar \tab Free-form textual information associated with the project template \cr
+   html_description \tab character scalar \tab The description of the project template with formatting as HTML. \cr
+   owner \tab list \tab The current owner of the project template, may be null. \cr
+   public \tab logical scalar \tab True if the project template is public to its team. \cr
+   requested_dates \tab list \tab Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project. \cr
+   requested_roles \tab list \tab Array of template roles in this project template. User Ids can be provided for these variables when instantiating a project to assign template tasks to the user. \cr
+   team \tab list \tab A \emph{team} is used to group related projects and people together within an organization. Each project in an organization is associated with a team. \cr
+}
 }
 \description{
 Returns the complete project template record for a single project template.

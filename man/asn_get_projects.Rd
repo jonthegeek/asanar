@@ -13,14 +13,19 @@ asn_get_projects(archived, limit, offset, opt_fields, team, workspace)
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 
 \item{team}{(optional) (character scalar) The team to filter projects on.}
 
 \item{workspace}{(optional) (character scalar) The workspace or organization to filter projects on.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{project} represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer. \cr
+}
 }
 \description{
 Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned. \emph{Note: This endpoint may timeout for large domains. Try filtering by team!}

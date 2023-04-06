@@ -10,7 +10,15 @@ asn_add_custom_field_setting_for_project(project_gid)
 \item{project_gid}{(character scalar) Globally unique identifier for the project.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   custom_field \tab list \tab The custom field that is applied to the \code{parent}. \cr
+   is_important \tab logical scalar \tab \code{is_important} is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio. \cr
+   parent \tab list \tab The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field. \cr
+   project \tab list \tab \emph{Deprecated: new integrations should prefer the \code{parent} field.} The id of the project that this custom field settings refers to. \cr
+}
 }
 \description{
 Custom fields are associated with projects by way of custom field settings.  This method creates a setting for the project.
