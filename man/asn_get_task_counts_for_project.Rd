@@ -27,6 +27,6 @@ A response object returned from the task count endpoint.\tabular{lll}{
 }
 }
 \description{
-Get an object that holds task count fields. \strong{All fields are excluded by default}. You must \href{/docs/inputoutput-options}{opt in} using \code{opt_fields} to get any information from this endpoint.  This endpoint has an additional \href{/docs/rate-limits}{rate limit} and each field counts especially high against our \href{/docs/rate-limits#cost-limits}{cost limits}.  Milestones are just tasks, so they are included in the \code{num_tasks}, \code{num_incomplete_tasks}, and \code{num_completed_tasks} counts.
+Get an object that holds task count fields. \strong{All fields are excluded by default}. You must \href{https://developers.asana.com/docs/inputoutput-options}{opt in} using \code{opt_fields} to get any information from this endpoint.  This endpoint has an additional \href{https://developers.asana.com/docs/rate-limits}{rate limit} and each field counts especially high against our \href{https://developers.asana.com/docs/rate-limits#cost-limits}{cost limits}.  Milestones are just tasks, so they are included in the \code{num_tasks}, \code{num_incomplete_tasks}, and \code{num_completed_tasks} counts.
 }
 \keyword{internal}

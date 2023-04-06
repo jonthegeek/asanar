@@ -12,7 +12,7 @@ asn_update_webhook(webhook_gid, opt_fields)
 \item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the \href{/reference/events}{event} schema.\tabular{lll}{
+Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the \href{https://developers.asana.com/reference/events}{event} schema.\tabular{lll}{
    \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
    gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
    resource_type \tab character scalar \tab The base type of this resource. \cr

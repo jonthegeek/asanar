@@ -16,7 +16,7 @@ This object determines if a user is a member of a portfolio.\tabular{lll}{
    \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
    gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
    resource_type \tab character scalar \tab The base type of this resource. \cr
-   portfolio \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The portfolio the user is a member of. \cr
+   portfolio \tab list \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The portfolio the user is a member of. \cr
    user \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
 }
 }

@@ -18,7 +18,7 @@ asn_create_project_status_for_project(project_gid, opt_fields)
    resource_type \tab character scalar \tab The base type of this resource. \cr
    title \tab character scalar \tab The title of the project status update. \cr
    color \tab character scalar \tab The color associated with the status update. \cr
-   html_text \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The text content of the status update with formatting as HTML. \cr
+   html_text \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The text content of the status update with formatting as HTML. \cr
    text \tab character scalar \tab The text content of the status update. \cr
    author \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
    created_at \tab datetime scalar \tab The time at which this resource was created. \cr

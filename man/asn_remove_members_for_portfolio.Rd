@@ -12,7 +12,7 @@ asn_remove_members_for_portfolio(portfolio_gid, opt_fields)
 \item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A \emph{portfolio} gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent \href{/reference/project-statuses}{project status} update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.\tabular{lll}{
+A \emph{portfolio} gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent \href{https://developers.asana.com/reference/project-statuses}{project status} update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.\tabular{lll}{
    \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
    gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
    resource_type \tab character scalar \tab The base type of this resource. \cr

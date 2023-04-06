@@ -12,7 +12,7 @@
 #' | resource_type | character scalar | The base type of this resource. |
 #' | title | character scalar | The title of the project status update. |
 #' | color | character scalar | The color associated with the status update. |
-#' | html_text | character scalar | [Opt In](/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
+#' | html_text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
 #' | text | character scalar | The text content of the status update. |
 #' | author | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #' | created_at | datetime scalar | The time at which this resource was created. |

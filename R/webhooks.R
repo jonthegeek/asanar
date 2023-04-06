@@ -8,7 +8,7 @@
 #' @param resource (optional) (character scalar) Only return webhooks for the given resource.
 #' @param workspace (character scalar) The workspace to query for webhooks in.
 #'
-#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](/reference/events) schema.
+#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](https://developers.asana.com/reference/events) schema.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -40,7 +40,7 @@ asn_get_webhooks <- function(workspace, limit, offset, opt_fields, resource) {
 #'
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](/reference/events) schema.
+#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](https://developers.asana.com/reference/events) schema.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -74,7 +74,7 @@ asn_create_webhook <- function(opt_fields) {
 #' @param webhook_gid (character scalar) Globally unique identifier for the webhook.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](/reference/events) schema.
+#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](https://developers.asana.com/reference/events) schema.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -107,7 +107,7 @@ asn_get_webhook <- function(webhook_gid, opt_fields) {
 #' @param webhook_gid (character scalar) Globally unique identifier for the webhook.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](/reference/events) schema.
+#' @return Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the [event](https://developers.asana.com/reference/events) schema.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |

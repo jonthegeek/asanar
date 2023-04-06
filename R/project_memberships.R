@@ -12,7 +12,7 @@
 #' | resource_type | character scalar | The base type of this resource. |
 #' | user | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #' | member | list | Member can be a user or a team. |
-#' | project | list | [Opt In](/docs/inputoutput-options). The project the user is a member of. |
+#' | project | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project the user is a member of. |
 #' | write_access | character scalar | Whether the member has full access, edit access, or comment-only access to the project. |
 #'
 #' @keywords internal

@@ -6,7 +6,7 @@
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](https://developers.asana.com/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -14,7 +14,7 @@
 #' | date_value | list | *Conditional*. Only relevant for custom fields of type `date`. This object reflects the chosen date (and optionally, time) value of a `date` custom field. If no date is selected, the value of `date_value` will be `null`. |
 #' | display_value | character scalar | A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types. |
 #' | enabled | logical scalar | *Conditional*. Determines if the custom field is enabled or not. |
-#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/reference/createenumoptionforcustomfield). |
+#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://developers.asana.com/reference/createenumoptionforcustomfield). |
 #' | enum_value | list | *Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an `enum` custom field. |
 #' | multi_enum_values | list | *Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a `multi_enum` custom field. |
 #' | name | character scalar | The name of the custom field. |
@@ -26,13 +26,13 @@
 #' | currency_code | character scalar | ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`. |
 #' | custom_label | character scalar | This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`. |
 #' | custom_label_position | character scalar | Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`. |
-#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the custom field. |
+#' | description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the custom field. |
 #' | format | character scalar | The format of this custom field. |
 #' | has_notifications_enabled | logical scalar | *Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field. |
 #' | is_global_to_workspace | logical scalar | This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true. |
 #' | precision | integer scalar | Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive. For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%. The identifier format will always have a precision of 0. |
 #' | created_by | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
-#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](/reference/users) objects reflects the values of a `people` custom field. |
+#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](https://developers.asana.com/reference/users) objects reflects the values of a `people` custom field. |
 #'
 #' @keywords internal
 asn_create_custom_field <- function(limit, offset, opt_fields) {
@@ -54,7 +54,7 @@ asn_create_custom_field <- function(limit, offset, opt_fields) {
 #' @param custom_field_gid (character scalar) Globally unique identifier for the custom field.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](https://developers.asana.com/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -62,7 +62,7 @@ asn_create_custom_field <- function(limit, offset, opt_fields) {
 #' | date_value | list | *Conditional*. Only relevant for custom fields of type `date`. This object reflects the chosen date (and optionally, time) value of a `date` custom field. If no date is selected, the value of `date_value` will be `null`. |
 #' | display_value | character scalar | A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types. |
 #' | enabled | logical scalar | *Conditional*. Determines if the custom field is enabled or not. |
-#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/reference/createenumoptionforcustomfield). |
+#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://developers.asana.com/reference/createenumoptionforcustomfield). |
 #' | enum_value | list | *Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an `enum` custom field. |
 #' | multi_enum_values | list | *Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a `multi_enum` custom field. |
 #' | name | character scalar | The name of the custom field. |
@@ -74,13 +74,13 @@ asn_create_custom_field <- function(limit, offset, opt_fields) {
 #' | currency_code | character scalar | ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`. |
 #' | custom_label | character scalar | This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`. |
 #' | custom_label_position | character scalar | Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`. |
-#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the custom field. |
+#' | description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the custom field. |
 #' | format | character scalar | The format of this custom field. |
 #' | has_notifications_enabled | logical scalar | *Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field. |
 #' | is_global_to_workspace | logical scalar | This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true. |
 #' | precision | integer scalar | Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive. For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%. The identifier format will always have a precision of 0. |
 #' | created_by | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
-#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](/reference/users) objects reflects the values of a `people` custom field. |
+#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](https://developers.asana.com/reference/users) objects reflects the values of a `people` custom field. |
 #'
 #' @keywords internal
 asn_get_custom_field <- function(custom_field_gid, opt_fields) {
@@ -101,7 +101,7 @@ asn_get_custom_field <- function(custom_field_gid, opt_fields) {
 #' @param custom_field_gid (character scalar) Globally unique identifier for the custom field.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+#' @return Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [custom fields](https://developers.asana.com/reference/custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.  Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -109,7 +109,7 @@ asn_get_custom_field <- function(custom_field_gid, opt_fields) {
 #' | date_value | list | *Conditional*. Only relevant for custom fields of type `date`. This object reflects the chosen date (and optionally, time) value of a `date` custom field. If no date is selected, the value of `date_value` will be `null`. |
 #' | display_value | character scalar | A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types. |
 #' | enabled | logical scalar | *Conditional*. Determines if the custom field is enabled or not. |
-#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/reference/createenumoptionforcustomfield). |
+#' | enum_options | list | *Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://developers.asana.com/reference/createenumoptionforcustomfield). |
 #' | enum_value | list | *Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an `enum` custom field. |
 #' | multi_enum_values | list | *Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a `multi_enum` custom field. |
 #' | name | character scalar | The name of the custom field. |
@@ -121,13 +121,13 @@ asn_get_custom_field <- function(custom_field_gid, opt_fields) {
 #' | currency_code | character scalar | ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`. |
 #' | custom_label | character scalar | This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`. |
 #' | custom_label_position | character scalar | Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`. |
-#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the custom field. |
+#' | description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the custom field. |
 #' | format | character scalar | The format of this custom field. |
 #' | has_notifications_enabled | logical scalar | *Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field. |
 #' | is_global_to_workspace | logical scalar | This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true. |
 #' | precision | integer scalar | Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive. For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%. The identifier format will always have a precision of 0. |
 #' | created_by | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
-#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](/reference/users) objects reflects the values of a `people` custom field. |
+#' | people_value | list | *Conditional*. Only relevant for custom fields of type `people`. This array of [compact user](https://developers.asana.com/reference/users) objects reflects the values of a `people` custom field. |
 #'
 #' @keywords internal
 asn_update_custom_field <- function(custom_field_gid, opt_fields) {

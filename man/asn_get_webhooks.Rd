@@ -18,7 +18,7 @@ asn_get_webhooks(workspace, limit, offset, opt_fields, resource)
 \item{resource}{(optional) (character scalar) Only return webhooks for the given resource.}
 }
 \value{
-Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the \href{/reference/events}{event} schema.\tabular{lll}{
+Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the \href{https://developers.asana.com/reference/events}{event} schema.\tabular{lll}{
    \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
    gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
    resource_type \tab character scalar \tab The base type of this resource. \cr

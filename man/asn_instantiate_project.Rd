@@ -24,6 +24,6 @@ A \emph{job} is an object representing a process that handles asynchronous work.
 }
 }
 \description{
-Creates and returns a job that will asynchronously handle the project instantiation.  To form this request, it is recommended to first make a request to \href{/reference/getprojecttemplate}{get a project template}. Then, from the response, copy the \code{gid} from the object in the \code{requested_dates} array. This \code{gid} should be used in \code{requested_dates} to instantiate a project.  \emph{Note: The body of this request will differ if your workspace is an organization. To determine if your workspace is an organization, use the \href{/reference/workspaces}{is_organization} parameter.}
+Creates and returns a job that will asynchronously handle the project instantiation.  To form this request, it is recommended to first make a request to \href{https://developers.asana.com/reference/getprojecttemplate}{get a project template}. Then, from the response, copy the \code{gid} from the object in the \code{requested_dates} array. This \code{gid} should be used in \code{requested_dates} to instantiate a project.  \emph{Note: The body of this request will differ if your workspace is an organization. To determine if your workspace is an organization, use the \href{https://developers.asana.com/reference/workspaces}{is_organization} parameter.}
 }
 \keyword{internal}

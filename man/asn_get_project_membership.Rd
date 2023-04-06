@@ -18,7 +18,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
    resource_type \tab character scalar \tab The base type of this resource. \cr
    user \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
    member \tab list \tab Member can be a user or a team. \cr
-   project \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The project the user is a member of. \cr
+   project \tab list \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The project the user is a member of. \cr
    write_access \tab character scalar \tab Whether the member has full access, edit access, or comment-only access to the project. \cr
 }
 }

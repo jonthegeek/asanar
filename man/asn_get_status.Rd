@@ -18,7 +18,7 @@ A \emph{status update} is an update on the progress of a particular project, por
    resource_type \tab character scalar \tab The base type of this resource. \cr
    resource_subtype \tab character scalar \tab The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The \code{resource_subtype}s for \code{status} objects represent the type of their parent. \cr
    title \tab character scalar \tab The title of the status update. \cr
-   html_text \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The text content of the status update with formatting as HTML. \cr
+   html_text \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The text content of the status update with formatting as HTML. \cr
    status_type \tab character scalar \tab The type associated with the status update. This represents the current state of the object this object is on. \cr
    text \tab character scalar \tab The text content of the status update. \cr
    author \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr

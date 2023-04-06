@@ -20,7 +20,7 @@ A \emph{Project Brief} allows you to explain the what and why of the project to 
    title \tab character scalar \tab The title of the project brief. \cr
    permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
    project \tab list \tab The project with which this project brief is associated. \cr
-   text \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The plain text of the project brief. \cr
+   text \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The plain text of the project brief. \cr
 }
 }
 \description{

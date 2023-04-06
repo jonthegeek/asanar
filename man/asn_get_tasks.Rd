@@ -45,6 +45,6 @@ The \emph{task} is the basic object around which many operations in Asana are ce
 }
 }
 \description{
-Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a \code{project} or \code{tag} if you do not specify \code{assignee} and \code{workspace}.  For more complex task retrieval, use \href{/reference/searchtasksforworkspace}{workspaces/{workspace_gid}/tasks/search}.
+Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a \code{project} or \code{tag} if you do not specify \code{assignee} and \code{workspace}.  For more complex task retrieval, use \href{https://developers.asana.com/reference/searchtasksforworkspace}{workspaces/{workspace_gid}/tasks/search}.
 }
 \keyword{internal}

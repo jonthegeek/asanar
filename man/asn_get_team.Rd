@@ -21,11 +21,11 @@ A \emph{team} is used to group related projects and people together within an or
    gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
    resource_type \tab character scalar \tab The base type of this resource. \cr
    name \tab character scalar \tab The name of the team. \cr
-   description \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The description of the team. \cr
+   description \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The description of the team. \cr
    edit_team_name_or_description_access_level \tab character scalar \tab Controls who can edit team name and description \cr
    edit_team_visibility_or_trash_team_access_level \tab character scalar \tab Controls who can edit team visibility and trash teams \cr
    guest_invite_management_access_level \tab character scalar \tab Controls who can accept or deny guest invites for a given team \cr
-   html_description \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The description of the team with formatting as HTML. \cr
+   html_description \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The description of the team with formatting as HTML. \cr
    join_request_management_access_level \tab character scalar \tab Controls who can accept or deny join team requests for a Membership by Request team \cr
    member_invite_management_access_level \tab character scalar \tab Controls who can accept or deny member invites for a given team \cr
    organization \tab list \tab The organization/workspace the team belongs to. \cr

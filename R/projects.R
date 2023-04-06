@@ -45,7 +45,7 @@ asn_get_custom_field_settings_for_project <- function(project_gid, limit, offset
 #' | title | character scalar | The title of the project brief. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
 #' | project | list | The project with which this project brief is associated. |
-#' | text | character scalar | [Opt In](/docs/inputoutput-options). The plain text of the project brief. |
+#' | text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The plain text of the project brief. |
 #'
 #' @keywords internal
 asn_create_project_brief <- function(project_gid, opt_fields) {
@@ -131,7 +131,7 @@ asn_get_project_statuses_for_project <- function(project_gid, limit, offset, opt
 #' | resource_type | character scalar | The base type of this resource. |
 #' | title | character scalar | The title of the project status update. |
 #' | color | character scalar | The color associated with the status update. |
-#' | html_text | character scalar | [Opt In](/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
+#' | html_text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
 #' | text | character scalar | The text content of the status update. |
 #' | author | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #' | created_at | datetime scalar | The time at which this resource was created. |
@@ -202,7 +202,7 @@ asn_get_projects <- function(archived, limit, offset, opt_fields, team, workspac
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -212,13 +212,13 @@ asn_get_projects <- function(archived, limit, offset, opt_fields, team, workspac
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -256,7 +256,7 @@ asn_create_project <- function(opt_fields) {
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -266,13 +266,13 @@ asn_create_project <- function(opt_fields) {
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -309,7 +309,7 @@ asn_get_project <- function(project_gid, opt_fields) {
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -319,13 +319,13 @@ asn_get_project <- function(project_gid, opt_fields) {
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -447,7 +447,7 @@ asn_remove_custom_field_setting_for_project <- function(project_gid) {
 
 #' Get task count of a project
 #'
-#' Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](/docs/inputoutput-options) using `opt_fields` to get any information from this endpoint.  This endpoint has an additional [rate limit](/docs/rate-limits) and each field counts especially high against our [cost limits](/docs/rate-limits#cost-limits).  Milestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and `num_completed_tasks` counts.
+#' Get an object that holds task count fields. **All fields are excluded by default**. You must [opt in](https://developers.asana.com/docs/inputoutput-options) using `opt_fields` to get any information from this endpoint.  This endpoint has an additional [rate limit](https://developers.asana.com/docs/rate-limits) and each field counts especially high against our [cost limits](https://developers.asana.com/docs/rate-limits#cost-limits).  Milestones are just tasks, so they are included in the `num_tasks`, `num_incomplete_tasks`, and `num_completed_tasks` counts.
 #'
 #' @param project_gid (character scalar) Globally unique identifier for the project.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
@@ -498,7 +498,7 @@ asn_get_task_counts_for_project <- function(project_gid, limit, offset, opt_fiel
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -508,13 +508,13 @@ asn_get_task_counts_for_project <- function(project_gid, limit, offset, opt_fiel
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -552,7 +552,7 @@ asn_add_members_for_project <- function(project_gid, opt_fields) {
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -562,13 +562,13 @@ asn_add_members_for_project <- function(project_gid, opt_fields) {
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -606,7 +606,7 @@ asn_remove_members_for_project <- function(project_gid, opt_fields) {
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -616,13 +616,13 @@ asn_remove_members_for_project <- function(project_gid, opt_fields) {
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -660,7 +660,7 @@ asn_add_followers_for_project <- function(project_gid, opt_fields) {
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -670,13 +670,13 @@ asn_add_followers_for_project <- function(project_gid, opt_fields) {
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal

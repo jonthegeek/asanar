@@ -26,7 +26,7 @@ A \emph{project} represents a prioritized list of tasks in Asana or a board with
    default_view \tab character scalar \tab The default view (list, board, calendar, or timeline) of a project. \cr
    due_date \tab datetime scalar \tab \emph{Deprecated: new integrations should prefer the \code{due_on} field.} \cr
    due_on \tab datetime scalar \tab The day on which this project is due. This takes a date with format YYYY-MM-DD. \cr
-   html_notes \tab character scalar \tab \href{/docs/inputoutput-options}{Opt In}. The notes of the project with formatting as HTML. \cr
+   html_notes \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The notes of the project with formatting as HTML. \cr
    members \tab list \tab Array of users who are members of this project. \cr
    modified_at \tab datetime scalar \tab The time at which this project was last modified. \emph{Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.} \cr
    notes \tab character scalar \tab Free-form textual information associated with the project (ie., its description). \cr
@@ -36,13 +36,13 @@ A \emph{project} represents a prioritized list of tasks in Asana or a board with
    completed \tab logical scalar \tab True if the project is currently marked complete, false if not. \cr
    completed_at \tab datetime scalar \tab The time at which this project was completed, or null if the project is not completed. \cr
    completed_by \tab list \tab The user that marked this project complete, or null if the project is not completed. \cr
-   created_from_template \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The project template from which this project was created. If the project was not created from a template, this field will be null. \cr
+   created_from_template \tab list \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The project template from which this project was created. If the project was not created from a template, this field will be null. \cr
    custom_fields \tab list \tab Array of Custom Fields. \cr
    followers \tab list \tab Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. \cr
    icon \tab character scalar \tab The icon for a project. \cr
    owner \tab list \tab The current owner of the project, may be null. \cr
    permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
-   project_brief \tab list \tab \href{/docs/inputoutput-options}{Opt In}. The project brief associated with this project. \cr
+   project_brief \tab list \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The project brief associated with this project. \cr
    team \tab list \tab The team that this project is shared with. \cr
 }
 }

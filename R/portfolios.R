@@ -44,7 +44,7 @@ asn_get_custom_field_settings_for_portfolio <- function(portfolio_gid, limit, of
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
 #' | resource_type | character scalar | The base type of this resource. |
-#' | portfolio | list | [Opt In](/docs/inputoutput-options). The portfolio the user is a member of. |
+#' | portfolio | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The portfolio the user is a member of. |
 #' | user | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #'
 #' @keywords internal
@@ -69,7 +69,7 @@ asn_get_portfolio_memberships_for_portfolio <- function(portfolio_gid, limit, of
 #' @param owner (optional) (character scalar) The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.
 #' @param workspace (character scalar) The workspace or organization to filter portfolios on.
 #'
-#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
+#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://developers.asana.com/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -94,7 +94,7 @@ asn_get_portfolios <- function(workspace, limit, offset, opt_fields, owner) {
 #'
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
+#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://developers.asana.com/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -134,7 +134,7 @@ asn_create_portfolio <- function(opt_fields) {
 #' @param portfolio_gid (character scalar) Globally unique identifier for the portfolio.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
+#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://developers.asana.com/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -173,7 +173,7 @@ asn_get_portfolio <- function(portfolio_gid, opt_fields) {
 #' @param portfolio_gid (character scalar) Globally unique identifier for the portfolio.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
+#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://developers.asana.com/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -360,7 +360,7 @@ asn_remove_custom_field_setting_for_portfolio <- function(portfolio_gid) {
 #' @param portfolio_gid (character scalar) Globally unique identifier for the portfolio.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
+#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://developers.asana.com/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
@@ -400,7 +400,7 @@ asn_add_members_for_portfolio <- function(portfolio_gid, opt_fields) {
 #' @param portfolio_gid (character scalar) Globally unique identifier for the portfolio.
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
 #'
-#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
+#' @return A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://developers.asana.com/reference/project-statuses) update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.
 #' | **Property** | **Class** | **Description** |
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |

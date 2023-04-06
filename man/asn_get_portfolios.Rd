@@ -18,7 +18,7 @@ asn_get_portfolios(workspace, limit, offset, opt_fields, owner)
 \item{owner}{(optional) (character scalar) The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.}
 }
 \value{
-A \emph{portfolio} gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent \href{/reference/project-statuses}{project status} update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.\tabular{lll}{
+A \emph{portfolio} gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent \href{https://developers.asana.com/reference/project-statuses}{project status} update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.\tabular{lll}{
    \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
    gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
    resource_type \tab character scalar \tab The base type of this resource. \cr

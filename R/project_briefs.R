@@ -14,7 +14,7 @@
 #' | title | character scalar | The title of the project brief. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
 #' | project | list | The project with which this project brief is associated. |
-#' | text | character scalar | [Opt In](/docs/inputoutput-options). The plain text of the project brief. |
+#' | text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The plain text of the project brief. |
 #'
 #' @keywords internal
 asn_get_project_brief <- function(project_brief_gid, opt_fields) {
@@ -44,7 +44,7 @@ asn_get_project_brief <- function(project_brief_gid, opt_fields) {
 #' | title | character scalar | The title of the project brief. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
 #' | project | list | The project with which this project brief is associated. |
-#' | text | character scalar | [Opt In](/docs/inputoutput-options). The plain text of the project brief. |
+#' | text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The plain text of the project brief. |
 #'
 #' @keywords internal
 asn_update_project_brief <- function(project_brief_gid, opt_fields) {

@@ -14,7 +14,7 @@
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
 #' | resource_type | character scalar | The base type of this resource. |
-#' | portfolio | list | [Opt In](/docs/inputoutput-options). The portfolio the user is a member of. |
+#' | portfolio | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The portfolio the user is a member of. |
 #' | user | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #'
 #' @keywords internal
@@ -41,7 +41,7 @@ asn_get_portfolio_memberships <- function(limit, offset, opt_fields, portfolio, 
 #' |:-------------|:----------|:----------------|
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
 #' | resource_type | character scalar | The base type of this resource. |
-#' | portfolio | list | [Opt In](/docs/inputoutput-options). The portfolio the user is a member of. |
+#' | portfolio | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The portfolio the user is a member of. |
 #' | user | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
 #'
 #' @keywords internal

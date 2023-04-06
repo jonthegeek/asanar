@@ -12,7 +12,7 @@
 #' | resource_type | character scalar | The base type of this resource. |
 #' | resource_subtype | character scalar | The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The `resource_subtype`s for `status` objects represent the type of their parent. |
 #' | title | character scalar | The title of the status update. |
-#' | html_text | character scalar | [Opt In](/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
+#' | html_text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
 #' | status_type | character scalar | The type associated with the status update. This represents the current state of the object this object is on. |
 #' | text | character scalar | The text content of the status update. |
 #' | author | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |
@@ -106,7 +106,7 @@ asn_get_statuses_for_object <- function(parent, created_since, limit, offset, op
 #' | resource_type | character scalar | The base type of this resource. |
 #' | resource_subtype | character scalar | The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The `resource_subtype`s for `status` objects represent the type of their parent. |
 #' | title | character scalar | The title of the status update. |
-#' | html_text | character scalar | [Opt In](/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
+#' | html_text | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The text content of the status update with formatting as HTML. |
 #' | status_type | character scalar | The type associated with the status update. This represents the current state of the object this object is on. |
 #' | text | character scalar | The text content of the status update. |
 #' | author | list | A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks. |

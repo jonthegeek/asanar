@@ -77,7 +77,7 @@ asn_get_projects_for_team <- function(team_gid, archived, limit, offset, opt_fie
 #' | default_view | character scalar | The default view (list, board, calendar, or timeline) of a project. |
 #' | due_date | datetime scalar | *Deprecated: new integrations should prefer the `due_on` field.* |
 #' | due_on | datetime scalar | The day on which this project is due. This takes a date with format YYYY-MM-DD. |
-#' | html_notes | character scalar | [Opt In](/docs/inputoutput-options). The notes of the project with formatting as HTML. |
+#' | html_notes | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The notes of the project with formatting as HTML. |
 #' | members | list | Array of users who are members of this project. |
 #' | modified_at | datetime scalar | The time at which this project was last modified. *Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.* |
 #' | notes | character scalar | Free-form textual information associated with the project (ie., its description). |
@@ -87,13 +87,13 @@ asn_get_projects_for_team <- function(team_gid, archived, limit, offset, opt_fie
 #' | completed | logical scalar | True if the project is currently marked complete, false if not. |
 #' | completed_at | datetime scalar | The time at which this project was completed, or null if the project is not completed. |
 #' | completed_by | list | The user that marked this project complete, or null if the project is not completed. |
-#' | created_from_template | list | [Opt In](/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
+#' | created_from_template | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project template from which this project was created. If the project was not created from a template, this field will be null. |
 #' | custom_fields | list | Array of Custom Fields. |
 #' | followers | list | Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. |
 #' | icon | character scalar | The icon for a project. |
 #' | owner | list | The current owner of the project, may be null. |
 #' | permalink_url | character scalar | A url that points directly to the object within Asana. |
-#' | project_brief | list | [Opt In](/docs/inputoutput-options). The project brief associated with this project. |
+#' | project_brief | list | [Opt In](https://developers.asana.com/docs/inputoutput-options). The project brief associated with this project. |
 #' | team | list | The team that this project is shared with. |
 #'
 #' @keywords internal
@@ -155,11 +155,11 @@ asn_get_team_memberships_for_team <- function(team_gid, limit, offset, opt_field
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
 #' | resource_type | character scalar | The base type of this resource. |
 #' | name | character scalar | The name of the team. |
-#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the team.  |
+#' | description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the team.  |
 #' | edit_team_name_or_description_access_level | character scalar | Controls who can edit team name and description  |
 #' | edit_team_visibility_or_trash_team_access_level | character scalar | Controls who can edit team visibility and trash teams  |
 #' | guest_invite_management_access_level | character scalar | Controls who can accept or deny guest invites for a given team  |
-#' | html_description | character scalar | [Opt In](/docs/inputoutput-options). The description of the team with formatting as HTML.  |
+#' | html_description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the team with formatting as HTML.  |
 #' | join_request_management_access_level | character scalar | Controls who can accept or deny join team requests for a Membership by Request team  |
 #' | member_invite_management_access_level | character scalar | Controls who can accept or deny member invites for a given team  |
 #' | organization | list | The organization/workspace the team belongs to.  |
@@ -194,11 +194,11 @@ asn_create_team <- function(limit, offset, opt_fields) {
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
 #' | resource_type | character scalar | The base type of this resource. |
 #' | name | character scalar | The name of the team. |
-#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the team.  |
+#' | description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the team.  |
 #' | edit_team_name_or_description_access_level | character scalar | Controls who can edit team name and description  |
 #' | edit_team_visibility_or_trash_team_access_level | character scalar | Controls who can edit team visibility and trash teams  |
 #' | guest_invite_management_access_level | character scalar | Controls who can accept or deny guest invites for a given team  |
-#' | html_description | character scalar | [Opt In](/docs/inputoutput-options). The description of the team with formatting as HTML.  |
+#' | html_description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the team with formatting as HTML.  |
 #' | join_request_management_access_level | character scalar | Controls who can accept or deny join team requests for a Membership by Request team  |
 #' | member_invite_management_access_level | character scalar | Controls who can accept or deny member invites for a given team  |
 #' | organization | list | The organization/workspace the team belongs to.  |
@@ -234,11 +234,11 @@ asn_update_team <- function(limit, offset, opt_fields) {
 #' | gid | character scalar | Globally unique identifier of the resource, as a string. |
 #' | resource_type | character scalar | The base type of this resource. |
 #' | name | character scalar | The name of the team. |
-#' | description | character scalar | [Opt In](/docs/inputoutput-options). The description of the team.  |
+#' | description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the team.  |
 #' | edit_team_name_or_description_access_level | character scalar | Controls who can edit team name and description  |
 #' | edit_team_visibility_or_trash_team_access_level | character scalar | Controls who can edit team visibility and trash teams  |
 #' | guest_invite_management_access_level | character scalar | Controls who can accept or deny guest invites for a given team  |
-#' | html_description | character scalar | [Opt In](/docs/inputoutput-options). The description of the team with formatting as HTML.  |
+#' | html_description | character scalar | [Opt In](https://developers.asana.com/docs/inputoutput-options). The description of the team with formatting as HTML.  |
 #' | join_request_management_access_level | character scalar | Controls who can accept or deny join team requests for a Membership by Request team  |
 #' | member_invite_management_access_level | character scalar | Controls who can accept or deny member invites for a given team  |
 #' | organization | list | The organization/workspace the team belongs to.  |
