@@ -14,6 +14,8 @@
       [1] "user"
       
       
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 ---
 
@@ -34,6 +36,8 @@
       
       
       
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 # POST requests work
 
@@ -55,6 +59,8 @@
       [1] "default_task"
       
       
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 ---
 
@@ -68,6 +74,8 @@
       body = body)
     Output
       named list()
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 ---
 
@@ -88,6 +96,8 @@
       [1] "default_task"
       
       
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 ---
 
@@ -96,6 +106,8 @@
       body = body)
     Output
       named list()
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 ---
 
@@ -116,6 +128,8 @@
       [1] "default_task"
       
       
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 ---
 
@@ -124,6 +138,8 @@
       body = body)
     Output
       named list()
+      attr(,"class")
+      [1] "asn_response" "list"        
 
 # POSTing and DELETEing files works.
 
@@ -153,4 +169,6 @@
         gid), method = "delete")
     Output
       named list()
+      attr(,"class")
+      [1] "asn_response" "list"        
 
