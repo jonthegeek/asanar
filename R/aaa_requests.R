@@ -127,9 +127,37 @@
 
   # TODO: Make sure that parsed properly.
 
-  return(response$data)
+  return(.new_asn_response(response$data))
 }
 
+#' Construct an asn_response
+#'
+#' @param response_data The `data` portion of a response from
+#'   `httr2::resp_body_json()`.
+#'
+#' @return An object with additional class "asn_response", or `NULL`.
+#' @keywords internal
+.new_asn_response <- function(response_data) {
+  if (is.null(response_data)) {
+    return(NULL)
+  } else {
+    return(
+      structure(
+        response_data,
+        class = c("asn_response", class(response_data))
+      )
+    )
+  }
+}
+
+#' Prepare the body of a call
+#'
+#' @param body An object to use as the body of the request.
+#' @param type Whether the request is "json" or "multipart".
+#' @param mime_type The mime_type of any file included in the body.
+#'
+#' @return A prepared body list object with a "json" or "multipart" subclass.
+#' @keywords internal
 .prepare_body <- function(body, type = c("json", "multipart"), mime_type) {
   type <- rlang::arg_match(type)
 
