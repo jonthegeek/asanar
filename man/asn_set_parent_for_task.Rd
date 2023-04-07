@@ -9,10 +9,51 @@ asn_set_parent_for_task(task_gid, opt_fields)
 \arguments{
 \item{task_gid}{(character scalar) The task to operate on.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+The \emph{task} is the basic object around which many operations in Asana are centered.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the task. \cr
+   resource_subtype \tab character scalar \tab The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The resource_subtype \code{milestone} represent a single moment in time. This means tasks with this subtype cannot have a start_date. \cr
+   actual_time_minutes \tab number \tab This value represents the sum of all the Time Tracking entries in the Actual Time field on a given Task. It is represented as a nullable long value. \cr
+   approval_status \tab character scalar \tab \emph{Conditional} Reflects the approval status of this task. This field is kept in sync with \code{completed}, meaning \code{pending} translates to false while \code{approved}, \code{rejected}, and \code{changes_requested} translate to true. If you set completed to true, this field will be set to \code{approved}. \cr
+   assignee_status \tab character scalar \tab \emph{Deprecated} Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom. \cr
+   completed \tab logical scalar \tab True if the task is currently marked complete, false if not. \cr
+   completed_at \tab datetime scalar \tab The time at which this task was completed, or null if the task is incomplete. \cr
+   completed_by \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   dependencies \tab list \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency. \cr
+   dependents \tab list \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent. \cr
+   due_at \tab date scalar \tab The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with \code{due_on}. \cr
+   due_on \tab date scalar \tab The localized date on which this task is due, or null if the task has no due date. This takes a date with \code{YYYY-MM-DD} format and should not be used together with \code{due_at}. \cr
+   external \tab list \tab \emph{OAuth Required}. \emph{Conditional}. This field is returned only if external values are set or included by using \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation \code{external:custom_gid} to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details. \cr
+   hearted \tab logical scalar \tab \emph{Deprecated - please use liked instead} True if the task is hearted by the authorized user, false if not. \cr
+   hearts \tab list \tab \emph{Deprecated - please use likes instead} Array of likes for users who have hearted this task. \cr
+   html_notes \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The notes of the text with formatting as HTML. \cr
+   is_rendered_as_separator \tab logical scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to \href{https://developers.asana.com/reference/sections}{sections} without being true \code{section} objects. If a \code{task} object is rendered this way in any context it will have the property \code{is_rendered_as_separator} set to \code{true}. \cr
+   liked \tab logical scalar \tab True if the task is liked by the authorized user, false if not. \cr
+   likes \tab list \tab Array of likes for users who have liked this task. \cr
+   memberships \tab list \tab \emph{Create-only}. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the \code{addProject} and \code{removeProject} endpoints. Note that over time, more types of memberships may be added to this property. \cr
+   modified_at \tab datetime scalar \tab The time at which this task was last modified.  \emph{Note: This does not currently reflect any changes in associations such as projects or comments that may have been added or removed from the task.} \cr
+   notes \tab character scalar \tab Free-form textual information associated with the task (i.e. its description). \cr
+   num_hearts \tab integer scalar \tab \emph{Deprecated - please use likes instead} The number of users who have hearted this task. \cr
+   num_likes \tab integer scalar \tab The number of users who have liked this task. \cr
+   num_subtasks \tab integer scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The number of subtasks on this task. \cr
+   start_at \tab date scalar \tab Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with \code{start_on}. \emph{Note: \code{due_at} must be present in the request when setting or unsetting the \code{start_at} parameter.} \cr
+   start_on \tab date scalar \tab The day on which work begins for the task , or null if the task has no start date. This takes a date with \code{YYYY-MM-DD} format and should not be used together with \code{start_at}. \emph{Note: \code{due_on} or \code{due_at} must be present in the request when setting or unsetting the \code{start_on} parameter.} \cr
+   assignee \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   assignee_section \tab list \tab The \emph{assignee section} is a subdivision of a project that groups tasks together in the assignee's "My Tasks" list. It can either be a header above a list of tasks in a list view or a column in a board view of "My Tasks." The \code{assignee_section} property will be returned in the response only if the request was sent by the user who is the assignee of the task. Note that you can only write to \code{assignee_section} with the gid of an existing section visible in the user's "My Tasks" list. \cr
+   custom_fields \tab list \tab Array of custom field values applied to the task. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an \code{enum_value} property for custom fields of type \code{enum}, a \code{text_value} property for custom fields of type \code{text}, and so on. Please note that the \code{gid} returned on each custom field value \emph{is identical} to the \code{gid} of the custom field, which allows referencing the custom field metadata through the \verb{/custom_fields/custom_field-gid} endpoint. \cr
+   followers \tab list \tab Array of users following this task. \cr
+   parent \tab list \tab The parent of this task, or \code{null} if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the \code{setParent} endpoint. You can create subtasks by using the subtasks endpoint. \cr
+   permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
+   projects \tab list \tab \emph{Create-only.} Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints. \cr
+   tags \tab list \tab Array of tags associated with this task. In order to change tags on an existing task use \code{addTag} and \code{removeTag}. \cr
+   workspace \tab list \tab \emph{Create-only}. The workspace this task is associated with. Once created, task cannot be moved to a different workspace. This attribute can only be specified at creation time. \cr
+}
 }
 \description{
 parent, or no parent task at all. Returns an empty data block. When using \code{insert_before} and \code{insert_after}, at most one of those two options can be specified, and they must already be subtasks of the parent.

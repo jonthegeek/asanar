@@ -9,10 +9,19 @@ asn_get_time_period(time_period_gid, opt_fields)
 \arguments{
 \item{time_period_gid}{(character scalar) Globally unique identifier for the time period.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A generic Asana Resource, containing a globally unique identifier.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   display_name \tab character scalar \tab A string representing the cadence code and the fiscal year. \cr
+   end_on \tab character scalar \tab The localized end date of the time period in \code{YYYY-MM-DD} format. \cr
+   period \tab character scalar \tab The cadence and index of the time period. The value is one of: \code{FY}, \code{H1}, \code{H2}, \code{Q1}, \code{Q2}, \code{Q3}, or \code{Q4}. \cr
+   start_on \tab character scalar \tab The localized start date of the time period in \code{YYYY-MM-DD} format. \cr
+   parent \tab list \tab A generic Asana Resource, containing a globally unique identifier. \cr
+}
 }
 \description{
 Returns the full record for a single time period.

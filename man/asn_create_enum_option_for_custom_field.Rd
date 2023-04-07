@@ -18,10 +18,17 @@ asn_create_enum_option_for_custom_field(
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 500.  You can add enum options to a custom field by using the \code{POST /custom_fields/custom_field_gid/enum_options} endpoint.  \strong{It is not possible to remove or delete an enum option}. Instead, enum options can be disabled by updating the \code{enabled} field to false with the \code{PUT /enum_options/enum_option_gid} endpoint. Other attributes can be updated similarly.  On creation of an enum option, \code{enabled} is always set to \code{true}, meaning the enum option is a selectable value for the custom field. Setting \code{enabled=false} is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.  Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using \code{insert_before} or \code{insert_after} to reference an existing enum option. Only one of \code{insert_before} and \code{insert_after} can be provided when creating a new enum option.  An enum options list can be reordered with the \code{POST /custom_fields/custom_field_gid/enum_options/insert} endpoint.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   color \tab character scalar \tab The color of the enum option. Defaults to ‘none’. \cr
+   enabled \tab logical scalar \tab Whether or not the enum option is a selectable value for the custom field. \cr
+   name \tab character scalar \tab The name of the enum option. \cr
+}
 }
 \description{
 Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 500 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list. Locked custom fields can only have enum options added by the user who locked the field. Returns the full record of the newly created enum option.

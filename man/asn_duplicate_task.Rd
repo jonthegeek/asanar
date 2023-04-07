@@ -9,10 +9,19 @@ asn_duplicate_task(task_gid, opt_fields)
 \arguments{
 \item{task_gid}{(character scalar) The task to operate on.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{job} is an object representing a process that handles asynchronous work.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   new_project \tab list \tab A \emph{project} represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions. \cr
+   new_project_template \tab list \tab A \emph{project template} is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time. \cr
+   new_task \tab list \tab The \emph{task} is the basic object around which many operations in Asana are centered. \cr
+   resource_subtype \tab character scalar \tab The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. \cr
+   status \tab character scalar \tab The current status of this job. The value is one of: \code{not_started}, \code{in_progress}, \code{succeeded}, or \code{failed}. \cr
+}
 }
 \description{
 Creates and returns a job that will asynchronously handle the duplication.

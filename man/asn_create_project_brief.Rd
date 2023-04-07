@@ -9,10 +9,19 @@ asn_create_project_brief(project_gid, opt_fields)
 \arguments{
 \item{project_gid}{(character scalar) Globally unique identifier for the project.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{Project Brief} allows you to explain the what and why of the project to your team.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   html_text \tab character scalar \tab HTML formatted text for the project brief. \cr
+   title \tab character scalar \tab The title of the project brief. \cr
+   permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
+   project \tab list \tab The project with which this project brief is associated. \cr
+   text \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The plain text of the project brief. \cr
+}
 }
 \description{
 Creates a new project brief.  Returns the full record of the newly created project brief.

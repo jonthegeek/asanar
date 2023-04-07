@@ -1,8 +1,5 @@
 # Use the api_spec to generate endpoint functions
 
-# TODO: Use what I have so far to generate the users file, see what's left to
-# fill in by hand. Unless sorting out responses is easy.
-
 # Load the spec ----------------------------------------------------------------
 
 target_file <- here::here("data-raw", "api_spec.rds")
@@ -19,16 +16,26 @@ function_definitions <- api_spec$paths |>
     endpoint_file = ..name_endpoint_file(.data$endpoint),
     fun_name = ..name_function(.data$operationId),
     fun_formals = ..concat_formals(.data$parameters),
-    description = stringr::str_replace_all(.data$description, "\n", " "),
-    response_description = stringr::str_replace_all(
-      .data$response_description, "\n", " "
+    description = stringr::str_replace_all(.data$description, "\n", " ") |>
+      # Hacks to avoid bad links, investigate.
+      stringr::str_replace_all(
+        stringr::fixed("](/docs"),
+        "](https://developers.asana.com/docs"
+      ) |>
+      stringr::str_replace_all(
+        stringr::fixed("](/reference"),
+        "](https://developers.asana.com/reference"
+      ),
+    response_details = ..document_response(
+      .data$response_description,
+      .data$response_properties
     ),
     param_docs = ..document_parameters(.data$parameters),
     documentation = glue::glue(
       "#' {.data$summary}",
       "#' {.data$description}",
       "{.data$param_docs}",
-      "#' @return {.data$response_description}",
+      "{.data$response_details}",
       "#' @keywords internal",
       .sep = "\n#'\n"
     ),

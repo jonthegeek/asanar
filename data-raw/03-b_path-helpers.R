@@ -32,6 +32,68 @@
   )
 }
 
+..document_response <- function(response_description, response_properties) {
+  response_description <- stringr::str_replace_all(
+    response_description, "\n", " "
+  ) |>
+    # Hacks to avoid bad links, investigate.
+    stringr::str_replace_all(
+      stringr::fixed("](/docs"),
+      "](https://developers.asana.com/docs"
+    ) |>
+    stringr::str_replace_all(
+      stringr::fixed("](/reference"),
+      "](https://developers.asana.com/reference"
+    )
+  response_description <- glue::glue("#' @return {response_description}")
+
+  response_details <- response_properties |>
+    purrr::map_chr(
+      \(these_properties) {
+        if (nrow(these_properties)) {
+          response_detail <- these_properties |>
+            purrr::pmap(
+              \(property, description, type, ...) {
+                description <- stringr::str_replace_all(
+                  description, "\n", " "
+                ) |>
+                  # Hacks to avoid bad links, investigate.
+                  stringr::str_replace_all(
+                    stringr::fixed("](/docs"),
+                    "](https://developers.asana.com/docs"
+                  ) |>
+                  stringr::str_replace_all(
+                    stringr::fixed("](/reference"),
+                    "](https://developers.asana.com/reference"
+                  ) |>
+                  stringr::str_replace_all(
+                    stringr::fixed("] (/docs"),
+                    "](https://developers.asana.com/docs"
+                  )
+                return(
+                  glue::glue("#' | {property} | {type} | {description} |")
+                )
+              }
+            )
+          return(
+            paste(
+              c(
+                "#' | **Property** | **Class** | **Description** |",
+                "#' |:-------------|:----------|:----------------|",
+                response_detail
+              ),
+              collapse = "\n"
+            )
+          )
+        } else {
+          return("#'")
+        }
+      }
+    )
+
+  return(paste(response_description, response_details, sep = "\n"))
+}
+
 ..document_parameters <- function(parameters) {
   purrr::map_chr(
     parameters,
@@ -39,6 +101,18 @@
       these_parameters |>
         purrr::pmap(
           \(name, required, description, type, enum, default, ...) {
+            description <- description |>
+              stringr::str_replace_all("\n", " ") |>
+              # Hacks to avoid bad links, investigate.
+              stringr::str_replace_all(
+                stringr::fixed("](/docs"),
+                "](https://developers.asana.com/docs"
+              ) |>
+              stringr::str_replace_all(
+                stringr::fixed("](/reference"),
+                "](https://developers.asana.com/reference"
+              )
+
             optional <- dplyr::if_else(
               required,
               "",

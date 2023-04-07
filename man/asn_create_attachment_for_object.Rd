@@ -7,10 +7,24 @@
 asn_create_attachment_for_object(opt_fields)
 }
 \arguments{
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+An \emph{attachment} object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the file. \cr
+   resource_subtype \tab character scalar \tab The service hosting the attachment. Valid values are \code{asana}, \code{dropbox}, \code{gdrive}, \code{onedrive}, \code{box}, \code{vimeo}, and \code{external}. \cr
+   connected_to_app \tab logical scalar \tab Whether the attachment is connected to the app making the request for the purposes of showing an app components widget. Only present when the \code{resource_subtype} is \code{external} or \code{gdrive}. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   download_url \tab character scalar \tab The URL containing the content of the attachment. \emph{Note:} May be null if the attachment is hosted by \href{https://www.box.com/}{Box} and will be null if the attachment is a Video Message hosted by \href{https://vimeo.com/}{Vimeo}. If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs. \cr
+   host \tab character scalar \tab The service hosting the attachment. Valid values are \code{asana}, \code{dropbox}, \code{gdrive}, \code{box}, and \code{vimeo}. \cr
+   parent \tab list \tab The task this attachment is attached to. \cr
+   permanent_url \tab character scalar \tab NA \cr
+   size \tab integer scalar \tab The size of the attachment in bytes. Only present when the \code{resource_subtype} is \code{asana}. \cr
+   view_url \tab character scalar \tab The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service. \cr
+}
 }
 \description{
 Upload an attachment.  This method uploads an attachment on an object and returns the compact record for the created attachment object. This is possible by either:  - Providing the URL of the external resource being attached, or - Downloading the file content first and then uploading it as any other attachment. Note that it is not possible to attach files from third party services such as Dropbox, Box, Vimeo & Google Drive via the API  The 100MB size limit on attachments in Asana is enforced on this endpoint.  This endpoint expects a multipart/form-data encoded request containing the full contents of the file to be uploaded.  Requests made should follow the HTTP/1.1 specification that line terminators are of the form \code{CRLF} or \verb{\\r\\n} outlined \href{http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Basic-Rules}{here} in order for the server to reliably and properly handle the request.

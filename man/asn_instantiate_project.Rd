@@ -9,12 +9,21 @@ asn_instantiate_project(project_template_gid, opt_fields)
 \arguments{
 \item{project_template_gid}{(character scalar) Globally unique identifier for the project template.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{job} is an object representing a process that handles asynchronous work.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   new_project \tab list \tab A \emph{project} represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions. \cr
+   new_project_template \tab list \tab A \emph{project template} is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time. \cr
+   new_task \tab list \tab The \emph{task} is the basic object around which many operations in Asana are centered. \cr
+   resource_subtype \tab character scalar \tab The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. \cr
+   status \tab character scalar \tab The current status of this job. The value is one of: \code{not_started}, \code{in_progress}, \code{succeeded}, or \code{failed}. \cr
+}
 }
 \description{
-Creates and returns a job that will asynchronously handle the project instantiation.  To form this request, it is recommended to first make a request to \href{/reference/getprojecttemplate}{get a project template}. Then, from the response, copy the \code{gid} from the object in the \code{requested_dates} array. This \code{gid} should be used in \code{requested_dates} to instantiate a project.  \emph{Note: The body of this request will differ if your workspace is an organization. To determine if your workspace is an organization, use the \href{/reference/workspaces}{is_organization} parameter.}
+Creates and returns a job that will asynchronously handle the project instantiation.  To form this request, it is recommended to first make a request to \href{https://developers.asana.com/reference/getprojecttemplate}{get a project template}. Then, from the response, copy the \code{gid} from the object in the \code{requested_dates} array. This \code{gid} should be used in \code{requested_dates} to instantiate a project.  \emph{Note: The body of this request will differ if your workspace is an organization. To determine if your workspace is an organization, use the \href{https://developers.asana.com/reference/workspaces}{is_organization} parameter.}
 }
 \keyword{internal}

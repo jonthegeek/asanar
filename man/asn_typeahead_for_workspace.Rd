@@ -20,14 +20,19 @@ asn_typeahead_for_workspace(
 
 \item{count}{(optional) (integer scalar) The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 
 \item{query}{(optional) (character scalar) The string that will be used to search for relevant objects. If an empty string is passed in, the API will return results.}
 
 \item{type}{(optional) (character scalar) \emph{Deprecated: new integrations should prefer the resource_type field.} Possible values: custom_field, portfolio, project, tag, task, user. Default: user}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A generic Asana Resource, containing a globally unique identifier.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the object. \cr
+}
 }
 \description{
 Retrieves objects in the workspace based via an auto-completion/typeahead search algorithm. This feature is meant to provide results quickly, so do not rely on this API to provide extremely accurate search results. The result set is limited to a single page of results with a maximum size, so you won’t be able to fetch large numbers of results.  The typeahead search API provides search for objects from a single workspace. This endpoint should be used to query for objects when creating an auto-completion/typeahead search feature. This API is meant to provide results quickly and should not be relied upon for accurate or exhaustive search results. The results sets are limited in size and cannot be paginated.  Queries return a compact representation of each object which is typically the gid and name fields. Interested in a specific set of fields or all of the fields?! Of course you are. Use field selectors to manipulate what data is included in a response.  Resources with type \code{user} are returned in order of most contacted to least contacted. This is determined by task assignments, adding the user to projects, and adding the user as a follower to tasks, messages, etc.  Resources with type \code{project} are returned in order of recency. This is determined when the user visits the project, is added to the project, and completes tasks in the project.  Resources with type \code{task} are returned with priority placed on tasks the user is following, but no guarantee on the order of those tasks.  Resources with type \code{project_template} are returned with priority placed on favorited project templates.  Leaving the \code{query} string empty or omitted will give you results, still following the resource ordering above. This could be used to list users or projects that are relevant for the requesting user's api token.

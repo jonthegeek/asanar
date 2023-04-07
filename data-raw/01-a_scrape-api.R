@@ -97,10 +97,13 @@ paths_parsed <- api_spec$paths |>
 
 ## paths$responses -------------------------------------------------------------
 
-paths_parsed <- ..clean_path_responses(paths_parsed)
+paths_parsed <- ..clean_path_responses(
+  paths_parsed,
+  api_spec$components$schemas
+)
 
 # TODO: For opt_fields, use the response for this object to define the "enum"
-# column.
+# column. That actually isn't perfect. It's hiding somehow.
 
 ## paths$parameters ------------------------------------------------------------
 

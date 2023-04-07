@@ -7,10 +7,28 @@
 asn_create_portfolio(opt_fields)
 }
 \arguments{
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{portfolio} gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent \href{https://developers.asana.com/reference/project-statuses}{project status} update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the portfolio. \cr
+   color \tab character scalar \tab Color of the portfolio. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   created_by \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   current_status_update \tab list \tab The latest \code{status_update} posted to this portfolio. \cr
+   custom_field_settings \tab list \tab Array of custom field settings applied to the portfolio. \cr
+   custom_fields \tab list \tab Array of Custom Fields. \cr
+   due_on \tab datetime scalar \tab The localized day on which this portfolio is due. This takes a date with format YYYY-MM-DD. \cr
+   members \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   owner \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
+   public \tab logical scalar \tab True if the portfolio is public to its workspace members. \cr
+   start_on \tab date scalar \tab The day on which work for this portfolio begins, or null if the portfolio has no start date. This takes a date with \code{YYYY-MM-DD} format. \emph{Note: \code{due_on} must be present in the request when setting or unsetting the \code{start_on} parameter. Additionally, \code{start_on} and \code{due_on} cannot be the same date.} \cr
+   workspace \tab list \tab \emph{Create-only}. The workspace or organization that the portfolio belongs to. \cr
+}
 }
 \description{
 Creates a new portfolio in the given workspace with the supplied name.  Note that portfolios created in the Asana UI may have some state (like the “Priority” custom field) which is automatically added to the portfolio when it is created. Portfolios created via our API will \emph{not} be created with the same initial state to allow integrations to create their own starting state on a portfolio.

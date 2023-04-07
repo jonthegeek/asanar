@@ -13,12 +13,20 @@ asn_get_task_counts_for_project(project_gid, limit, offset, opt_fields)
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A response object returned from the task count endpoint.
+A response object returned from the task count endpoint.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   num_completed_milestones \tab integer scalar \tab The number of completed milestones in a project. \cr
+   num_completed_tasks \tab integer scalar \tab The number of completed tasks in a project. \cr
+   num_incomplete_milestones \tab integer scalar \tab The number of incomplete milestones in a project. \cr
+   num_incomplete_tasks \tab integer scalar \tab The number of incomplete tasks in a project. \cr
+   num_milestones \tab integer scalar \tab The number of milestones in a project. \cr
+   num_tasks \tab integer scalar \tab The number of tasks in a project. \cr
+}
 }
 \description{
-Get an object that holds task count fields. \strong{All fields are excluded by default}. You must \href{/docs/inputoutput-options}{opt in} using \code{opt_fields} to get any information from this endpoint.  This endpoint has an additional \href{/docs/rate-limits}{rate limit} and each field counts especially high against our \href{/docs/rate-limits#cost-limits}{cost limits}.  Milestones are just tasks, so they are included in the \code{num_tasks}, \code{num_incomplete_tasks}, and \code{num_completed_tasks} counts.
+Get an object that holds task count fields. \strong{All fields are excluded by default}. You must \href{https://developers.asana.com/docs/inputoutput-options}{opt in} using \code{opt_fields} to get any information from this endpoint.  This endpoint has an additional \href{https://developers.asana.com/docs/rate-limits}{rate limit} and each field counts especially high against our \href{https://developers.asana.com/docs/rate-limits#cost-limits}{cost limits}.  Milestones are just tasks, so they are included in the \code{num_tasks}, \code{num_incomplete_tasks}, and \code{num_completed_tasks} counts.
 }
 \keyword{internal}

@@ -4,6 +4,7 @@ rm(
   ..build_calls,
   ..concat_formals,
   ..document_parameters,
+  ..document_response,
   ..name_endpoint_file,
   ..name_function
 )

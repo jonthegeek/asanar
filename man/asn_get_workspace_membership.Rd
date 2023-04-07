@@ -9,10 +9,22 @@ asn_get_workspace_membership(workspace_membership_gid, opt_fields)
 \arguments{
 \item{workspace_membership_gid}{(character scalar) NA}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+This object determines if a user is a member of a workspace.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   user \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   workspace \tab list \tab A \emph{workspace} is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   is_active \tab logical scalar \tab Reflects if this user still a member of the workspace. \cr
+   is_admin \tab logical scalar \tab Reflects if this user is an admin of the workspace. \cr
+   is_guest \tab logical scalar \tab Reflects if this user is a guest of the workspace. \cr
+   user_task_list \tab list \tab The user's "My Tasks" in the workspace. \cr
+   vacation_dates \tab list \tab Contains keys \code{start_on} and \code{end_on} for the vacation dates for the user in this workspace. If \code{start_on} is null, the entire \code{vacation_dates} object will be null. If \code{end_on} is before today, the entire \code{vacation_dates} object will be null. \cr
+}
 }
 \description{
 Returns the complete workspace record for a single workspace membership.

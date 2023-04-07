@@ -9,10 +9,30 @@ asn_get_status(status_gid, opt_fields)
 \arguments{
 \item{status_gid}{(character scalar) The status update to get.}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{status update} is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a \code{status_type} intended to represent the overall state of the project.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   resource_subtype \tab character scalar \tab The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The \code{resource_subtype}s for \code{status} objects represent the type of their parent. \cr
+   title \tab character scalar \tab The title of the status update. \cr
+   html_text \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The text content of the status update with formatting as HTML. \cr
+   status_type \tab character scalar \tab The type associated with the status update. This represents the current state of the object this object is on. \cr
+   text \tab character scalar \tab The text content of the status update. \cr
+   author \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   created_at \tab datetime scalar \tab The time at which this resource was created. \cr
+   created_by \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+   hearted \tab logical scalar \tab \emph{Deprecated - please use liked instead} True if the status is hearted by the authorized user, false if not. \cr
+   hearts \tab list \tab \emph{Deprecated - please use likes instead} Array of likes for users who have hearted this status. \cr
+   liked \tab logical scalar \tab True if the status is liked by the authorized user, false if not. \cr
+   likes \tab list \tab Array of likes for users who have liked this status. \cr
+   modified_at \tab datetime scalar \tab The time at which this project status was last modified. \emph{Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the status.} \cr
+   num_hearts \tab integer scalar \tab \emph{Deprecated - please use likes instead} The number of users who have hearted this status. \cr
+   num_likes \tab integer scalar \tab The number of users who have liked this status. \cr
+   parent \tab list \tab The parent of the status update. This can be a project, goal or portfolio, and indicates that this status was sent on that object. \cr
+}
 }
 \description{
 Returns the complete record for a single status update.

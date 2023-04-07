@@ -13,10 +13,26 @@ asn_get_team(team_gid, limit, offset, opt_fields)
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A \emph{team} is used to group related projects and people together within an organization. Each project in an organization is associated with a team.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the team. \cr
+   description \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The description of the team. \cr
+   edit_team_name_or_description_access_level \tab character scalar \tab Controls who can edit team name and description \cr
+   edit_team_visibility_or_trash_team_access_level \tab character scalar \tab Controls who can edit team visibility and trash teams \cr
+   guest_invite_management_access_level \tab character scalar \tab Controls who can accept or deny guest invites for a given team \cr
+   html_description \tab character scalar \tab \href{https://developers.asana.com/docs/inputoutput-options}{Opt In}. The description of the team with formatting as HTML. \cr
+   join_request_management_access_level \tab character scalar \tab Controls who can accept or deny join team requests for a Membership by Request team \cr
+   member_invite_management_access_level \tab character scalar \tab Controls who can accept or deny member invites for a given team \cr
+   organization \tab list \tab The organization/workspace the team belongs to. \cr
+   permalink_url \tab character scalar \tab A url that points directly to the object within Asana. \cr
+   team_member_removal_access_level \tab character scalar \tab Controls who can remove team members \cr
+   visibility \tab character scalar \tab The visibility of the team to users in the same organization \cr
+}
 }
 \description{
 Returns the full record for a single team.

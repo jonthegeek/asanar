@@ -23,7 +23,7 @@ asn_get_goals(
 
 \item{offset}{(optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'}
 
-\item{opt_fields}{(optional) (character vector) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
+\item{opt_fields}{(optional) (list) Defines fields to return. Some requests return \emph{compact} representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.}
 
 \item{portfolio}{(optional) (character scalar) Globally unique identifier for supporting portfolio.}
 
@@ -31,12 +31,18 @@ asn_get_goals(
 
 \item{team}{(optional) (character scalar) Globally unique identifier for the team.}
 
-\item{time_periods}{(optional) (character vector) Globally unique identifiers for the time periods.}
+\item{time_periods}{(optional) (list) Globally unique identifiers for the time periods.}
 
 \item{workspace}{(optional) (character scalar) Globally unique identifier for the workspace.}
 }
 \value{
-A generic Asana Resource, containing a globally unique identifier.
+A generic Asana Resource, containing a globally unique identifier.\tabular{lll}{
+   \strong{Property} \tab \strong{Class} \tab \strong{Description} \cr
+   gid \tab character scalar \tab Globally unique identifier of the resource, as a string. \cr
+   resource_type \tab character scalar \tab The base type of this resource. \cr
+   name \tab character scalar \tab The name of the goal. \cr
+   owner \tab list \tab A \emph{user} object represents an account in Asana that can be given access to various workspaces, projects, and tasks. \cr
+}
 }
 \description{
 Returns compact goal records.
