@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,15 +54,14 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p>Webhook objects represent the state of an active subscription for a server to be updated with information from Asana. This schema represents the subscription itself, not the objects that are sent to the server. For information on those please refer to the <a href="https://developers.asana.com/reference/events" class="external-link">event</a> schema.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>active</td><td>logical scalar</td><td>If true, the webhook will send events - if false it is considered inactive and will not generate events.</td></tr><tr><td>resource</td><td>list</td><td>A generic Asana Resource, containing a globally unique identifier.</td></tr><tr><td>target</td><td>character scalar</td><td>The URL to receive the HTTP POST.</td></tr><tr><td>created_at</td><td>datetime scalar</td><td>The time at which this resource was created.</td></tr><tr><td>filters</td><td>list</td><td>Whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.</td></tr><tr><td>last_failure_at</td><td>datetime scalar</td><td>The timestamp when the webhook last received an error when sending an event to the target.</td></tr><tr><td>last_failure_content</td><td>character scalar</td><td>The contents of the last error response sent to the webhook when attempting to deliver events to the target.</td></tr><tr><td>last_success_at</td><td>datetime scalar</td><td>The timestamp when the webhook last successfully sent an event to the target.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

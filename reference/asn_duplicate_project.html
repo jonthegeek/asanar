@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p>A <em>job</em> is an object representing a process that handles asynchronous work.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>new_project</td><td>list</td><td>A <em>project</em> represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.</td></tr><tr><td>new_project_template</td><td>list</td><td>A <em>project template</em> is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.</td></tr><tr><td>new_task</td><td>list</td><td>The <em>task</em> is the basic object around which many operations in Asana are centered.</td></tr><tr><td>resource_subtype</td><td>character scalar</td><td>The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.</td></tr><tr><td>status</td><td>character scalar</td><td>The current status of this job. The value is one of: <code>not_started</code>, <code>in_progress</code>, <code>succeeded</code>, or <code>failed</code>.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

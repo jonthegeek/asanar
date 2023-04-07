@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@
     </div>
 
     <div class="ref-description section level2">
-    <p>Get an object that holds task count fields. <strong>All fields are excluded by default</strong>. You must <a href="/docs/inputoutput-options">opt in</a> using <code>opt_fields</code> to get any information from this endpoint.  This endpoint has an additional <a href="/docs/rate-limits">rate limit</a> and each field counts especially high against our <a href="/docs/rate-limits#cost-limits">cost limits</a>.  Milestones are just tasks, so they are included in the <code>num_tasks</code>, <code>num_incomplete_tasks</code>, and <code>num_completed_tasks</code> counts.</p>
+    <p>Get an object that holds task count fields. <strong>All fields are excluded by default</strong>. You must <a href="https://developers.asana.com/docs/inputoutput-options" class="external-link">opt in</a> using <code>opt_fields</code> to get any information from this endpoint.  This endpoint has an additional <a href="https://developers.asana.com/docs/rate-limits" class="external-link">rate limit</a> and each field counts especially high against our <a href="https://developers.asana.com/docs/rate-limits#cost-limits" class="external-link">cost limits</a>.  Milestones are just tasks, so they are included in the <code>num_tasks</code>, <code>num_incomplete_tasks</code>, and <code>num_completed_tasks</code> counts.</p>
     </div>
 
     <div class="section level2">
@@ -66,15 +66,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A response object returned from the task count endpoint.</p>
-    </div>
+<p>A response object returned from the task count endpoint.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>num_completed_milestones</td><td>integer scalar</td><td>The number of completed milestones in a project.</td></tr><tr><td>num_completed_tasks</td><td>integer scalar</td><td>The number of completed tasks in a project.</td></tr><tr><td>num_incomplete_milestones</td><td>integer scalar</td><td>The number of incomplete milestones in a project.</td></tr><tr><td>num_incomplete_tasks</td><td>integer scalar</td><td>The number of incomplete tasks in a project.</td></tr><tr><td>num_milestones</td><td>integer scalar</td><td>The number of milestones in a project.</td></tr><tr><td>num_tasks</td><td>integer scalar</td><td>The number of tasks in a project.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

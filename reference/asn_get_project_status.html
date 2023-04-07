@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p><em>Deprecated: new integrations should prefer the <code>status_update</code> resource.</em> A <em>project status</em> is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>title</td><td>character scalar</td><td>The title of the project status update.</td></tr><tr><td>color</td><td>character scalar</td><td>The color associated with the status update.</td></tr><tr><td>html_text</td><td>character scalar</td><td><a href="https://developers.asana.com/docs/inputoutput-options" class="external-link">Opt In</a>. The text content of the status update with formatting as HTML.</td></tr><tr><td>text</td><td>character scalar</td><td>The text content of the status update.</td></tr><tr><td>author</td><td>list</td><td>A <em>user</em> object represents an account in Asana that can be given access to various workspaces, projects, and tasks.</td></tr><tr><td>created_at</td><td>datetime scalar</td><td>The time at which this resource was created.</td></tr><tr><td>created_by</td><td>list</td><td>A <em>user</em> object represents an account in Asana that can be given access to various workspaces, projects, and tasks.</td></tr><tr><td>modified_at</td><td>datetime scalar</td><td>The time at which this project status was last modified. <em>Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.</em></td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

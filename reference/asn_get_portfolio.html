@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p>A <em>portfolio</em> gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent <a href="https://developers.asana.com/reference/project-statuses" class="external-link">project status</a> update. Portfolios have some restrictions on size. Each portfolio has a max of 500 items and, like projects, a max of 20 custom fields.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>name</td><td>character scalar</td><td>The name of the portfolio.</td></tr><tr><td>color</td><td>character scalar</td><td>Color of the portfolio.</td></tr><tr><td>created_at</td><td>datetime scalar</td><td>The time at which this resource was created.</td></tr><tr><td>created_by</td><td>list</td><td>A <em>user</em> object represents an account in Asana that can be given access to various workspaces, projects, and tasks.</td></tr><tr><td>current_status_update</td><td>list</td><td>The latest <code>status_update</code> posted to this portfolio.</td></tr><tr><td>custom_field_settings</td><td>list</td><td>Array of custom field settings applied to the portfolio.</td></tr><tr><td>custom_fields</td><td>list</td><td>Array of Custom Fields.</td></tr><tr><td>due_on</td><td>datetime scalar</td><td>The localized day on which this portfolio is due. This takes a date with format YYYY-MM-DD.</td></tr><tr><td>members</td><td>list</td><td>A <em>user</em> object represents an account in Asana that can be given access to various workspaces, projects, and tasks.</td></tr><tr><td>owner</td><td>list</td><td>A <em>user</em> object represents an account in Asana that can be given access to various workspaces, projects, and tasks.</td></tr><tr><td>permalink_url</td><td>character scalar</td><td>A url that points directly to the object within Asana.</td></tr><tr><td>public</td><td>logical scalar</td><td>True if the portfolio is public to its workspace members.</td></tr><tr><td>start_on</td><td>date scalar</td><td>The day on which work for this portfolio begins, or null if the portfolio has no start date. This takes a date with <code>YYYY-MM-DD</code> format. <em>Note: <code>due_on</code> must be present in the request when setting or unsetting the <code>start_on</code> parameter. Additionally, <code>start_on</code> and <code>due_on</code> cannot be the same date.</em></td></tr><tr><td>workspace</td><td>list</td><td><em>Create-only</em>. The workspace or organization that the portfolio belongs to.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

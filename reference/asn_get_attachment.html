@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p>An <em>attachment</em> object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>name</td><td>character scalar</td><td>The name of the file.</td></tr><tr><td>resource_subtype</td><td>character scalar</td><td>The service hosting the attachment. Valid values are <code>asana</code>, <code>dropbox</code>, <code>gdrive</code>, <code>onedrive</code>, <code>box</code>, <code>vimeo</code>, and <code>external</code>.</td></tr><tr><td>connected_to_app</td><td>logical scalar</td><td>Whether the attachment is connected to the app making the request for the purposes of showing an app components widget. Only present when the <code>resource_subtype</code> is <code>external</code> or <code>gdrive</code>.</td></tr><tr><td>created_at</td><td>datetime scalar</td><td>The time at which this resource was created.</td></tr><tr><td>download_url</td><td>character scalar</td><td>The URL containing the content of the attachment. <em>Note:</em> May be null if the attachment is hosted by <a href="https://www.box.com/" class="external-link">Box</a> and will be null if the attachment is a Video Message hosted by <a href="https://vimeo.com/" class="external-link">Vimeo</a>. If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.</td></tr><tr><td>host</td><td>character scalar</td><td>The service hosting the attachment. Valid values are <code>asana</code>, <code>dropbox</code>, <code>gdrive</code>, <code>box</code>, and <code>vimeo</code>.</td></tr><tr><td>parent</td><td>list</td><td>The task this attachment is attached to.</td></tr><tr><td>permanent_url</td><td>character scalar</td><td>NA</td></tr><tr><td>size</td><td>integer scalar</td><td>The size of the attachment in bytes. Only present when the <code>resource_subtype</code> is <code>asana</code>.</td></tr><tr><td>view_url</td><td>character scalar</td><td>The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

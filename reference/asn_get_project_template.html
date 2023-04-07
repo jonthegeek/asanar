@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p>A <em>project template</em> is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>name</td><td>character scalar</td><td>Name of the project template.</td></tr><tr><td>color</td><td>character scalar</td><td>Color of the project template.</td></tr><tr><td>description</td><td>character scalar</td><td>Free-form textual information associated with the project template</td></tr><tr><td>html_description</td><td>character scalar</td><td>The description of the project template with formatting as HTML.</td></tr><tr><td>owner</td><td>list</td><td>The current owner of the project template, may be null.</td></tr><tr><td>public</td><td>logical scalar</td><td>True if the project template is public to its team.</td></tr><tr><td>requested_dates</td><td>list</td><td>Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.</td></tr><tr><td>requested_roles</td><td>list</td><td>Array of template roles in this project template. User Ids can be provided for these variables when instantiating a project to assign template tasks to the user.</td></tr><tr><td>team</td><td>list</td><td>A <em>team</em> is used to group related projects and people together within an organization. Each project in an organization is associated with a team.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">asanar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,15 +58,14 @@
 
 
 <dt>opt_fields</dt>
-<dd><p>(optional) (character vector) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
+<dd><p>(optional) (list) Defines fields to return. Some requests return <em>compact</em> representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A generic Asana Resource, containing a globally unique identifier.</p>
-    </div>
+<p>A generic Asana Resource, containing a globally unique identifier.</p><table class="table table"><tr><td><strong>Property</strong></td><td><strong>Class</strong></td><td><strong>Description</strong></td></tr><tr><td>gid</td><td>character scalar</td><td>Globally unique identifier of the resource, as a string.</td></tr><tr><td>resource_type</td><td>character scalar</td><td>The base type of this resource.</td></tr><tr><td>due_on</td><td>character scalar</td><td>The localized day on which this goal is due. This takes a date with format <code>YYYY-MM-DD</code>.</td></tr><tr><td>html_notes</td><td>character scalar</td><td>The notes of the goal with formatting as HTML.</td></tr><tr><td>is_workspace_level</td><td>logical scalar</td><td><em>Conditional</em>. This property is only present when the <code>workspace</code> provided is an organization. Whether the goal belongs to the <code>workspace</code> (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.</td></tr><tr><td>liked</td><td>logical scalar</td><td>True if the goal is liked by the authorized user, false if not.</td></tr><tr><td>name</td><td>character scalar</td><td>The name of the goal.</td></tr><tr><td>notes</td><td>character scalar</td><td>Free-form textual information associated with the goal (i.e. its description).</td></tr><tr><td>start_on</td><td>character scalar</td><td>The day on which work for this goal begins, or null if the goal has no start date. This takes a date with <code>YYYY-MM-DD</code> format, and cannot be set unless there is an accompanying due date.</td></tr><tr><td>status</td><td>character scalar</td><td>The current status of this goal. When the goal is open, its status can be <code>green</code>, <code>yellow</code>, and <code>red</code> to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be <code>missed</code>, <code>achieved</code>, <code>partial</code>, or <code>dropped</code>. <em>Note</em> you can only write to this property if <code>metric</code> is set.</td></tr><tr><td>current_status_update</td><td>list</td><td>The latest <code>status_update</code> posted to this goal.</td></tr><tr><td>followers</td><td>list</td><td>Array of users who are members of this goal.</td></tr><tr><td>likes</td><td>list</td><td>Array of likes for users who have liked this goal.</td></tr><tr><td>metric</td><td>list</td><td>A generic Asana Resource, containing a globally unique identifier.</td></tr><tr><td>num_likes</td><td>integer scalar</td><td>The number of users who have liked this goal.</td></tr><tr><td>owner</td><td>list</td><td>A <em>user</em> object represents an account in Asana that can be given access to various workspaces, projects, and tasks.</td></tr><tr><td>team</td><td>list</td><td><em>Conditional</em>. This property is only present when the <code>workspace</code> provided is an organization.</td></tr><tr><td>time_period</td><td>list</td><td>A generic Asana Resource, containing a globally unique identifier.</td></tr><tr><td>workspace</td><td>list</td><td>A <em>workspace</em> is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.</td></tr></table></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
