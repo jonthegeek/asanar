@@ -25,12 +25,14 @@
 #' @keywords internal
 asn_get_webhooks <- function(workspace, limit, offset, opt_fields, resource) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/webhooks"),
     query = list(workspace = workspace, limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), resource = rlang::maybe_missing(resource)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -57,13 +59,15 @@ asn_get_webhooks <- function(workspace, limit, offset, opt_fields, resource) {
 #' @keywords internal
 asn_create_webhook <- function(opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/webhooks"),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -91,12 +95,14 @@ asn_create_webhook <- function(opt_fields) {
 #' @keywords internal
 asn_get_webhook <- function(webhook_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/webhooks/{webhook_gid}", webhook_gid = webhook_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -124,13 +130,15 @@ asn_get_webhook <- function(webhook_gid, opt_fields) {
 #' @keywords internal
 asn_update_webhook <- function(webhook_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/webhooks/{webhook_gid}", webhook_gid = webhook_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -147,12 +155,12 @@ asn_update_webhook <- function(webhook_gid, opt_fields) {
 #' @keywords internal
 asn_delete_webhook <- function(webhook_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/webhooks/{webhook_gid}", webhook_gid = webhook_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
-
-

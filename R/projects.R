@@ -20,12 +20,14 @@
 #' @keywords internal
 asn_get_custom_field_settings_for_project <- function(project_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/custom_field_settings", project_gid = project_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -50,13 +52,15 @@ asn_get_custom_field_settings_for_project <- function(project_gid, limit, offset
 #' @keywords internal
 asn_create_project_brief <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/project_briefs", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -80,12 +84,14 @@ asn_create_project_brief <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_get_project_memberships_for_project <- function(project_gid, limit, offset, opt_fields, user) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/project_memberships", project_gid = project_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), user = rlang::maybe_missing(user)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -108,12 +114,14 @@ asn_get_project_memberships_for_project <- function(project_gid, limit, offset, 
 #' @keywords internal
 asn_get_project_statuses_for_project <- function(project_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/project_statuses", project_gid = project_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -141,13 +149,15 @@ asn_get_project_statuses_for_project <- function(project_gid, limit, offset, opt
 #' @keywords internal
 asn_create_project_status_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/project_statuses", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -172,12 +182,14 @@ asn_create_project_status_for_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_get_projects <- function(archived, limit, offset, opt_fields, team, workspace) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects"),
     query = list(archived = rlang::maybe_missing(archived), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), team = rlang::maybe_missing(team), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -224,13 +236,15 @@ asn_get_projects <- function(archived, limit, offset, opt_fields, team, workspac
 #' @keywords internal
 asn_create_project <- function(opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects"),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -278,12 +292,14 @@ asn_create_project <- function(opt_fields) {
 #' @keywords internal
 asn_get_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -331,13 +347,15 @@ asn_get_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_update_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -354,12 +372,14 @@ asn_update_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_delete_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -384,13 +404,15 @@ asn_delete_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_duplicate_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/duplicate", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -413,13 +435,15 @@ asn_duplicate_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_add_custom_field_setting_for_project <- function(project_gid) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/addCustomFieldSetting", project_gid = project_gid),
     query = list(),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -435,13 +459,15 @@ asn_add_custom_field_setting_for_project <- function(project_gid) {
 #' @keywords internal
 asn_remove_custom_field_setting_for_project <- function(project_gid) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/removeCustomFieldSetting", project_gid = project_gid),
     query = list(),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -467,12 +493,14 @@ asn_remove_custom_field_setting_for_project <- function(project_gid) {
 #' @keywords internal
 asn_get_task_counts_for_project <- function(project_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/task_counts", project_gid = project_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -520,13 +548,15 @@ asn_get_task_counts_for_project <- function(project_gid, limit, offset, opt_fiel
 #' @keywords internal
 asn_add_members_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/addMembers", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -574,13 +604,15 @@ asn_add_members_for_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_remove_members_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/removeMembers", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -628,13 +660,15 @@ asn_remove_members_for_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_add_followers_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/addFollowers", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -682,13 +716,15 @@ asn_add_followers_for_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_remove_followers_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/removeFollowers", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -713,13 +749,15 @@ asn_remove_followers_for_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_project_save_as_template <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/saveAsTemplate", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -742,12 +780,14 @@ asn_project_save_as_template <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_get_sections_for_project <- function(project_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/sections", project_gid = project_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -771,13 +811,15 @@ asn_get_sections_for_project <- function(project_gid, limit, offset, opt_fields)
 #' @keywords internal
 asn_create_section_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/sections", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -794,13 +836,15 @@ asn_create_section_for_project <- function(project_gid, opt_fields) {
 #' @keywords internal
 asn_insert_section_for_project <- function(project_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/projects/{project_gid}/sections/insert", project_gid = project_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -809,7 +853,7 @@ asn_insert_section_for_project <- function(project_gid, opt_fields) {
 #' Returns the compact task records for all tasks within the given project, ordered by their priority within the project. Tasks can exist in more than one project at a time.
 #'
 #' @param project_gid (character scalar) Globally unique identifier for the project.
-#' @param completed_since (optional) (character scalar) Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*. 
+#' @param completed_since (optional) (character scalar) Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
 #' @param limit (optional) (integer scalar) Results per page. The number of objects to return per page. The value must be between 1 and 100.
 #' @param offset (optional) (character scalar) Offset token. An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. 'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
 #' @param opt_fields (optional) (list) Defines fields to return. Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below. The id of included objects will always be returned, regardless of the field options.
@@ -822,15 +866,16 @@ asn_insert_section_for_project <- function(project_gid, opt_fields) {
 #' | name | character scalar | The name of the task. |
 #' | resource_subtype | character scalar | The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date. |
 #'
-#' @keywords internal
+#' @export
 asn_get_tasks_for_project <- function(project_gid, completed_since, limit, offset, opt_fields) {
-  # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
   .call_api(
     endpoint = list("/projects/{project_gid}/tasks", project_gid = project_gid),
-    query = list(completed_since = rlang::maybe_missing(completed_since), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
+    query = list(
+      completed_since = rlang::maybe_missing(completed_since),
+      limit = rlang::maybe_missing(limit),
+      offset = rlang::maybe_missing(offset),
+      opt_fields = rlang::maybe_missing(opt_fields)
+    ),
     method = "get"
   )
 }
-
-

@@ -20,12 +20,12 @@
 #' @keywords internal
 asn_get_events <- function(resource, opt_fields, sync) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/events"),
     query = list(resource = resource, opt_fields = rlang::maybe_missing(opt_fields), sync = rlang::maybe_missing(sync)),
     method = "get"
   )
+  # nocov end
 }
-
-

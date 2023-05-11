@@ -1,0 +1,17 @@
+{
+    "data": [
+        {
+            "gid": "1204207179288963",
+            "created_at": "2023-03-17T19:54:07.518Z",
+            "created_by": {
+                "gid": "1204184768818112",
+                "name": "Jon Harmon",
+                "resource_type": "user"
+            },
+            "resource_type": "story",
+            "text": "Jon Harmon added to https://app.asana.com/0/1204184694869405/1204184694869405",
+            "type": "system",
+            "resource_subtype": "added_to_project"
+        }
+    ]
+}

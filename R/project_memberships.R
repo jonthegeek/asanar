@@ -18,12 +18,12 @@
 #' @keywords internal
 asn_get_project_membership <- function(project_membership_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/project_memberships/{project_membership_gid}", project_membership_gid = project_membership_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
-
-

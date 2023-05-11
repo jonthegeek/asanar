@@ -46,8 +46,10 @@ function_definitions <- api_spec$paths |>
     function_definition = glue::glue(
       "{.data$fun_name} <- function({.data$fun_formals}) {{",
       "  # Confirm that this makes sense. If so, change",
-      "  # @keywords internal to @export.",
+      "  # @keywords internal to @export. Also enable covr!",
+      "  # nocov start",
       "  {.data$call}",
+      "  # nocov end",
       "}}",
       "\n",
       .sep = "\n",
@@ -77,6 +79,9 @@ function_definitions |>
       )
     }
   )
+
+# TODO: Either run styler::style_pkg(), or do the equivalent. It catching some
+# of the weirdness that results from auto-generating.
 
 # "/users" and "/users/{user_gid}" are effectively the same endpoint if there
 # isn't a user_gid. You'd think "/users" would "win", but, without a query, the

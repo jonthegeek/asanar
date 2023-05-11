@@ -22,12 +22,14 @@
 #' @keywords internal
 asn_get_team_memberships_for_user <- function(user_gid, workspace, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/users/{user_gid}/team_memberships", user_gid = user_gid),
     query = list(workspace = workspace, limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -51,12 +53,14 @@ asn_get_team_memberships_for_user <- function(user_gid, workspace, limit, offset
 #' @keywords internal
 asn_get_teams_for_user <- function(organization, user_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/users/{user_gid}/teams", user_gid = user_gid),
     query = list(organization = organization, limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -80,12 +84,14 @@ asn_get_teams_for_user <- function(organization, user_gid, limit, offset, opt_fi
 #' @keywords internal
 asn_get_user_task_list_for_user <- function(user_gid, workspace, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/users/{user_gid}/user_task_list", user_gid = user_gid),
     query = list(workspace = workspace, opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -106,13 +112,17 @@ asn_get_user_task_list_for_user <- function(user_gid, workspace, opt_fields) {
 #' | resource_type | character scalar | The base type of this resource. |
 #' | name | character scalar | *Read-only except when same user as requester*. The user’s name. |
 #'
-#' @keywords internal
+#' @export
 asn_get_users <- function(limit, offset, opt_fields, team, workspace) {
-  # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
   .call_api(
     endpoint = list("/users"),
-    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), team = rlang::maybe_missing(team), workspace = rlang::maybe_missing(workspace)),
+    query = list(
+      limit = rlang::maybe_missing(limit),
+      offset = rlang::maybe_missing(offset),
+      opt_fields = rlang::maybe_missing(opt_fields),
+      team = rlang::maybe_missing(team),
+      workspace = rlang::maybe_missing(workspace)
+    ),
     method = "get"
   )
 }
@@ -138,12 +148,14 @@ asn_get_users <- function(limit, offset, opt_fields, team, workspace) {
 #' @keywords internal
 asn_get_user <- function(user_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/users/{user_gid}", user_gid = user_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -166,12 +178,14 @@ asn_get_user <- function(user_gid, opt_fields) {
 #' @keywords internal
 asn_get_favorites_for_user <- function(resource_type = "project", user_gid, workspace, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/users/{user_gid}/favorites", user_gid = user_gid),
     query = list(resource_type = resource_type, workspace = workspace, opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -195,12 +209,12 @@ asn_get_favorites_for_user <- function(resource_type = "project", user_gid, work
 #' @keywords internal
 asn_get_workspace_memberships_for_user <- function(user_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/users/{user_gid}/workspace_memberships", user_gid = user_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
-
-

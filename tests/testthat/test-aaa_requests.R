@@ -1,6 +1,4 @@
-# I use ../api instead of just api to avoid a "long filename" issue.
-
-with_mock_dir("../api", {
+with_mock_dir("aaa_requests", {
   test_that("GET requests work", {
     expect_snapshot({
       .call_api(

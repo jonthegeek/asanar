@@ -17,13 +17,13 @@
 #' @keywords internal
 asn_update_enum_option <- function(enum_option_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/enum_options/{enum_option_gid}", enum_option_gid = enum_option_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
-
-

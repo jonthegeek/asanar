@@ -37,13 +37,15 @@
 #' @keywords internal
 asn_create_custom_field <- function(limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/custom_fields"),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -85,12 +87,14 @@ asn_create_custom_field <- function(limit, offset, opt_fields) {
 #' @keywords internal
 asn_get_custom_field <- function(custom_field_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/custom_fields/{custom_field_gid}", custom_field_gid = custom_field_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -132,13 +136,15 @@ asn_get_custom_field <- function(custom_field_gid, opt_fields) {
 #' @keywords internal
 asn_update_custom_field <- function(custom_field_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/custom_fields/{custom_field_gid}", custom_field_gid = custom_field_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -155,12 +161,14 @@ asn_update_custom_field <- function(custom_field_gid, opt_fields) {
 #' @keywords internal
 asn_delete_custom_field <- function(custom_field_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/custom_fields/{custom_field_gid}", custom_field_gid = custom_field_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -185,13 +193,15 @@ asn_delete_custom_field <- function(custom_field_gid, opt_fields) {
 #' @keywords internal
 asn_create_enum_option_for_custom_field <- function(custom_field_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/custom_fields/{custom_field_gid}/enum_options", custom_field_gid = custom_field_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -214,13 +224,13 @@ asn_create_enum_option_for_custom_field <- function(custom_field_gid, limit, off
 #' @keywords internal
 asn_insert_enum_option_for_custom_field <- function(custom_field_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/custom_fields/{custom_field_gid}/enum_options/insert", custom_field_gid = custom_field_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
-
-

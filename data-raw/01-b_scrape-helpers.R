@@ -16,7 +16,8 @@
       )
     ) |>
     dplyr::select(
-      "schema", "description", "allOf", "ref" = "$ref", "properties", "required"
+      "schema", "description", "allOf",
+      "ref" = "$ref", "properties", "required"
     ) |>
     # Extract things from allOf.
     tidyr::hoist(

@@ -18,12 +18,14 @@
 #' @keywords internal
 asn_get_goal_relationship <- function(goal_relationship_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goal_relationships/{goal_relationship_gid}", goal_relationship_gid = goal_relationship_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -47,13 +49,15 @@ asn_get_goal_relationship <- function(goal_relationship_gid, opt_fields) {
 #' @keywords internal
 asn_update_goal_relationship <- function(goal_relationship_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goal_relationships/{goal_relationship_gid}", goal_relationship_gid = goal_relationship_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -77,12 +81,12 @@ asn_update_goal_relationship <- function(goal_relationship_gid, opt_fields) {
 #' @keywords internal
 asn_get_goal_relationships <- function(supported_goal, opt_fields, resource_subtype) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goal_relationships"),
     query = list(supported_goal = supported_goal, opt_fields = rlang::maybe_missing(opt_fields), resource_subtype = rlang::maybe_missing(resource_subtype)),
     method = "get"
   )
+  # nocov end
 }
-
-

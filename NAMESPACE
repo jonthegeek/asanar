@@ -3,3 +3,6 @@
 S3method(.add_body,json)
 S3method(.add_body,multipart)
 export(asn_browse_token)
+export(asn_get_stories_for_task)
+export(asn_get_tasks_for_project)
+export(asn_get_users)

@@ -38,6 +38,8 @@
   request <- httr2::request(base_url)
   endpoint <- rlang::exec(glue::glue, !!!endpoint)
   request <- httr2::req_url_path_append(request, endpoint)
+  request <- httr2::req_auth_bearer_token(request, token)
+  request <- httr2::req_error(request, body = .parse_error)
 
   if (!missing(query)) {
     query <- .remove_missing(query)
@@ -55,9 +57,7 @@
     request <- httr2::req_method(request, method)
   }
 
-  return(
-    httr2::req_auth_bearer_token(request, token)
-  )
+  return(request)
 }
 
 #' Remove missing arguments
@@ -72,13 +72,17 @@
     arg_list,
     rlang::is_missing
   )
-  return(
-    structure(
-      arg_list[arg_present],
-      # Preserve special classes!
-      class = class(arg_list)
+  if (all(class(arg_list) == "list")) {
+    return(arg_list[arg_present])
+  } else {
+    return(
+      structure(
+        arg_list[arg_present],
+        # Preserve special classes!
+        class = class(arg_list)
+      )
     )
-  )
+  }
 }
 
 #' Add the body to the request
@@ -113,6 +117,36 @@
   )
 }
 
+#' Extract error information from response
+#'
+#' @param response A response that failed.
+#'
+#' @return A named character vector of error information.
+#' @keywords internal
+.parse_error <- function(response) {
+  # TODO: We should use a function factory to generate special cases of this,
+  # since req_error can't take extra arguments.
+  parsed_response <- httr2::resp_body_json(response)
+  specific_error <- NULL
+
+  if (length(parsed_response$errors)) {
+    specific_error <- rlang::set_names(
+      glue::glue_collapse(
+        purrr::map_chr(parsed_response$errors, "message"),
+        sep = "\n"
+      ),
+      "i"
+    )
+    if (httr2::resp_status(response) == 403) {
+      specific_error <- c(
+        specific_error,
+        i = "Resource may have been deleted."
+      )
+    }
+  }
+  return(specific_error)
+}
+
 #' Parse the returned response
 #'
 #' @param response A raw response returned from the Asana api.
@@ -120,9 +154,6 @@
 #' @return Almost always a list.
 #' @keywords internal
 .parse_response <- function(response) {
-  # TODO: Consider using the api-spec-supplied error explanations.
-  httr2::resp_check_status(response)
-
   response <- httr2::resp_body_json(response)
 
   # TODO: Make sure that parsed properly.
@@ -139,7 +170,7 @@
 #' @keywords internal
 .new_asn_response <- function(response_data) {
   if (is.null(response_data)) {
-    return(NULL)
+    return(NULL) # nocov
   } else {
     return(
       structure(

@@ -27,12 +27,14 @@
 #' @keywords internal
 asn_get_audit_log_events <- function(workspace_gid, actor_gid, actor_type, end_at, event_type, limit, offset, resource_gid, start_at) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/audit_log_events", workspace_gid = workspace_gid),
     query = list(actor_gid = rlang::maybe_missing(actor_gid), actor_type = rlang::maybe_missing(actor_type), end_at = rlang::maybe_missing(end_at), event_type = rlang::maybe_missing(event_type), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), resource_gid = rlang::maybe_missing(resource_gid), start_at = rlang::maybe_missing(start_at)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -76,12 +78,14 @@ asn_get_audit_log_events <- function(workspace_gid, actor_gid, actor_type, end_a
 #' @keywords internal
 asn_get_custom_fields_for_workspace <- function(workspace_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/custom_fields", workspace_gid = workspace_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -105,12 +109,14 @@ asn_get_custom_fields_for_workspace <- function(workspace_gid, limit, offset, op
 #' @keywords internal
 asn_get_projects_for_workspace <- function(workspace_gid, archived, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/projects", workspace_gid = workspace_gid),
     query = list(archived = rlang::maybe_missing(archived), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -158,13 +164,15 @@ asn_get_projects_for_workspace <- function(workspace_gid, archived, limit, offse
 #' @keywords internal
 asn_create_project_for_workspace <- function(workspace_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/projects", workspace_gid = workspace_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -187,12 +195,14 @@ asn_create_project_for_workspace <- function(workspace_gid, opt_fields) {
 #' @keywords internal
 asn_get_tags_for_workspace <- function(workspace_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/tags", workspace_gid = workspace_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -219,13 +229,15 @@ asn_get_tags_for_workspace <- function(workspace_gid, limit, offset, opt_fields)
 #' @keywords internal
 asn_create_tag_for_workspace <- function(workspace_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/tags", workspace_gid = workspace_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -299,12 +311,14 @@ asn_create_tag_for_workspace <- function(workspace_gid, opt_fields) {
 #' @keywords internal
 asn_search_tasks_for_workspace <- function(workspace_gid, assigned_by.any, assigned_by.not, assignee.any, assignee.not, commented_on_by.not, completed, completed_at.after, completed_at.before, completed_on, completed_on.after, completed_on.before, created_at.after, created_at.before, created_by.any, created_by.not, created_on, created_on.after, created_on.before, due_at.after, due_at.before, due_on, due_on.after, due_on.before, followers.not, has_attachment, is_blocked, is_blocking, is_subtask, liked_by.not, modified_at.after, modified_at.before, modified_on, modified_on.after, modified_on.before, opt_fields, portfolios.any, projects.all, projects.any, projects.not, resource_subtype = "milestone", sections.all, sections.any, sections.not, sort_ascending = "FALSE", sort_by = "modified_at", start_on, start_on.after, start_on.before, tags.all, tags.any, tags.not, teams.any, text) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/tasks/search", workspace_gid = workspace_gid),
     query = list(assigned_by.any = rlang::maybe_missing(assigned_by.any), assigned_by.not = rlang::maybe_missing(assigned_by.not), assignee.any = rlang::maybe_missing(assignee.any), assignee.not = rlang::maybe_missing(assignee.not), commented_on_by.not = rlang::maybe_missing(commented_on_by.not), completed = rlang::maybe_missing(completed), completed_at.after = rlang::maybe_missing(completed_at.after), completed_at.before = rlang::maybe_missing(completed_at.before), completed_on = rlang::maybe_missing(completed_on), completed_on.after = rlang::maybe_missing(completed_on.after), completed_on.before = rlang::maybe_missing(completed_on.before), created_at.after = rlang::maybe_missing(created_at.after), created_at.before = rlang::maybe_missing(created_at.before), created_by.any = rlang::maybe_missing(created_by.any), created_by.not = rlang::maybe_missing(created_by.not), created_on = rlang::maybe_missing(created_on), created_on.after = rlang::maybe_missing(created_on.after), created_on.before = rlang::maybe_missing(created_on.before), due_at.after = rlang::maybe_missing(due_at.after), due_at.before = rlang::maybe_missing(due_at.before), due_on = rlang::maybe_missing(due_on), due_on.after = rlang::maybe_missing(due_on.after), due_on.before = rlang::maybe_missing(due_on.before), followers.not = rlang::maybe_missing(followers.not), has_attachment = rlang::maybe_missing(has_attachment), is_blocked = rlang::maybe_missing(is_blocked), is_blocking = rlang::maybe_missing(is_blocking), is_subtask = rlang::maybe_missing(is_subtask), liked_by.not = rlang::maybe_missing(liked_by.not), modified_at.after = rlang::maybe_missing(modified_at.after), modified_at.before = rlang::maybe_missing(modified_at.before), modified_on = rlang::maybe_missing(modified_on), modified_on.after = rlang::maybe_missing(modified_on.after), modified_on.before = rlang::maybe_missing(modified_on.before), opt_fields = rlang::maybe_missing(opt_fields), portfolios.any = rlang::maybe_missing(portfolios.any), projects.all = rlang::maybe_missing(projects.all), projects.any = rlang::maybe_missing(projects.any), projects.not = rlang::maybe_missing(projects.not), resource_subtype = rlang::maybe_missing(resource_subtype), sections.all = rlang::maybe_missing(sections.all), sections.any = rlang::maybe_missing(sections.any), sections.not = rlang::maybe_missing(sections.not), sort_ascending = rlang::maybe_missing(sort_ascending), sort_by = rlang::maybe_missing(sort_by), start_on = rlang::maybe_missing(start_on), start_on.after = rlang::maybe_missing(start_on.after), start_on.before = rlang::maybe_missing(start_on.before), tags.all = rlang::maybe_missing(tags.all), tags.any = rlang::maybe_missing(tags.any), tags.not = rlang::maybe_missing(tags.not), teams.any = rlang::maybe_missing(teams.any), text = rlang::maybe_missing(text)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -327,12 +341,14 @@ asn_search_tasks_for_workspace <- function(workspace_gid, assigned_by.any, assig
 #' @keywords internal
 asn_get_teams_for_workspace <- function(workspace_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/teams", workspace_gid = workspace_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -357,12 +373,14 @@ asn_get_teams_for_workspace <- function(workspace_gid, limit, offset, opt_fields
 #' @keywords internal
 asn_typeahead_for_workspace <- function(resource_type = "user", workspace_gid, count, opt_fields, query, type = "user") {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/typeahead", workspace_gid = workspace_gid),
     query = list(resource_type = resource_type, count = rlang::maybe_missing(count), opt_fields = rlang::maybe_missing(opt_fields), query = rlang::maybe_missing(query), type = rlang::maybe_missing(type)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -384,12 +402,14 @@ asn_typeahead_for_workspace <- function(resource_type = "user", workspace_gid, c
 #' @keywords internal
 asn_get_users_for_workspace <- function(workspace_gid, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/users", workspace_gid = workspace_gid),
     query = list(offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -414,12 +434,14 @@ asn_get_users_for_workspace <- function(workspace_gid, offset, opt_fields) {
 #' @keywords internal
 asn_get_workspace_memberships_for_workspace <- function(workspace_gid, limit, offset, opt_fields, user) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/workspace_memberships", workspace_gid = workspace_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), user = rlang::maybe_missing(user)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -441,12 +463,14 @@ asn_get_workspace_memberships_for_workspace <- function(workspace_gid, limit, of
 #' @keywords internal
 asn_get_workspaces <- function(limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces"),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -469,12 +493,14 @@ asn_get_workspaces <- function(limit, offset, opt_fields) {
 #' @keywords internal
 asn_get_workspace <- function(workspace_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}", workspace_gid = workspace_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -497,13 +523,15 @@ asn_get_workspace <- function(workspace_gid, opt_fields) {
 #' @keywords internal
 asn_update_workspace <- function(workspace_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}", workspace_gid = workspace_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -526,13 +554,15 @@ asn_update_workspace <- function(workspace_gid, opt_fields) {
 #' @keywords internal
 asn_add_user_for_workspace <- function(workspace_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/addUser", workspace_gid = workspace_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -549,13 +579,13 @@ asn_add_user_for_workspace <- function(workspace_gid, opt_fields) {
 #' @keywords internal
 asn_remove_user_for_workspace <- function(workspace_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/workspaces/{workspace_gid}/removeUser", workspace_gid = workspace_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
-
-

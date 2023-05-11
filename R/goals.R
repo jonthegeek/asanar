@@ -18,13 +18,15 @@
 #' @keywords internal
 asn_add_supporting_relationship <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/addSupportingRelationship", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -41,13 +43,15 @@ asn_add_supporting_relationship <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_remove_supporting_relationship <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/removeSupportingRelationship", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -84,12 +88,14 @@ asn_remove_supporting_relationship <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_get_goal <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -126,13 +132,15 @@ asn_get_goal <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_update_goal <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -149,12 +157,14 @@ asn_update_goal <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_delete_goal <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -183,12 +193,14 @@ asn_delete_goal <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_get_goals <- function(is_workspace_level, limit, offset, opt_fields, portfolio, project, team, time_periods, workspace) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals"),
     query = list(is_workspace_level = rlang::maybe_missing(is_workspace_level), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), portfolio = rlang::maybe_missing(portfolio), project = rlang::maybe_missing(project), team = rlang::maybe_missing(team), time_periods = rlang::maybe_missing(time_periods), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -226,13 +238,15 @@ asn_get_goals <- function(is_workspace_level, limit, offset, opt_fields, portfol
 #' @keywords internal
 asn_create_goal <- function(limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals"),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -269,13 +283,15 @@ asn_create_goal <- function(limit, offset, opt_fields) {
 #' @keywords internal
 asn_create_goal_metric <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/setMetric", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -312,13 +328,15 @@ asn_create_goal_metric <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_update_goal_metric <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/setMetricCurrentValue", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -355,13 +373,15 @@ asn_update_goal_metric <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_add_followers <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/addFollowers", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -398,13 +418,15 @@ asn_add_followers <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_remove_followers <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/removeFollowers", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -426,12 +448,12 @@ asn_remove_followers <- function(goal_gid, opt_fields) {
 #' @keywords internal
 asn_get_parent_goals_for_goal <- function(goal_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/goals/{goal_gid}/parentGoals", goal_gid = goal_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
-
-
