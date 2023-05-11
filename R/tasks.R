@@ -17,12 +17,14 @@
 #' @keywords internal
 asn_get_projects_for_task <- function(task_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/projects", task_gid = task_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -45,13 +47,15 @@ asn_get_projects_for_task <- function(task_gid, limit, offset, opt_fields) {
 #' | resource_subtype | character scalar | The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning. |
 #' | text | character scalar | *Create-only*. Human-readable text for the story or comment. This will not include the name of the creator. *Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.* Use the `resource_subtype` property to discover the action that created the story. |
 #'
-#' @keywords internal
+#' @export
 asn_get_stories_for_task <- function(task_gid, limit, offset, opt_fields) {
-  # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
   .call_api(
     endpoint = list("/tasks/{task_gid}/stories", task_gid = task_gid),
-    query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
+    query = list(
+      limit = rlang::maybe_missing(limit),
+      offset = rlang::maybe_missing(offset),
+      opt_fields = rlang::maybe_missing(opt_fields)
+    ),
     method = "get"
   )
 }
@@ -124,13 +128,15 @@ asn_get_stories_for_task <- function(task_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_create_story_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/stories", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -153,12 +159,14 @@ asn_create_story_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_get_tags_for_task <- function(task_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/tags", task_gid = task_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -187,12 +195,14 @@ asn_get_tags_for_task <- function(task_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_get_tasks <- function(assignee, completed_since, limit, modified_since, offset, opt_fields, project, section, workspace) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks"),
     query = list(assignee = rlang::maybe_missing(assignee), completed_since = rlang::maybe_missing(completed_since), limit = rlang::maybe_missing(limit), modified_since = rlang::maybe_missing(modified_since), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), project = rlang::maybe_missing(project), section = rlang::maybe_missing(section), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -248,13 +258,15 @@ asn_get_tasks <- function(assignee, completed_since, limit, modified_since, offs
 #' @keywords internal
 asn_create_task <- function(opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks"),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -311,12 +323,14 @@ asn_create_task <- function(opt_fields) {
 #' @keywords internal
 asn_get_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -373,13 +387,15 @@ asn_get_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_update_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -396,12 +412,14 @@ asn_update_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_delete_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -426,13 +444,15 @@ asn_delete_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_duplicate_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/duplicate", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -456,12 +476,14 @@ asn_duplicate_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_get_subtasks_for_task <- function(task_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/subtasks", task_gid = task_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -518,13 +540,15 @@ asn_get_subtasks_for_task <- function(task_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_create_subtask_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/subtasks", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -581,13 +605,15 @@ asn_create_subtask_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_set_parent_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/setParent", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -611,12 +637,14 @@ asn_set_parent_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_get_dependencies_for_task <- function(task_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/dependencies", task_gid = task_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -633,13 +661,15 @@ asn_get_dependencies_for_task <- function(task_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_add_dependencies_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/addDependencies", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -656,13 +686,15 @@ asn_add_dependencies_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_remove_dependencies_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeDependencies", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -686,12 +718,14 @@ asn_remove_dependencies_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_get_dependents_for_task <- function(task_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/dependents", task_gid = task_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -708,13 +742,15 @@ asn_get_dependents_for_task <- function(task_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_add_dependents_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/addDependents", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -731,13 +767,15 @@ asn_add_dependents_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_remove_dependents_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeDependents", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -754,13 +792,15 @@ asn_remove_dependents_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_add_project_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/addProject", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -777,13 +817,15 @@ asn_add_project_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_remove_project_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeProject", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -800,13 +842,15 @@ asn_remove_project_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_add_tag_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/addTag", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -823,13 +867,15 @@ asn_add_tag_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_remove_tag_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeTag", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -886,13 +932,15 @@ asn_remove_tag_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_add_followers_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/addFollowers", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -949,13 +997,13 @@ asn_add_followers_for_task <- function(task_gid, opt_fields) {
 #' @keywords internal
 asn_remove_follower_for_task <- function(task_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tasks/{task_gid}/removeFollowers", task_gid = task_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
-
-

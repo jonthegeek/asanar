@@ -29,4 +29,3 @@ A story represents an activity associated with an object in the Asana system.\ta
 \description{
 Returns the compact records for all stories on the task.
 }
-\keyword{internal}

@@ -22,12 +22,14 @@
 #' @keywords internal
 asn_get_project_status <- function(project_status_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/project_statuses/{project_status_gid}", project_status_gid = project_status_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -44,12 +46,12 @@ asn_get_project_status <- function(project_status_gid, opt_fields) {
 #' @keywords internal
 asn_delete_project_status <- function(project_status_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/project_statuses/{project_status_gid}", project_status_gid = project_status_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
-
-

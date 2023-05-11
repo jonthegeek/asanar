@@ -30,12 +30,14 @@
 #' @keywords internal
 asn_get_status <- function(status_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/status_updates/{status_gid}", status_gid = status_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -52,12 +54,14 @@ asn_get_status <- function(status_gid, opt_fields) {
 #' @keywords internal
 asn_delete_status <- function(status_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/status_updates/{status_gid}", status_gid = status_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -82,12 +86,14 @@ asn_delete_status <- function(status_gid, opt_fields) {
 #' @keywords internal
 asn_get_statuses_for_object <- function(parent, created_since, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/status_updates"),
     query = list(parent = parent, created_since = rlang::maybe_missing(created_since), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -124,13 +130,13 @@ asn_get_statuses_for_object <- function(parent, created_since, limit, offset, op
 #' @keywords internal
 asn_create_status_for_object <- function(limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/status_updates"),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
-
-

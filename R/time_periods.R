@@ -19,12 +19,14 @@
 #' @keywords internal
 asn_get_time_period <- function(time_period_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/time_periods/{time_period_gid}", time_period_gid = time_period_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -52,12 +54,12 @@ asn_get_time_period <- function(time_period_gid, opt_fields) {
 #' @keywords internal
 asn_get_time_periods <- function(workspace, end_on, limit, offset, opt_fields, start_on) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/time_periods"),
     query = list(workspace = workspace, end_on = rlang::maybe_missing(end_on), limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), start_on = rlang::maybe_missing(start_on)),
     method = "get"
   )
+  # nocov end
 }
-
-

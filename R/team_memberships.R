@@ -19,12 +19,14 @@
 #' @keywords internal
 asn_get_team_membership <- function(team_membership_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/team_memberships/{team_membership_gid}", team_membership_gid = team_membership_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -53,12 +55,12 @@ asn_get_team_membership <- function(team_membership_gid, opt_fields) {
 #' @keywords internal
 asn_get_team_memberships <- function(limit, offset, opt_fields, team, user, workspace) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/team_memberships"),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), team = rlang::maybe_missing(team), user = rlang::maybe_missing(user), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
+  # nocov end
 }
-
-

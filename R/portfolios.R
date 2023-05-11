@@ -20,12 +20,14 @@
 #' @keywords internal
 asn_get_custom_field_settings_for_portfolio <- function(portfolio_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/custom_field_settings", portfolio_gid = portfolio_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -50,12 +52,14 @@ asn_get_custom_field_settings_for_portfolio <- function(portfolio_gid, limit, of
 #' @keywords internal
 asn_get_portfolio_memberships_for_portfolio <- function(portfolio_gid, limit, offset, opt_fields, user) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/portfolio_memberships", portfolio_gid = portfolio_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), user = rlang::maybe_missing(user)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -79,12 +83,14 @@ asn_get_portfolio_memberships_for_portfolio <- function(portfolio_gid, limit, of
 #' @keywords internal
 asn_get_portfolios <- function(workspace, limit, offset, opt_fields, owner) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios"),
     query = list(workspace = workspace, limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), owner = rlang::maybe_missing(owner)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -117,13 +123,15 @@ asn_get_portfolios <- function(workspace, limit, offset, opt_fields, owner) {
 #' @keywords internal
 asn_create_portfolio <- function(opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios"),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -157,12 +165,14 @@ asn_create_portfolio <- function(opt_fields) {
 #' @keywords internal
 asn_get_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -196,13 +206,15 @@ asn_get_portfolio <- function(portfolio_gid, opt_fields) {
 #' @keywords internal
 asn_update_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -219,12 +231,14 @@ asn_update_portfolio <- function(portfolio_gid, opt_fields) {
 #' @keywords internal
 asn_delete_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -247,12 +261,14 @@ asn_delete_portfolio <- function(portfolio_gid, opt_fields) {
 #' @keywords internal
 asn_get_items_for_portfolio <- function(portfolio_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/items", portfolio_gid = portfolio_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -269,13 +285,15 @@ asn_get_items_for_portfolio <- function(portfolio_gid, limit, offset, opt_fields
 #' @keywords internal
 asn_add_item_for_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/addItem", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -292,13 +310,15 @@ asn_add_item_for_portfolio <- function(portfolio_gid, opt_fields) {
 #' @keywords internal
 asn_remove_item_for_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/removeItem", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -321,13 +341,15 @@ asn_remove_item_for_portfolio <- function(portfolio_gid, opt_fields) {
 #' @keywords internal
 asn_add_custom_field_setting_for_portfolio <- function(portfolio_gid) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/addCustomFieldSetting", portfolio_gid = portfolio_gid),
     query = list(),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -343,13 +365,15 @@ asn_add_custom_field_setting_for_portfolio <- function(portfolio_gid) {
 #' @keywords internal
 asn_remove_custom_field_setting_for_portfolio <- function(portfolio_gid) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/removeCustomFieldSetting", portfolio_gid = portfolio_gid),
     query = list(),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -383,13 +407,15 @@ asn_remove_custom_field_setting_for_portfolio <- function(portfolio_gid) {
 #' @keywords internal
 asn_add_members_for_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/addMembers", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -423,13 +449,13 @@ asn_add_members_for_portfolio <- function(portfolio_gid, opt_fields) {
 #' @keywords internal
 asn_remove_members_for_portfolio <- function(portfolio_gid, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/portfolios/{portfolio_gid}/removeMembers", portfolio_gid = portfolio_gid),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
-
-

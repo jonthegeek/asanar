@@ -28,4 +28,3 @@ A \emph{user} object represents an account in Asana that can be given access to 
 \description{
 Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter. Results are sorted by user ID.
 }
-\keyword{internal}

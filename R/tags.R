@@ -17,12 +17,14 @@
 #' @keywords internal
 asn_get_tags <- function(limit, offset, opt_fields, workspace) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tags"),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields), workspace = rlang::maybe_missing(workspace)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -48,13 +50,15 @@ asn_get_tags <- function(limit, offset, opt_fields, workspace) {
 #' @keywords internal
 asn_create_tag <- function(opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tags"),
     query = list(opt_fields = rlang::maybe_missing(opt_fields)),
     method = "post",
     body = stop("We do not properly build this yet. Edit by hand.")
   )
+  # nocov end
 }
 
 
@@ -83,12 +87,14 @@ asn_create_tag <- function(opt_fields) {
 #' @keywords internal
 asn_get_tag <- function(tag_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tags/{tag_gid}", tag_gid = tag_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
 
 
@@ -117,12 +123,14 @@ asn_get_tag <- function(tag_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_update_tag <- function(tag_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tags/{tag_gid}", tag_gid = tag_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "put"
   )
+  # nocov end
 }
 
 
@@ -141,12 +149,14 @@ asn_update_tag <- function(tag_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_delete_tag <- function(tag_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tags/{tag_gid}", tag_gid = tag_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "delete"
   )
+  # nocov end
 }
 
 
@@ -170,12 +180,12 @@ asn_delete_tag <- function(tag_gid, limit, offset, opt_fields) {
 #' @keywords internal
 asn_get_tasks_for_tag <- function(tag_gid, limit, offset, opt_fields) {
   # Confirm that this makes sense. If so, change
-  # @keywords internal to @export.
+  # @keywords internal to @export. Also enable covr!
+  # nocov start
   .call_api(
     endpoint = list("/tags/{tag_gid}/tasks", tag_gid = tag_gid),
     query = list(limit = rlang::maybe_missing(limit), offset = rlang::maybe_missing(offset), opt_fields = rlang::maybe_missing(opt_fields)),
     method = "get"
   )
+  # nocov end
 }
-
-

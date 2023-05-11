@@ -149,7 +149,10 @@
   )
 }
 
-..build_calls <- function(endpoint_col, parameters_col, body_col, http_method_col) {
+..build_calls <- function(endpoint_col,
+                          parameters_col,
+                          body_col,
+                          http_method_col) {
   return(
     purrr::pmap_chr(
       list(endpoint_col, parameters_col, body_col, http_method_col),

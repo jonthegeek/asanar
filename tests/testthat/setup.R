@@ -10,3 +10,8 @@ if (Sys.getenv("ASN_API_TEST_MODE") == "capture") {
   }
   unlink(test_path("asana.com"), recursive = TRUE)
 }
+
+# Avoid long paths.
+set_redactor(function(x) {
+  gsub_response(x, paste0(base_url, "/"), "", fixed = TRUE)
+})
